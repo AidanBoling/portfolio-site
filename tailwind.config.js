@@ -23,6 +23,9 @@ module.exports = {
             contain: 'contain',
             smaller: '50%',
         },
+        container: {
+            center: true,
+        },
     },
     plugins: [],
 };
