@@ -2,12 +2,13 @@ import { Inter } from 'next/font/google';
 import Background from '@/components/layout/Background';
 import Footer from '@/components/layout/Footer';
 import './globals.css';
+import pageContent from '@/data/siteContent.json';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-    title: 'Aidan Boling | Portfolio',
-    description: 'Portfolio website for Aidan Boling, a full stack developer',
+    title: pageContent.metadata.title,
+    description: pageContent.metadata.description,
 };
 
 export default function RootLayout({ children }) {

@@ -57,7 +57,7 @@ function ParallaxButton({ enableParallax, setEnableParallax }) {
     if (!mounted) return null;
 
     return (
-        <div className="group z-30 sticky top-[1.5rem] m-6 ml-auto max-w-max opacity-90 focus-within:opacity-100 hover:opacity-100 transition-opacity">
+        <div className="group z-30 fixed top-0 right-0 m-8 max-w-max opacity-90 focus-within:opacity-100 hover:opacity-100 transition-opacity">
             <button
                 id="btn"
                 aria-pressed={isPressed}
@@ -91,6 +91,7 @@ export default function Background({ children }) {
             window.matchMedia(`(prefers-reduced-motion: reduce)`).matches ===
             true;
         const userOverride = localStorage.getItem('parallax');
+        console.log('User local storage parallax: ', userOverride);
 
         if (userOverride) {
             userOverride === 'true'
@@ -102,9 +103,11 @@ export default function Background({ children }) {
     }, []);
 
     useEffect(() => {
-        enableParallax === true
-            ? localStorage.setItem('parallax', 'true')
-            : localStorage.setItem('parallax', 'false');
+        if (enableParallax !== undefined) {
+            enableParallax === true
+                ? localStorage.setItem('parallax', 'true')
+                : localStorage.setItem('parallax', 'false');
+        }
     }, [enableParallax]);
 
     function toggleParallax() {
@@ -129,6 +132,12 @@ export default function Background({ children }) {
     return (
         <>
             <div className="w-screen h-full absolute bg-geometric-pattern bg-smaller bg-fixed opacity-[.14]"></div>
+            {enableParallax !== undefined && (
+                <ParallaxButton
+                    enableParallax={enableParallax}
+                    setEnableParallax={setEnableParallax}
+                />
+            )}
             <div
                 className="parallax-container h-screen w-screen relative overflow-y-scroll overflow-x-hidden"
                 style={{ ...parallaxContainerStyle }}>
@@ -175,10 +184,6 @@ export default function Background({ children }) {
                 <div
                     className="parallax-layer-fg w-screen h-min min-h-screen absolute top-0"
                     ref={parallaxFgLayer}>
-                    <ParallaxButton
-                        enableParallax={enableParallax}
-                        setEnableParallax={setEnableParallax}
-                    />
                     {children}
                 </div>
             </div>
