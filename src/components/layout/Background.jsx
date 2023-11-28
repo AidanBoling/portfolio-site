@@ -35,20 +35,86 @@ function useHeight() {
     return [targetRef, height];
 }
 
-export default function Background({ children }) {
-    const prefersReduced =
-        window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
+function ParallaxButton({ enableParallax, setEnableParallax }) {
+    const text = {
+        isOn: 'Disable parallax scroll effect',
+        isOff: 'Enable parallax scroll effect',
+    };
+    const [isPressed, setIsPressed] = useState(enableParallax);
+    const [buttonText, setButtonText] = useState();
+    const [mounted, setMounted] = useState(false);
 
+    useEffect(() => {
+        isPressed ? setButtonText(text.isOn) : setButtonText(text.isOff);
+        setMounted(true);
+    }, [isPressed]);
+
+    function toggleParallax() {
+        setIsPressed(!isPressed);
+        setEnableParallax(!isPressed);
+    }
+
+    if (!mounted) return null;
+
+    return (
+        <div className="group z-30 sticky top-[1.5rem] m-6 ml-auto max-w-max opacity-90 focus-within:opacity-100 hover:opacity-100 transition-opacity">
+            <button
+                id="btn"
+                aria-pressed={isPressed}
+                onClick={toggleParallax}
+                className={`switch group ml-auto mb-1 z-30 relative mx-auto`}
+                aria-label={buttonText}
+                aria-labelledby="btnLabel">
+                <span
+                    aria-hidden="true"
+                    className="slider outline outline-1 outline-indigo-500/50 border-blue-300/60 before:bg-gray-400/80 group-aria-pressed:before:bg-gray-200/80 bg-clip-content backdrop-brightness-125 bg-gradient-to-r from-teal-500/40 to-indigo-800/50 group-aria-pressed:bg-gradient-to-r group-aria-pressed:from-teal-500/70 group-aria-pressed:to-indigo-600/90"></span>
+            </button>
+            <div
+                id="btnLabel"
+                className="text-sm text-center text-gray-400 group-hover:text-white transition">
+                Parallax
+            </div>
+        </div>
+    );
+}
+
+export default function Background({ children }) {
+    const [enableParallax, setEnableParallax] = useState();
     const [parallaxFgLayer, bgHeight] = useHeight();
 
     const plxPerspective = 9;
     const plxZ = -3;
     const plxScale = 1 - plxZ / plxPerspective;
 
+    useEffect(() => {
+        const prefersReduced =
+            window.matchMedia(`(prefers-reduced-motion: reduce)`).matches ===
+            true;
+        const userOverride = localStorage.getItem('parallax');
+
+        if (userOverride) {
+            userOverride === 'true'
+                ? setEnableParallax(true)
+                : setEnableParallax(false);
+        } else {
+            setEnableParallax(!prefersReduced);
+        }
+    }, []);
+
+    useEffect(() => {
+        enableParallax === true
+            ? localStorage.setItem('parallax', 'true')
+            : localStorage.setItem('parallax', 'false');
+    }, [enableParallax]);
+
+    function toggleParallax() {
+        setEnableParallax(!enableParallax);
+    }
+
     let parallaxContainerStyle;
     let parallaxBgLayerStyle;
 
-    if (!prefersReduced) {
+    if (enableParallax) {
         parallaxContainerStyle = {
             transformStyle: 'preserve-3d',
             perspective: `${plxPerspective}px`,
@@ -109,6 +175,10 @@ export default function Background({ children }) {
                 <div
                     className="parallax-layer-fg w-screen h-min min-h-screen absolute top-0"
                     ref={parallaxFgLayer}>
+                    <ParallaxButton
+                        enableParallax={enableParallax}
+                        setEnableParallax={setEnableParallax}
+                    />
                     {children}
                 </div>
             </div>

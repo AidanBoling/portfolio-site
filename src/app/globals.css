@@ -49,6 +49,89 @@ body {
   min-height: calc(100vh - 140px);
 }
 
+/* .visually-hidden {
+  clip-path: inset(100%);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+} */
+
+@layer components {
+
+  /* Slider button */
+
+  /* The switch - the box around the slider */
+  .switch,
+  .slider {
+    --sliderSize: 26px;
+    --sliderMargin: 3px;
+    --sliderMarginDoubled: calc(var(--sliderMargin) * 2);
+    --sliderSizeDoubled: calc(var(--sliderSize) * 2);
+
+  }
+
+  .switch {
+    /* position: relative; */
+    display: inline-block;
+    width: calc(var(--sliderSizeDoubled) + var(--sliderMarginDoubled));
+    height: calc(var(--sliderSize) + var(--sliderMarginDoubled));
+  }
+
+  /* The slider */
+  .switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-color: theme('colors.gray.500'); */
+    border-radius: calc(var(--sliderSize) + var(--sliderMarginDoubled));
+    border-width: var(--sliderMargin);
+    border-style: solid;
+    /* border: 4px solid green; */
+
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  .switch .slider:before {
+    position: absolute;
+    content: "";
+    height: calc(var(--sliderSize) - 2px);
+    width: calc(var(--sliderSize) - 2px);
+    left: 1px;
+    bottom: 1px;
+    /* background-color: theme('colors.gray.200'); */
+    border-radius: 50%;
+
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  /* 
+  button:focus+.slider {
+    box-shadow: 0 0 1px theme('colors.sky.500');
+  } */
+
+  /* [aria-pressed='true'] .slider {
+    background-color: theme('colors.sky.500');
+  } */
+
+  [aria-pressed='true'] .slider:before {
+    transform: translateX(var(--sliderSize));
+    -webkit-transform: translateX(var(--sliderSize));
+    -ms-transform: translateX(var(--sliderSize));
+  }
+
+}
+
+/* --------- TEMP Archive ---------------
+
+
 /* @media (prefers-reduced-motion: no-preference) { */
 
 /* .parallax-wrapper {
