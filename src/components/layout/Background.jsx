@@ -57,7 +57,7 @@ function ParallaxButton({ enableParallax, setEnableParallax }) {
     if (!mounted) return null;
 
     return (
-        <div className="group z-30 fixed top-0 right-0 m-8 max-w-max opacity-90 focus-within:opacity-100 hover:opacity-100 transition-opacity">
+        <div className="group">
             <button
                 id="btn"
                 aria-pressed={isPressed}
@@ -71,20 +71,100 @@ function ParallaxButton({ enableParallax, setEnableParallax }) {
             </button>
             <div
                 id="btnLabel"
-                className="text-sm text-center text-gray-400 group-hover:text-white transition">
+                className="text-xs text-center text-gray-400 group-hover:text-white transition">
                 Parallax
             </div>
         </div>
     );
 }
 
+function ThemeButton({ useLightTheme, setUseLightTheme }) {
+    const text = {
+        isLight: 'Toggle dark mode',
+        isDark: 'Toggle light mode',
+    };
+    const [isPressed, setIsPressed] = useState(useLightTheme);
+    const [btnText, setBtnText] = useState();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        isPressed ? setBtnText(text.isLight) : setBtnText(text.isDark);
+        setMounted(true);
+    }, [isPressed]);
+
+    function toggleThemeOverride(bool) {
+        bool === true
+            ? (localStorage.theme = 'light')
+            : (localStorage.theme = 'dark');
+    }
+
+    function toggleTheme() {
+        setIsPressed(!isPressed);
+        toggleThemeOverride(!isPressed);
+        setUseLightTheme(!isPressed);
+    }
+
+    if (!mounted) return null;
+
+    return (
+        <div className="group">
+            <button
+                id="btn"
+                aria-pressed={isPressed}
+                onClick={toggleTheme}
+                className={`switch group ml-auto mb-1 z-30 relative mx-auto`}
+                aria-label={btnText}
+                aria-labelledby="btnLabel">
+                <span
+                    aria-hidden="true"
+                    className="slider outline outline-1 outline-indigo-500/50 border-blue-300/60 before:bg-gray-400/80 group-aria-pressed:before:bg-gray-200/80 bg-clip-content backdrop-brightness-125 bg-gradient-to-r from-teal-500/40 to-indigo-800/50 group-aria-pressed:bg-gradient-to-r group-aria-pressed:from-teal-500/70 group-aria-pressed:to-indigo-600/90"></span>
+            </button>
+            <div
+                id="btnLabel"
+                className="text-xs text-center text-gray-400 group-hover:text-white transition">
+                Theme
+            </div>
+        </div>
+    );
+}
+
 export default function Background({ children }) {
+    const [useLightTheme, setUseLightTheme] = useState();
     const [enableParallax, setEnableParallax] = useState();
     const [parallaxFgLayer, bgHeight] = useHeight();
 
     const plxPerspective = 9;
     const plxZ = -3;
     const plxScale = 1 - plxZ / plxPerspective;
+
+    // Dark/light mode
+
+    useEffect(() => {
+        const prefersDarkTheme =
+            window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if ('theme' in localStorage) {
+            localStorage.theme === 'dark'
+                ? setUseLightTheme(false)
+                : setUseLightTheme(true);
+        } else {
+            setUseLightTheme(!prefersDarkTheme);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (useLightTheme !== undefined) {
+            if (useLightTheme === true) {
+                console.log('Prefers theme: light');
+                document.documentElement.classList.remove('dark');
+            } else {
+                console.log('Prefers theme: dark');
+                document.documentElement.classList.add('dark');
+            }
+        }
+    }, [useLightTheme]);
+
+    // Parallax
 
     useEffect(() => {
         const prefersReduced =
@@ -110,9 +190,9 @@ export default function Background({ children }) {
         }
     }, [enableParallax]);
 
-    function toggleParallax() {
-        setEnableParallax(!enableParallax);
-    }
+    // function toggleParallax() {
+    //     setEnableParallax(!enableParallax);
+    // }
 
     let parallaxContainerStyle;
     let parallaxBgLayerStyle;
@@ -131,13 +211,21 @@ export default function Background({ children }) {
 
     return (
         <>
-            <div className="w-screen h-full absolute bg-geometric-pattern bg-smaller bg-fixed opacity-[.14]"></div>
-            {enableParallax !== undefined && (
-                <ParallaxButton
-                    enableParallax={enableParallax}
-                    setEnableParallax={setEnableParallax}
-                />
-            )}
+            <div className="w-screen h-full absolute bg-geometric-pattern bg-smaller bg-fixed opacity-[.10]"></div>
+            <div className="group z-30 fixed top-0 right-0 m-6 max-w-max opacity-50 focus-within:opacity-100 hover:opacity-100 transition-opacity">
+                {useLightTheme !== undefined && (
+                    <ThemeButton
+                        useLightTheme={useLightTheme}
+                        setUseLightTheme={setUseLightTheme}
+                    />
+                )}
+                {enableParallax !== undefined && (
+                    <ParallaxButton
+                        enableParallax={enableParallax}
+                        setEnableParallax={setEnableParallax}
+                    />
+                )}
+            </div>
             <div
                 className="parallax-container h-screen w-screen relative overflow-y-scroll overflow-x-hidden"
                 style={{ ...parallaxContainerStyle }}>

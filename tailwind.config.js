@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
+    darkMode: 'class',
     content: [
         './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
         './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -16,6 +18,19 @@ module.exports = {
                     925: '#060d1e',
                 },
             },
+            typography: {
+                DEFAULT: {
+                    css: {
+                        lineHeight: '1.6rem',
+                        a: {
+                            color: '#3182ce',
+                            '&:hover': {
+                                color: '#2c5282',
+                            },
+                        },
+                    },
+                },
+            },
         },
         backgroundSize: {
             auto: 'auto',
@@ -27,5 +42,5 @@ module.exports = {
             center: true,
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/typography')],
 };
