@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { useState, useLayoutEffect, useRef, useEffect } from 'react';
 import useResizeObserver from '@react-hook/resize-observer';
+import { ThemeButton, ParallaxButton } from '@/components/siteSettingButtons';
 
 import bluePurpleSmokeColumnLeft from '@/public/blue-purple-gradient-smoke-column-left.png';
 import bluePurpleSmokeColumnRight from '@/public/blue-purple-gradient-smoke-column-right.png';
@@ -31,105 +32,83 @@ function useHeight() {
         }
     });
 
-    console.log('New height: ', height);
+    // console.log('New height: ', height);
     return [targetRef, height];
 }
 
-function ParallaxButton({ enableParallax, setEnableParallax }) {
-    const text = {
-        isOn: 'Disable parallax scroll effect',
-        isOff: 'Enable parallax scroll effect',
-    };
-    const [isPressed, setIsPressed] = useState(enableParallax);
-    const [buttonText, setButtonText] = useState();
-    const [mounted, setMounted] = useState(false);
+function SettingsMenu({
+    useLightTheme,
+    setUseLightTheme,
+    enableParallax,
+    setEnableParallax,
+}) {
+    const [showMenu, setShowMenu] = useState(false);
 
-    useEffect(() => {
-        isPressed ? setButtonText(text.isOn) : setButtonText(text.isOff);
-        setMounted(true);
-    }, [isPressed]);
-
-    function toggleParallax() {
-        setIsPressed(!isPressed);
-        setEnableParallax(!isPressed);
+    function toggleShow() {
+        setShowMenu(!showMenu);
     }
 
-    if (!mounted) return null;
+    const menuItemStyle =
+        'py-3 px-4 hover:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
 
     return (
-        <div className="group">
+        <div className="flex flex-col items-end w-[240px]">
             <button
-                id="btn"
-                aria-pressed={isPressed}
-                onClick={toggleParallax}
-                className={`switch group ml-auto mb-1 z-30 relative mx-auto`}
-                aria-label={buttonText}
-                aria-labelledby="btnLabel">
-                <span
-                    aria-hidden="true"
-                    className="slider outline outline-1 outline-indigo-500/50 border-blue-300/60 before:bg-gray-400/80 group-aria-pressed:before:bg-gray-200/80 bg-clip-content backdrop-brightness-125 bg-gradient-to-r from-teal-500/40 to-indigo-800/50 group-aria-pressed:bg-gradient-to-r group-aria-pressed:from-teal-500/70 group-aria-pressed:to-indigo-600/90"></span>
+                // onBlur={() => setShowMenu(false)}
+                onClick={toggleShow}
+                aria-haspopup="true"
+                aria-expanded={showMenu}
+                aria-label="Site Settings"
+                className="opacity-50 focus:opacity-100 hover:opacity-100 transition-opacity">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-8 h-8">
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z"
+                    />
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                </svg>
             </button>
-            <div
-                id="btnLabel"
-                className="text-xs text-center text-gray-400 group-hover:text-white transition">
-                Parallax
-            </div>
+            {showMenu && (
+                <div
+                    role="menu"
+                    className="bg-gray-950/70 z-30 py-2 mt-3 rounded">
+                    {useLightTheme !== undefined && (
+                        <ThemeButton
+                            className={menuItemStyle}
+                            useLightTheme={useLightTheme}
+                            setUseLightTheme={setUseLightTheme}
+                            setShowMenu={setShowMenu}
+                            role={'menuitem'}
+                        />
+                    )}
+                    {enableParallax !== undefined && (
+                        <ParallaxButton
+                            className={menuItemStyle}
+                            enableParallax={enableParallax}
+                            setEnableParallax={setEnableParallax}
+                            setShowMenu={setShowMenu}
+                            role={'menuitem'}
+                        />
+                    )}
+                </div>
+            )}
         </div>
     );
 }
 
-function ThemeButton({ useLightTheme, setUseLightTheme }) {
-    const text = {
-        isLight: 'Toggle dark mode',
-        isDark: 'Toggle light mode',
-    };
-    const [isPressed, setIsPressed] = useState(useLightTheme);
-    const [btnText, setBtnText] = useState();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        isPressed ? setBtnText(text.isLight) : setBtnText(text.isDark);
-        setMounted(true);
-    }, [isPressed]);
-
-    function toggleThemeOverride(bool) {
-        bool === true
-            ? (localStorage.theme = 'light')
-            : (localStorage.theme = 'dark');
-    }
-
-    function toggleTheme() {
-        setIsPressed(!isPressed);
-        toggleThemeOverride(!isPressed);
-        setUseLightTheme(!isPressed);
-    }
-
-    if (!mounted) return null;
-
-    return (
-        <div className="group">
-            <button
-                id="btn"
-                aria-pressed={isPressed}
-                onClick={toggleTheme}
-                className={`switch group ml-auto mb-1 z-30 relative mx-auto`}
-                aria-label={btnText}
-                aria-labelledby="btnLabel">
-                <span
-                    aria-hidden="true"
-                    className="slider outline outline-1 outline-indigo-500/50 border-blue-300/60 before:bg-gray-400/80 group-aria-pressed:before:bg-gray-200/80 bg-clip-content backdrop-brightness-125 bg-gradient-to-r from-teal-500/40 to-indigo-800/50 group-aria-pressed:bg-gradient-to-r group-aria-pressed:from-teal-500/70 group-aria-pressed:to-indigo-600/90"></span>
-            </button>
-            <div
-                id="btnLabel"
-                className="text-xs text-center text-gray-400 group-hover:text-white transition">
-                Theme
-            </div>
-        </div>
-    );
-}
-
-export default function Background({ children }) {
-    const [useLightTheme, setUseLightTheme] = useState();
+export default function Background({ lightTheme, children }) {
+    const [useLightTheme, setUseLightTheme] = useState(lightTheme);
     const [enableParallax, setEnableParallax] = useState();
     const [parallaxFgLayer, bgHeight] = useHeight();
 
@@ -138,19 +117,6 @@ export default function Background({ children }) {
     const plxScale = 1 - plxZ / plxPerspective;
 
     // Dark/light mode
-
-    useEffect(() => {
-        const prefersDarkTheme =
-            window.matchMedia('(prefers-color-scheme: dark)').matches === true;
-
-        if ('theme' in localStorage) {
-            localStorage.theme === 'dark'
-                ? setUseLightTheme(false)
-                : setUseLightTheme(true);
-        } else {
-            setUseLightTheme(!prefersDarkTheme);
-        }
-    }, []);
 
     useEffect(() => {
         if (useLightTheme !== undefined) {
@@ -190,10 +156,6 @@ export default function Background({ children }) {
         }
     }, [enableParallax]);
 
-    // function toggleParallax() {
-    //     setEnableParallax(!enableParallax);
-    // }
-
     let parallaxContainerStyle;
     let parallaxBgLayerStyle;
 
@@ -210,22 +172,17 @@ export default function Background({ children }) {
     }
 
     return (
-        <>
-            <div className="w-screen h-full absolute bg-geometric-pattern bg-smaller bg-fixed opacity-[.10]"></div>
-            <div className="group z-30 fixed top-0 right-0 m-6 max-w-max opacity-50 focus-within:opacity-100 hover:opacity-100 transition-opacity">
-                {useLightTheme !== undefined && (
-                    <ThemeButton
-                        useLightTheme={useLightTheme}
-                        setUseLightTheme={setUseLightTheme}
-                    />
-                )}
-                {enableParallax !== undefined && (
-                    <ParallaxButton
-                        enableParallax={enableParallax}
-                        setEnableParallax={setEnableParallax}
-                    />
-                )}
+        <div className="bg-slate-100 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-925 bg-fixed relative overflow-hidden">
+            <div className="w-screen h-full absolute bg-geometric-pattern bg-smaller bg-fixed opacity-[.04] dark:opacity-[.08]"></div>
+            <div className="z-30 fixed top-0 right-0 p-6 max-w-max">
+                <SettingsMenu
+                    useLightTheme={useLightTheme}
+                    setUseLightTheme={setUseLightTheme}
+                    enableParallax={enableParallax}
+                    setEnableParallax={setEnableParallax}
+                />
             </div>
+
             <div
                 className="parallax-container h-screen w-screen relative overflow-y-scroll overflow-x-hidden"
                 style={{ ...parallaxContainerStyle }}>
@@ -234,7 +191,6 @@ export default function Background({ children }) {
                     style={{ ...parallaxBgLayerStyle }}>
                     <div
                         className="w-screen min-w-[1024px] min-h-screen absolute top-0 overflow-hidden flex justify-between items-start"
-                        // ref={parallaxBackgroundRef}
                         style={{ height: bgHeight }}>
                         <div className="w-min absolute left-0 min-w-[450px] sm:w-[100vw] max-w-[650px]">
                             <Image
@@ -256,7 +212,7 @@ export default function Background({ children }) {
                                 alt="..."
                                 src={blueTealSmokeRight}
                                 quality={100}
-                                sizes="850px"
+                                sizes="350px"
                                 priority
                                 style={{
                                     // minWidth: '900px',
@@ -275,7 +231,7 @@ export default function Background({ children }) {
                     {children}
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

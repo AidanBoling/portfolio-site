@@ -1,8 +1,9 @@
 import { Inter } from 'next/font/google';
-import Background from '@/components/layout/Background';
+// import Background from '@/components/layout/Background';
 import Footer from '@/components/layout/Footer';
 import './globals.css';
 import pageContent from '@/data/siteContent.json';
+import ThemeProvider from '@/components/ThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,12 +18,12 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body className={`${inter.className}`}>
-                <div className="bg-gradient-to-t from-slate-800 to-slate-925 bg-fixed relative overflow-hidden">
-                    <Background>
-                        {children}
-                        <Footer />
-                    </Background>
-                </div>
+                <ThemeProvider>
+                    {/* <Background> */}
+                    {children}
+                    <Footer />
+                    {/* </Background> */}
+                </ThemeProvider>
             </body>
         </html>
     );
