@@ -173,7 +173,7 @@ export default function Background({ lightTheme, children }) {
 
     return (
         <div className="bg-slate-100 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-925 bg-fixed relative overflow-hidden">
-            <div className="w-screen h-full absolute bg-geometric-pattern bg-smaller bg-fixed opacity-[.04] dark:opacity-[.08]"></div>
+            <div className="w-screen h-full absolute bg-geometric-pattern bg-fixed-size bg-fixed opacity-[.04] dark:opacity-[.08]"></div>
             <div className="z-30 fixed top-0 right-0 p-6 max-w-max">
                 <SettingsMenu
                     useLightTheme={useLightTheme}
@@ -192,7 +192,7 @@ export default function Background({ lightTheme, children }) {
                     <div
                         className="w-screen min-w-[1024px] min-h-screen absolute top-0 overflow-hidden flex justify-between items-start"
                         style={{ height: bgHeight }}>
-                        <div className="w-min absolute left-0 min-w-[450px] sm:w-[100vw] max-w-[650px]">
+                        <div className="w-min absolute left-0 -top-10 min-w-[450px] sm:w-[100vw] sm:max-w-[500px] lg:max-w-[550px] xxl:max-w-[650px]">
                             <Image
                                 alt="..."
                                 src={blueTealSmokeLeft}
@@ -207,16 +207,16 @@ export default function Background({ lightTheme, children }) {
                                 }}
                             />
                         </div>
-                        <div className="w-min absolute right-0 top-[200px]">
+                        <div className="w-min absolute right-0 top-[300px] xs:min-w-[200px] lg:min-w-[250px] xxl:min-w-[300px]">
                             <Image
                                 alt="..."
                                 src={blueTealSmokeRight}
                                 quality={100}
-                                sizes="350px"
+                                sizes="300px"
                                 priority
                                 style={{
                                     // minWidth: '900px',
-                                    maxWidth: '350px',
+                                    maxWidth: '300px',
                                     height: 'auto',
                                     objectFit: 'contain',
                                 }}
