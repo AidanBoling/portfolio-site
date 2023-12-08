@@ -47,10 +47,10 @@ export default function Contact() {
                 tabIndex="-1"
                 className="section-py section-mt min-h-[75vh]">
                 <OuterContainer prose>
-                    <div className="h-min content-size-x pb-6">
+                    <div className="h-min content-max-size-x content-px pb-6">
                         <h2 className="section-header">Contact</h2>
                     </div>
-                    <div className="py-6 content-size-x">
+                    <div className="py-6 content-max-size-x content-px">
                         <p>Contact me...</p>
                         <ContactLinks />
                     </div>

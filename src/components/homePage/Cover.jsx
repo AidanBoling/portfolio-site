@@ -22,7 +22,7 @@ export default function Cover() {
     const ProfileImage = () => (
         <>
             <div
-                className={`xs:pl-4 xs:pr-0 lg:px-2 min-w-[220px] max-w-[220px] h-full lg:h-min xxs:max-w-[240] xs:max-w-[60%] sm:min-w-[240px] sm:max-w-[250px] md:min-w-[240px] lg:min-w-[270px] xl:min-w-[300px] 2xl:min-w-[340px]`}>
+                className={`xs:pl-4 xs:pr-0 lg:px-2 min-w-[200px] max-w-[200px] h-full lg:h-min xxs:min-w-[220] xxs:max-w-[240] xs:max-w-[85%] sm:min-w-[240px] sm:max-w-[250px] md:min-w-[240px] lg:min-w-[270px] xl:min-w-[300px] 2xl:min-w-[340px]`}>
                 <Image
                     src={headshot}
                     alt="Profile picture for Aidan Boling"
@@ -96,7 +96,7 @@ export default function Cover() {
                 <OuterContainer>
                     <section
                         // className={`h-min lg:max-w-[950px] xl:max-w-[1150px] ${xxsPaddingX} xs:p-8 sm:p-12 rounded-sm mx-auto`}>
-                        className={`h-min rounded-sm content-size-x pb-8 xs:py-12 sm:py-20`}>
+                        className={`h-min content-max-size-x content-px pb-8 xs:py-12 sm:py-[10vh]`}>
                         <div className="grid grid-cols-3 grid-rows-[min-content_minmax(0,_1fr)] auto-rows-min gap-8">
                             <div className="mb-10 sm:mb-16 col-start-1 col-span-full xs:col-end-3 row-start-2 xs:row-start-1 row-end-2 self-start">
                                 <Title />

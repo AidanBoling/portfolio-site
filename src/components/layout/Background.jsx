@@ -192,12 +192,12 @@ export default function Background({ lightTheme, children }) {
                     <div
                         className="w-screen min-w-screen xs:max-xl:bg-min-width-md min-h-screen absolute top-0 overflow-hidden flex justify-between items-start"
                         style={{ height: bgHeight }}>
-                        <div className="w-min absolute left-0 -top-10 min-w-[450px] sm:w-[100vw] sm:max-w-[500px] lg:max-w-[550px] xxl:max-w-[650px]">
+                        <div className="w-min absolute left-0 -top-10 min-w-[500px] sm:w-[100vw] sm:max-w-[500px] lg:max-w-[550px] xxl:max-w-[700px]">
                             <Image
                                 alt="..."
                                 src={blueTealSmokeLeft}
                                 quality={100}
-                                sizes="(max-width: 768px) 100vw, 750px"
+                                sizes="(max-width: 768px) 100vw, 800px"
                                 priority
                                 style={{
                                     // minWidth: '900px',
@@ -207,7 +207,7 @@ export default function Background({ lightTheme, children }) {
                                 }}
                             />
                         </div>
-                        <div className="w-min absolute -right-16 xs:-right-8 top-[45%] sm:-right-5 lg:top-[350px] xs:min-w-[200px] lg:min-w-[250px] xxl:min-w-[300px]">
+                        <div className="w-min absolute -right-16 xs:-right-8 top-[45%] sm:-right-5 lg:top-[45vh] xs:min-w-[200px] lg:min-w-[250px] xxl:min-w-[350px]">
                             <Image
                                 alt="..."
                                 src={blueTealSmokeRight}
@@ -216,7 +216,7 @@ export default function Background({ lightTheme, children }) {
                                 priority
                                 style={{
                                     // minWidth: '900px',
-                                    maxWidth: '300px',
+                                    maxWidth: '400px',
                                     height: 'auto',
                                     objectFit: 'contain',
                                 }}

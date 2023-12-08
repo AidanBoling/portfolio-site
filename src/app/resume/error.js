@@ -8,7 +8,7 @@ export default function Error({ error, reset }) {
         <div className="pt-[15vh] pb-24 min-h-screen relative">
             <OuterContainer>
                 <div className="w-full min-h-min content-bg">
-                    <div className="prose prose-slate dark:prose-invert content-size-x">
+                    <div className="prose prose-slate dark:prose-invert content-max-size-x content-px">
                         <h2 mb="2rem">Something went wrong!</h2>
                         <p>
                             Try loading this page again using the button below,

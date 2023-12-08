@@ -111,12 +111,12 @@ a,
         @apply bg-blue-500/[0.05] dark:bg-slate-900/[0.70] backdrop-brightness-125 dark:backdrop-brightness-[1]
     }
 
-    .content-size-x {
-        @apply px-[6vw] xs:px-8 lg:px-12 mx-auto xs:max-w-[650px] lg:max-w-[950px] xl:max-w-[1150px]
+    .content-max-size-x {
+        @apply mx-auto xs:max-w-[650px] lg:max-w-[950px] xl:max-w-[1150px]
     }
 
     .content-px {
-        @apply px-[5vw] xs:px-8 lg:px-12
+        @apply px-[5vw] xs:px-0
     }
 
     .content-py {

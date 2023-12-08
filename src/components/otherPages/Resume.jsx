@@ -6,7 +6,7 @@ export default function Resume() {
         <div className="pt-[15vh] pb-24 min-h-screen relative">
             <OuterContainer>
                 <div className="w-full min-h-min content-bg">
-                    <div className="prose prose-slate dark:prose-invert content-size-x section-py">
+                    <div className="prose prose-slate dark:prose-invert content-max-size-x content-px section-py">
                         <h2 mb="2rem">Resume...</h2>
                         <p>Placeholder</p>
                         <button

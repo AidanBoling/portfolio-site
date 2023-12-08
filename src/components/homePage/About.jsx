@@ -80,45 +80,45 @@ export default function About() {
                 tabIndex="-1"
                 className="section-py min-h-[75vh]">
                 <OuterContainer prose>
-                    {/* <div className="ab-prose"> */}
-                    <div className="h-min content-size-x relative pb-6">
-                        <h2 className="section-header">About</h2>
-                    </div>
-                    {/* <hr className="opacity-20 mt-4 mb-8" /> */}
-
-                    <div className="flex flex-col gap-y-8 lg:flex-row">
-                        <div className="pt-6 content-size-x lg:content-px">
-                            <AboutMe />
+                    <div className="content-max-size-x">
+                        <div className="h-min content-px relative pb-6">
+                            <h2 className="section-header">About</h2>
                         </div>
-                        <div className="content-bg content-size-x lg:content-px w-full md:min-w-[375px] lg:max-w-[500px] py-6">
-                            <p className="mb-2 text-2xl font-light text-blue-300">
-                                Tools
-                            </p>
-                            <hr className="opacity-20 mt-0 mb-8" />
-                            <ul className="not-prose">
-                                <li>
-                                    <p className="pb-3 text-blue-100">
-                                        <i>Core:</i>
-                                    </p>
-                                    {/* <ul className="flex flex-wrap items-stretch justify-between gap-y-6 gap-x-[4.5%] lg:gap-x-[3vw] xl:max-w-[80%] xl:max-w-full py-4 px-8">
+                        {/* <hr className="opacity-20 mt-4 mb-8" /> */}
+
+                        <div className="flex flex-col gap-y-8 gap-x-8 lg:flex-row">
+                            <div className="pt-6 content-px">
+                                <AboutMe />
+                            </div>
+                            <div className="content-bg lg:content-py content-px w-full md:min-w-[375px] md:min-w-[40%] lg:max-w-[500px] py-6 lg:p-6">
+                                <p className="mb-2 text-2xl font-light text-blue-300">
+                                    Tools
+                                </p>
+                                <hr className="opacity-20 mt-0 mb-8" />
+                                <ul className="not-prose">
+                                    <li>
+                                        <p className="pb-3 text-blue-100">
+                                            <i>Core:</i>
+                                        </p>
+                                        {/* <ul className="flex flex-wrap items-stretch justify-between gap-y-6 gap-x-[4.5%] lg:gap-x-[3vw] xl:max-w-[80%] xl:max-w-full py-4 px-8">
                                         <CoreTech />
                                     </ul> */}
-                                    <ul className="gap-y-6 py-4 px-8 list-grid-auto tech">
-                                        <CoreTech />
-                                    </ul>
-                                </li>
-                                <li>
-                                    <p className="py-3 pt-6 text-blue-100">
-                                        <i>Additional Tools & Libraries:</i>
-                                    </p>
-                                    <ul className="gap-y-6 py-4 px-8 list-grid-auto tech">
-                                        <OtherTech />
-                                    </ul>
-                                </li>
-                            </ul>
+                                        <ul className="gap-y-6 py-4 px-8 list-grid-auto tech">
+                                            <CoreTech />
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <p className="py-3 pt-6 text-blue-100">
+                                            <i>Additional Tools & Libraries:</i>
+                                        </p>
+                                        <ul className="gap-y-6 py-4 px-8 list-grid-auto tech">
+                                            <OtherTech />
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    {/* </div> */}
                 </OuterContainer>
             </section>
         </>
