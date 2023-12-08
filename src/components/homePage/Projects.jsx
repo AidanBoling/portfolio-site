@@ -1,19 +1,26 @@
 import sectionContent from '@/data/projectContent.json';
 import Image from 'next/image';
+import OuterContainer from '../layout/OuterContainer';
 
 export default function Projects() {
     return (
         <>
-            <div className="lg:container mt-16 sm:mt-24 px-4 md:px-8 lg:px-16">
-                <section id="projects" tabIndex="-1">
-                    <div className="h-min relative">
-                        <h2 className="font-normal text-4xl md:text-4xl text-left text-blue-950/[0.85] px-12 mb-4">
+            <section
+                id="projects"
+                tabIndex="-1"
+                className="content-bg section-mt section-py min-h-[75vh]">
+                <OuterContainer>
+                    <div className="h-min content-size-x pb-6">
+                        <h2 className="ab-prose section-header">
                             Selected Work
                         </h2>
                     </div>
-                    <div className="bg-blue-500/[0.05] backdrop-brightness-125 rounded-xs p-4 md:p-8 lg:p-16 relative">
-                        <div className="h-min flex">
-                            <div className="img-container rounded w-full min-h-[300px] max-h-[300px] min-w-[200px] max-w-[350px] overflow-clip relative">
+                    {/* <hr className="opacity-20 mt-4 mb-8" /> */}
+
+                    <div className="py-6 content-size-x">
+                        {/* <div className="rounded-sm bg-blue-500/[0.05] dark:bg-slate-900/[0.70] backdrop-brightness-125 dark:backdrop-brightness-[1] h-min flex"> */}
+                        <div className="rounded-sm h-min flex gap-12">
+                            <div className="w-full grow min-h-[200px] min-w-[350px] overflow-clip relative">
                                 <Image
                                     src={sectionContent.projects[0].imageURL}
                                     alt="project thumbnail"
@@ -25,38 +32,55 @@ export default function Projects() {
                                     }}
                                 />
                             </div>
-                            <div className="prose prose-slate dark:prose-invert w-full ml-8">
+
+                            <div className="ab-prose w-full flex flex-col">
                                 <h3 className="text-3xl font-normal">
                                     Title and Stuff
                                 </h3>
+                                <p>Subtitle</p>
                                 <p>Info</p>
-                                <p>Details</p>
+                                <p className="mb-auto">Details</p>
                                 <div>buttons</div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
+                </OuterContainer>
+            </section>
+        </>
+    );
+}
 
-            {/* <div className="container mt-16 sm:mt-32 px-4 md:px-8 lg:px-16 relative">
+//
+//
+// TEMP Archive ------------------------
+
+//
+{
+    /* <div className="container mt-16 sm:mt-32 px-4 md:px-8 lg:px-16 relative">
                 <section
                     id="projects"
                     tabIndex="-1"
-                    className="h-min max-w-[950px] p-12 bg-gray-950/70 rounded-lg mx-auto"> */}
-            {/* <h2 className="text-4xl md:text-5xl p-4 text-center">
+                    className="h-min max-w-[950px] p-12 bg-gray-950/70 rounded-lg mx-auto"> */
+}
+{
+    /* <h2 className="text-4xl md:text-5xl p-4 text-center">
                     Selected Work
-                </h2> */}
+                </h2> */
+}
 
-            {/* <div>
+{
+    /* <div>
                     {sectionContent.projects.map((project, i) => (
                         <div key={i} className="w-[500px] h-[300px]">
                             <p>Title: {project.title}</p>
                             <p>Description: {project.descriptionShort}</p>
                         </div>
                     ))}
-                </div> */}
+                </div> */
+}
 
-            {/* <div className="tb cards-container min-w-[90%] h-[90%] mx-auto">
+{
+    /* <div className="tb cards-container min-w-[90%] h-[90%] mx-auto">
                         {sectionContent &&
                             sectionContent.projects.map((project, i) => (
                                 <div key={i} className="mycard">
@@ -85,9 +109,11 @@ export default function Projects() {
                                         </article>
                                     </a>
                                 </div>
-                            ))} */}
+                            ))} */
+}
 
-            {/* <div className="mycard">
+{
+    /* <div className="mycard">
                         <div className="img-container">
                             <img
                                 src="https://picsum.photos/500/400?random=2"
@@ -132,10 +158,10 @@ export default function Projects() {
                                 </ul>
                             </ul>
                         </article>
-                    </div> */}
-            {/* </div>
+                    </div> */
+}
+{
+    /* </div>
                 </section>
-            </div> */}
-        </>
-    );
+            </div> */
 }

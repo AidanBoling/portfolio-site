@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer';
 import './globals.css';
 import pageContent from '@/data/siteContent.json';
 import ThemeProvider from '@/components/ThemeProvider';
+import OuterContainer from '@/components/layout/OuterContainer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-main' });
 // const h1font = My_Soul({
@@ -46,7 +47,9 @@ export default function RootLayout({ children }) {
             <body className="font-main">
                 <ThemeProvider>
                     {/* <Background> */}
+                    {/* <OuterContainer> */}
                     {children}
+                    {/* </OuterContainer> */}
                     <Footer />
                     {/* </Background> */}
                 </ThemeProvider>

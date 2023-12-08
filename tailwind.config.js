@@ -74,7 +74,7 @@ module.exports = {
             }),
         },
         screens: {
-            xxs: '350px',
+            xxs: '385px',
             xs: '560px',
             ...defaultTheme.screens,
         },
