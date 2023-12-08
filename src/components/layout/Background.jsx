@@ -190,7 +190,7 @@ export default function Background({ lightTheme, children }) {
                     className="parallax-layer-bg w-screen h-0 relative overflow-visible"
                     style={{ ...parallaxBgLayerStyle }}>
                     <div
-                        className="w-screen min-w-[1024px] min-h-screen absolute top-0 overflow-hidden flex justify-between items-start"
+                        className="w-screen min-w-screen xs:max-xl:bg-min-width-md min-h-screen absolute top-0 overflow-hidden flex justify-between items-start"
                         style={{ height: bgHeight }}>
                         <div className="w-min absolute left-0 -top-10 min-w-[450px] sm:w-[100vw] sm:max-w-[500px] lg:max-w-[550px] xxl:max-w-[650px]">
                             <Image
@@ -207,7 +207,7 @@ export default function Background({ lightTheme, children }) {
                                 }}
                             />
                         </div>
-                        <div className="w-min absolute right-0 top-[300px] xs:min-w-[200px] lg:min-w-[250px] xxl:min-w-[300px]">
+                        <div className="w-min absolute -right-16 xs:-right-8 top-[45%] sm:-right-5 lg:top-[350px] xs:min-w-[200px] lg:min-w-[250px] xxl:min-w-[300px]">
                             <Image
                                 alt="..."
                                 src={blueTealSmokeRight}
