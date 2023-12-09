@@ -10,6 +10,7 @@ import blueTealSmoke from '@/public/blue-teal-gradient-smoke.png';
 import blueTealSmokeVertical from '@/public/blue-teal-gradient-smoke-vertical.png';
 import blueTealSmokeLeft from '@/public/blue-teal-gradient-smoke_border-left-top.png';
 import blueTealSmokeRight from '@/public/blue-teal-gradient-smoke_border-right.png';
+import Navbar from './Navbar';
 
 function useHeight() {
     const targetRef = useRef(null);
@@ -59,7 +60,7 @@ function SettingsMenu({
                 aria-haspopup="true"
                 aria-expanded={showMenu}
                 aria-label="Site Settings"
-                className="opacity-50 focus:opacity-100 hover:opacity-100 transition-opacity">
+                className="peer opacity-50 focus:opacity-100 hover:opacity-100 transition-opacity">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -79,35 +80,35 @@ function SettingsMenu({
                     />
                 </svg>
             </button>
-            {showMenu && (
-                <div
-                    role="menu"
-                    className="bg-gray-950/70 z-30 py-2 mt-3 rounded">
-                    {useLightTheme !== undefined && (
-                        <ThemeButton
-                            className={menuItemStyle}
-                            useLightTheme={useLightTheme}
-                            setUseLightTheme={setUseLightTheme}
-                            setShowMenu={setShowMenu}
-                            role={'menuitem'}
-                        />
-                    )}
-                    {enableParallax !== undefined && (
-                        <ParallaxButton
-                            className={menuItemStyle}
-                            enableParallax={enableParallax}
-                            setEnableParallax={setEnableParallax}
-                            setShowMenu={setShowMenu}
-                            role={'menuitem'}
-                        />
-                    )}
-                </div>
-            )}
+            {/* {showMenu && ( */}
+            <div
+                role="menu"
+                className="bg-gray-950/70 z-30 py-2 mt-3 rounded hidden peer-aria-expanded:block">
+                {useLightTheme !== undefined && (
+                    <ThemeButton
+                        className={menuItemStyle}
+                        useLightTheme={useLightTheme}
+                        setUseLightTheme={setUseLightTheme}
+                        setShowMenu={setShowMenu}
+                        role={'menuitem'}
+                    />
+                )}
+                {enableParallax !== undefined && (
+                    <ParallaxButton
+                        className={menuItemStyle}
+                        enableParallax={enableParallax}
+                        setEnableParallax={setEnableParallax}
+                        setShowMenu={setShowMenu}
+                        role={'menuitem'}
+                    />
+                )}
+            </div>
+            {/* )} */}
         </div>
     );
 }
 
-export default function Background({ lightTheme, children }) {
+export default function Background({ lightTheme, navbar, children }) {
     const [useLightTheme, setUseLightTheme] = useState(lightTheme);
     const [enableParallax, setEnableParallax] = useState();
     const [parallaxFgLayer, bgHeight] = useHeight();
@@ -172,66 +173,76 @@ export default function Background({ lightTheme, children }) {
     }
 
     return (
-        <div className="bg-slate-100 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-925 bg-fixed relative overflow-hidden">
-            <div className="w-screen h-full absolute bg-geometric-pattern bg-fixed-size bg-fixed opacity-[.04] dark:opacity-[.08]"></div>
-            <div className="z-30 fixed top-0 right-0 p-6 max-w-max">
+        <>
+            {/* <div className="z-50 fixed top-0 right-0 p-6 max-w-max">
                 <SettingsMenu
                     useLightTheme={useLightTheme}
                     setUseLightTheme={setUseLightTheme}
                     enableParallax={enableParallax}
                     setEnableParallax={setEnableParallax}
                 />
-            </div>
+            </div> */}
+            <div className="bg-slate-100 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-925 bg-fixed relative overflow-hidden">
+                <div className="w-screen h-full absolute bg-geometric-pattern bg-fixed-size bg-fixed opacity-[.04] dark:opacity-[.08]"></div>
+                <Navbar>
+                    <SettingsMenu
+                        useLightTheme={useLightTheme}
+                        setUseLightTheme={setUseLightTheme}
+                        enableParallax={enableParallax}
+                        setEnableParallax={setEnableParallax}
+                    />
+                </Navbar>
 
-            <div
-                className="parallax-container h-screen w-screen relative overflow-y-scroll overflow-x-hidden"
-                style={{ ...parallaxContainerStyle }}>
                 <div
-                    className="parallax-layer-bg w-screen h-0 relative overflow-visible"
-                    style={{ ...parallaxBgLayerStyle }}>
+                    className="parallax-container h-screen w-screen relative overflow-y-scroll overflow-x-hidden"
+                    style={{ ...parallaxContainerStyle }}>
                     <div
-                        className="w-screen min-w-screen xs:max-xl:bg-min-width-md min-h-screen absolute top-0 overflow-hidden flex justify-between items-start"
-                        style={{ height: bgHeight }}>
-                        <div className="w-min absolute left-0 -top-10 min-w-[500px] sm:w-[100vw] sm:max-w-[500px] lg:max-w-[550px] xxl:max-w-[700px]">
-                            <Image
-                                alt="..."
-                                src={blueTealSmokeLeft}
-                                quality={100}
-                                sizes="(max-width: 768px) 100vw, 800px"
-                                priority
-                                style={{
-                                    // minWidth: '900px',
-                                    width: '100%',
-                                    height: 'auto',
-                                    objectFit: 'contain',
-                                }}
-                            />
-                        </div>
-                        <div className="w-min absolute -right-16 xs:-right-8 top-[45%] sm:-right-5 lg:top-[45vh] xs:min-w-[200px] lg:min-w-[250px] xxl:min-w-[350px]">
-                            <Image
-                                alt="..."
-                                src={blueTealSmokeRight}
-                                quality={100}
-                                sizes="300px"
-                                priority
-                                style={{
-                                    // minWidth: '900px',
-                                    maxWidth: '400px',
-                                    height: 'auto',
-                                    objectFit: 'contain',
-                                }}
-                            />
+                        className="parallax-layer-bg w-screen h-0 relative overflow-visible"
+                        style={{ ...parallaxBgLayerStyle }}>
+                        <div
+                            className="w-screen min-w-screen xs:max-xl:bg-min-width-md min-h-screen absolute top-0 overflow-hidden flex justify-between items-start"
+                            style={{ height: bgHeight }}>
+                            <div className="w-min absolute left-0 -top-10 min-w-[500px] sm:w-[100vw] sm:min-w-[600px] sm:max-w-[600px] 2xl:min-w-[820px] 2xl:max-w-[820px]">
+                                <Image
+                                    alt="..."
+                                    src={blueTealSmokeLeft}
+                                    quality={100}
+                                    sizes="(max-width: 768px) 100vw, 840px"
+                                    priority
+                                    style={{
+                                        // minWidth: '900px',
+                                        width: '100%',
+                                        height: 'auto',
+                                        objectFit: 'contain',
+                                    }}
+                                />
+                            </div>
+                            <div className="w-min absolute -right-16 xs:-right-8 top-[45%] sm:-right-5 lg:top-[45vh] xs:min-w-[200px] lg:min-w-[250px] 2xl:min-w-[350px]">
+                                <Image
+                                    alt="..."
+                                    src={blueTealSmokeRight}
+                                    quality={100}
+                                    sizes="300px"
+                                    priority
+                                    style={{
+                                        // minWidth: '900px',
+                                        // maxWidth: '350px',
+                                        height: 'auto',
+                                        objectFit: 'contain',
+                                    }}
+                                />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div
-                    className="parallax-layer-fg w-screen h-min min-h-screen absolute top-0"
-                    ref={parallaxFgLayer}>
-                    {children}
+                    <div
+                        className="parallax-layer-fg w-screen h-min min-h-screen absolute top-0"
+                        ref={parallaxFgLayer}>
+                        {children}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

@@ -95,6 +95,7 @@ export default function Cover() {
             <div className="w-full min-h-min content-bg">
                 <OuterContainer>
                     <section
+                        id="cover"
                         // className={`h-min lg:max-w-[950px] xl:max-w-[1150px] ${xxsPaddingX} xs:p-8 sm:p-12 rounded-sm mx-auto`}>
                         className={`h-min content-max-size-x content-px pb-8 xs:py-12 sm:py-[10vh]`}>
                         <div className="grid grid-cols-3 grid-rows-[min-content_minmax(0,_1fr)] auto-rows-min gap-8">
