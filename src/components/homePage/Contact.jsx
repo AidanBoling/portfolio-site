@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import sectionContent from '@/data/about.json';
 import OuterContainer from '../layout/OuterContainer';
+import ContactForm from '../ContactForm';
 
 export default function Contact() {
     // const Contact = () => (
@@ -54,6 +55,7 @@ export default function Contact() {
                         <p>Contact me...</p>
                         <ContactLinks />
                     </div>
+                    <ContactForm />
                 </OuterContainer>
             </section>
         </>
