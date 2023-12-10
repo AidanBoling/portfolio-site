@@ -50,24 +50,27 @@ function SettingsMenu({
     }
 
     const menuItemStyle =
-        'py-3 px-4 hover:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
+        'py-3 px-4 hover:bg-gray-200 hover:dark:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
 
     return (
-        <div className="flex flex-col items-end w-[240px]">
+        <div
+            className="z-30 relative min-w-[30px]"
+            // onPointerLeave={() => setShowMenu(false)}
+        >
             <button
+                className="peer absolute right-0 -top-[4px] opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
                 // onBlur={() => setShowMenu(false)}
                 onClick={toggleShow}
                 aria-haspopup="true"
                 aria-expanded={showMenu}
-                aria-label="Site Settings"
-                className="peer opacity-50 focus:opacity-100 hover:opacity-100 transition-opacity">
+                aria-label="Site Settings">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    strokeWidth={1.5}
+                    strokeWidth={1.25}
                     stroke="currentColor"
-                    className="w-8 h-8">
+                    className="w-7 h-7">
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -82,26 +85,31 @@ function SettingsMenu({
             </button>
             {/* {showMenu && ( */}
             <div
-                role="menu"
-                className="bg-gray-950/70 z-30 py-2 mt-3 rounded hidden peer-aria-expanded:block">
-                {useLightTheme !== undefined && (
-                    <ThemeButton
-                        className={menuItemStyle}
-                        useLightTheme={useLightTheme}
-                        setUseLightTheme={setUseLightTheme}
-                        setShowMenu={setShowMenu}
-                        role={'menuitem'}
-                    />
-                )}
-                {enableParallax !== undefined && (
-                    <ParallaxButton
-                        className={menuItemStyle}
-                        enableParallax={enableParallax}
-                        setEnableParallax={setEnableParallax}
-                        setShowMenu={setShowMenu}
-                        role={'menuitem'}
-                    />
-                )}
+                className="p-10 pt-3 absolute -right-10 top-[26px] hidden peer-aria-expanded:block min-w-fit"
+                onPointerLeave={() => setShowMenu(false)}
+                on>
+                <div
+                    role="menu"
+                    className="bg-gray-300/90 dark:bg-gray-950/90 right-0 top-[30px] w-[240px] py-2 rounded">
+                    {useLightTheme !== undefined && (
+                        <ThemeButton
+                            className={menuItemStyle}
+                            useLightTheme={useLightTheme}
+                            setUseLightTheme={setUseLightTheme}
+                            setShowMenu={setShowMenu}
+                            role={'menuitem'}
+                        />
+                    )}
+                    {enableParallax !== undefined && (
+                        <ParallaxButton
+                            className={menuItemStyle}
+                            enableParallax={enableParallax}
+                            setEnableParallax={setEnableParallax}
+                            setShowMenu={setShowMenu}
+                            role={'menuitem'}
+                        />
+                    )}
+                </div>
             </div>
             {/* )} */}
         </div>

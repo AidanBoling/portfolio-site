@@ -73,17 +73,17 @@ export default function Projects() {
                                     <h3 className="text-3xl font-normal mt-0">
                                         {sectionContent.projects[0].title}
                                     </h3>
-                                    <p className="text-xl mb-0 text-gray-400 font-light">
+                                    <p className="text-xl mb-0 text-gray-700 dark:text-gray-400 font-light">
                                         {sectionContent.projects[0].subtitle}
                                     </p>
-                                    <hr className="opacity-20 mt-2 mb-8" />
+                                    <hr className="opacity-90 dark:opacity-30 mt-2 mb-6" />
 
-                                    <ul className="not-prose flex flex-wrap justify-center gap-2">
+                                    <ul className="not-prose flex flex-wrap justify-center gap-2 ">
                                         {sectionContent.projects[0].tools.map(
                                             (tool, i) => (
                                                 <li
                                                     key={i}
-                                                    className="bg-slate-700 px-2 rounded border border-gray-300/60 font-light">
+                                                    className="px-2 bg-gray-300/50 dark:bg-slate-700 rounded border-[1px] dark:border border-slate-900/20 dark:border-gray-300/60 font-light text-sm">
                                                     {tool}
                                                 </li>
                                             )
