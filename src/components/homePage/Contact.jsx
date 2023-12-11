@@ -1,43 +1,32 @@
 'use client';
-import Image from 'next/image';
-import sectionContent from '@/data/about.json';
+// import Image from 'next/image';
+import socialData from '@/data/about.json';
+import sectionContent from '@/data/contactContent.json';
 import OuterContainer from '../layout/OuterContainer';
 import ContactForm from '../ContactForm';
+import SocialIconLink from '../SocialIconLink';
 
 export default function Contact() {
-    // const Contact = () => (
-    //     <div
-    //         className=""
-    //         dangerouslySetInnerHTML={{
-    //             __html: sectionContent.contact,
-    //         }}
-    //     />
-    // );
+    const ContactIntro = () => <p className="">{sectionContent.introText}</p>;
 
     const ContactLinks = () => (
-        <ul className="not-prose inline-flex gap-4">
-            {sectionContent.contact.map((method, i) => (
-                <li key={i} className="listImageNone">
-                    <a
-                        href={method.link}
-                        target="_blank"
-                        className="flex flex-col justify-between items-center">
-                        <Image
-                            src={method.icon}
-                            alt=""
-                            aria-hidden={true}
-                            width={50}
-                            height={44}
-                            sizes="56px"
-                            style={{
-                                height: '44px',
-                                objectFit: 'contain',
-                            }}
-                        />
-                        <span className="text-xs mt-2">{method.name}</span>
-                    </a>
-                </li>
-            ))}
+        <ul className="not-prose inline-flex gap-8">
+            <li className="listImageNone">
+                <SocialIconLink socialData={socialData.social.email} showName />
+            </li>
+            <li className="listImageNone">
+                <SocialIconLink
+                    socialData={socialData.social.linkedin}
+                    showName
+                    offsetH={0.14}
+                />
+            </li>
+            {/* <li className="listImageNone">
+                <SocialIconLink
+                    socialData={socialData.social.github}
+                    adjust
+                />
+            </li> */}
         </ul>
     );
 
@@ -52,7 +41,7 @@ export default function Contact() {
                         <h2 className="section-header">Contact</h2>
                     </div>
                     <div className="py-6 content-max-size-x content-px">
-                        <p>Contact me...</p>
+                        <ContactIntro />
                         <ContactLinks />
                     </div>
                     <ContactForm />

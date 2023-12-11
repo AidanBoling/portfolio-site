@@ -76,7 +76,6 @@ h1.cover {
 
 
 
-
 /* @media (max-width: theme('screens.xxs')) {
 
         .link-btn-gradient,
@@ -84,11 +83,6 @@ h1.cover {
             --gradient-direction: top;
         }
     } */
-
-
-/* .content-bg {
-
-} */
 
 
 /* .link-btn-gradient {
@@ -175,9 +169,6 @@ a,
     .mdImageContainer {
         @apply flex md:inline-block justify-center m-0 lg:mb-8 lg:mt-2
     }
-
-
-
 }
 
 /* .visually-hidden {
@@ -206,8 +197,6 @@ a,
     }
 
     .bg-right-img-y {
-        /* top: 400px; */
-
         top: calc(1 / 1vw);
     }
 
