@@ -1,10 +1,12 @@
 import { Inter, My_Soul, Whisper, Cherish, WindSong } from 'next/font/google';
-// import Background from '@/components/layout/Background';
-import Footer from '@/components/layout/Footer';
 import './globals.css';
-import pageContent from '@/data/siteContent.json';
 import ThemeProvider from '@/components/ThemeProvider';
-import OuterContainer from '@/components/layout/OuterContainer';
+import ParallaxContextProvider from '@/components/ParallaxContextProvider';
+import BackgroundBase from '@/components/layout/BackgroundBase';
+import Background from '@/components/layout/Background';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import pageContent from '@/data/siteContent.json';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-main' });
 // const h1font = My_Soul({
@@ -46,12 +48,15 @@ export default function RootLayout({ children }) {
         <html lang="en" className={`${inter.variable} ${h1font.variable}`}>
             <body className="font-main">
                 <ThemeProvider>
-                    {/* <Background> */}
-                    {/* <OuterContainer> */}
-                    {children}
-                    {/* </OuterContainer> */}
-                    <Footer />
-                    {/* </Background> */}
+                    <ParallaxContextProvider>
+                        <BackgroundBase>
+                            <Navbar />
+                            <Background>
+                                {children}
+                                <Footer />
+                            </Background>
+                        </BackgroundBase>
+                    </ParallaxContextProvider>
                 </ThemeProvider>
             </body>
         </html>

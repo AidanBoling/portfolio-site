@@ -1,6 +1,7 @@
 'use client';
-import { useState, useEffect } from 'react';
-import Background from './layout/Background';
+import { createContext, useState, useEffect } from 'react';
+
+export const LightThemeContext = createContext();
 
 export default function ThemeProvider({ children }) {
     const [useLightTheme, setUseLightTheme] = useState();
@@ -20,7 +21,15 @@ export default function ThemeProvider({ children }) {
         }
     }, []);
 
+    function toggleLightTheme() {
+        setUseLightTheme(!useLightTheme);
+    }
+
     if (useLightTheme === undefined) return null;
 
-    return <Background lightTheme={useLightTheme}>{children}</Background>;
+    return (
+        <LightThemeContext.Provider value={{ useLightTheme, toggleLightTheme }}>
+            {children}
+        </LightThemeContext.Provider>
+    );
 }

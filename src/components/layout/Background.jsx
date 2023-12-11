@@ -1,8 +1,14 @@
 'use client';
 import Image from 'next/image';
-import { useState, useLayoutEffect, useRef, useEffect } from 'react';
+import {
+    useState,
+    useLayoutEffect,
+    useRef,
+    useEffect,
+    useContext,
+} from 'react';
 import useResizeObserver from '@react-hook/resize-observer';
-import { ThemeButton, ParallaxButton } from '@/components/siteSettingButtons';
+import { ParallaxContext } from '../ParallaxContextProvider';
 
 import bluePurpleSmokeColumnLeft from '@/public/blue-purple-gradient-smoke-column-left.png';
 import bluePurpleSmokeColumnRight from '@/public/blue-purple-gradient-smoke-column-right.png';
@@ -10,7 +16,6 @@ import blueTealSmoke from '@/public/blue-teal-gradient-smoke.png';
 import blueTealSmokeVertical from '@/public/blue-teal-gradient-smoke-vertical.png';
 import blueTealSmokeLeft from '@/public/blue-teal-gradient-smoke_border-left-top.png';
 import blueTealSmokeRight from '@/public/blue-teal-gradient-smoke_border-right.png';
-import Navbar from './Navbar';
 
 function useHeight() {
     const targetRef = useRef(null);
@@ -37,125 +42,15 @@ function useHeight() {
     return [targetRef, height];
 }
 
-function SettingsMenu({
-    useLightTheme,
-    setUseLightTheme,
-    enableParallax,
-    setEnableParallax,
-}) {
-    const [showMenu, setShowMenu] = useState(false);
-
-    function toggleShow() {
-        setShowMenu(!showMenu);
-    }
-
-    const menuItemStyle =
-        'py-3 px-4 hover:bg-gray-200 hover:dark:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
-
-    return (
-        <div
-            className="z-30 relative min-w-[30px]"
-            // onPointerLeave={() => setShowMenu(false)}
-        >
-            <button
-                className="peer absolute right-0 -top-[4px] opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
-                // onBlur={() => setShowMenu(false)}
-                onClick={toggleShow}
-                aria-haspopup="true"
-                aria-expanded={showMenu}
-                aria-label="Site Settings">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.25}
-                    stroke="currentColor"
-                    className="w-7 h-7">
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 011.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.56.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.893.149c-.425.07-.765.383-.93.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 01-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.397.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 01-.12-1.45l.527-.737c.25-.35.273-.806.108-1.204-.165-.397-.505-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.107-1.204l-.527-.738a1.125 1.125 0 01.12-1.45l.773-.773a1.125 1.125 0 011.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894z"
-                    />
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                </svg>
-            </button>
-            {/* {showMenu && ( */}
-            <div
-                className="p-10 pt-3 absolute -right-10 top-[26px] hidden peer-aria-expanded:block min-w-fit"
-                onPointerLeave={() => setShowMenu(false)}
-                on>
-                <div
-                    role="menu"
-                    className="bg-gray-300/90 dark:bg-gray-950/90 right-0 top-[30px] w-[240px] py-2 rounded">
-                    {useLightTheme !== undefined && (
-                        <ThemeButton
-                            className={menuItemStyle}
-                            useLightTheme={useLightTheme}
-                            setUseLightTheme={setUseLightTheme}
-                            setShowMenu={setShowMenu}
-                            role={'menuitem'}
-                        />
-                    )}
-                    {enableParallax !== undefined && (
-                        <ParallaxButton
-                            className={menuItemStyle}
-                            enableParallax={enableParallax}
-                            setEnableParallax={setEnableParallax}
-                            setShowMenu={setShowMenu}
-                            role={'menuitem'}
-                        />
-                    )}
-                </div>
-            </div>
-            {/* )} */}
-        </div>
-    );
-}
-
-export default function Background({ lightTheme, navbar, children }) {
-    const [useLightTheme, setUseLightTheme] = useState(lightTheme);
-    const [enableParallax, setEnableParallax] = useState();
+export default function Background({ children }) {
+    const { enableParallax } = useContext(ParallaxContext);
     const [parallaxFgLayer, bgHeight] = useHeight();
 
     const plxPerspective = 9;
     const plxZ = -3;
     const plxScale = 1 - plxZ / plxPerspective;
 
-    // Dark/light mode
-
-    useEffect(() => {
-        if (useLightTheme !== undefined) {
-            if (useLightTheme === true) {
-                console.log('Prefers theme: light');
-                document.documentElement.classList.remove('dark');
-            } else {
-                console.log('Prefers theme: dark');
-                document.documentElement.classList.add('dark');
-            }
-        }
-    }, [useLightTheme]);
-
     // Parallax
-
-    useEffect(() => {
-        const prefersReduced =
-            window.matchMedia(`(prefers-reduced-motion: reduce)`).matches ===
-            true;
-        const userOverride = localStorage.getItem('parallax');
-        console.log('User local storage parallax: ', userOverride);
-
-        if (userOverride) {
-            userOverride === 'true'
-                ? setEnableParallax(true)
-                : setEnableParallax(false);
-        } else {
-            setEnableParallax(!prefersReduced);
-        }
-    }, []);
 
     useEffect(() => {
         if (enableParallax !== undefined) {
@@ -182,72 +77,52 @@ export default function Background({ lightTheme, navbar, children }) {
 
     return (
         <>
-            {/* <div className="z-50 fixed top-0 right-0 p-6 max-w-max">
-                <SettingsMenu
-                    useLightTheme={useLightTheme}
-                    setUseLightTheme={setUseLightTheme}
-                    enableParallax={enableParallax}
-                    setEnableParallax={setEnableParallax}
-                />
-            </div> */}
-            <div className="bg-slate-100 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-925 bg-fixed relative overflow-hidden">
-                <div className="w-screen h-full absolute bg-geometric-pattern bg-fixed-size bg-fixed opacity-[.04] dark:opacity-[.08]"></div>
-                <Navbar>
-                    <SettingsMenu
-                        useLightTheme={useLightTheme}
-                        setUseLightTheme={setUseLightTheme}
-                        enableParallax={enableParallax}
-                        setEnableParallax={setEnableParallax}
-                    />
-                </Navbar>
-
+            <div
+                className="parallax-container h-screen w-screen relative overflow-y-scroll overflow-x-hidden"
+                style={{ ...parallaxContainerStyle }}>
                 <div
-                    className="parallax-container h-screen w-screen relative overflow-y-scroll overflow-x-hidden"
-                    style={{ ...parallaxContainerStyle }}>
+                    className="parallax-layer-bg w-screen h-0 relative overflow-visible"
+                    style={{ ...parallaxBgLayerStyle }}>
                     <div
-                        className="parallax-layer-bg w-screen h-0 relative overflow-visible"
-                        style={{ ...parallaxBgLayerStyle }}>
-                        <div
-                            className="w-screen min-w-screen xs:max-xl:bg-min-width-md min-h-screen absolute top-0 overflow-hidden flex justify-between items-start"
-                            style={{ height: bgHeight }}>
-                            <div className="w-min absolute left-0 -top-10 min-w-[500px] sm:w-[100vw] sm:min-w-[600px] sm:max-w-[600px] 2xl:min-w-[820px] 2xl:max-w-[820px]">
-                                <Image
-                                    alt="..."
-                                    src={blueTealSmokeLeft}
-                                    quality={100}
-                                    sizes="(max-width: 768px) 100vw, 840px"
-                                    priority
-                                    style={{
-                                        // minWidth: '900px',
-                                        width: '100%',
-                                        height: 'auto',
-                                        objectFit: 'contain',
-                                    }}
-                                />
-                            </div>
-                            <div className="w-min absolute -right-16 xs:-right-8 top-[45%] sm:-right-5 lg:top-[45vh] xs:min-w-[200px] lg:min-w-[250px] 2xl:min-w-[350px]">
-                                <Image
-                                    alt="..."
-                                    src={blueTealSmokeRight}
-                                    quality={100}
-                                    sizes="300px"
-                                    priority
-                                    style={{
-                                        // minWidth: '900px',
-                                        // maxWidth: '350px',
-                                        height: 'auto',
-                                        objectFit: 'contain',
-                                    }}
-                                />
-                            </div>
+                        className="w-screen min-w-screen xs:max-xl:bg-min-width-md min-h-screen absolute top-0 overflow-hidden flex justify-between items-start"
+                        style={{ height: bgHeight }}>
+                        <div className="w-min absolute left-0 -top-10 min-w-[500px] sm:w-[100vw] sm:min-w-[600px] sm:max-w-[600px] 2xl:min-w-[820px] 2xl:max-w-[820px]">
+                            <Image
+                                alt="..."
+                                src={blueTealSmokeLeft}
+                                quality={100}
+                                sizes="(max-width: 768px) 100vw, 840px"
+                                priority
+                                style={{
+                                    // minWidth: '900px',
+                                    width: '100%',
+                                    height: 'auto',
+                                    objectFit: 'contain',
+                                }}
+                            />
+                        </div>
+                        <div className="w-min absolute -right-16 xs:-right-8 top-[45%] sm:-right-5 lg:top-[45vh] xs:min-w-[200px] lg:min-w-[250px] 2xl:min-w-[350px]">
+                            <Image
+                                alt="..."
+                                src={blueTealSmokeRight}
+                                quality={100}
+                                sizes="300px"
+                                priority
+                                style={{
+                                    // minWidth: '900px',
+                                    // maxWidth: '350px',
+                                    height: 'auto',
+                                    objectFit: 'contain',
+                                }}
+                            />
                         </div>
                     </div>
+                </div>
 
-                    <div
-                        className="parallax-layer-fg w-screen h-min min-h-screen absolute top-0"
-                        ref={parallaxFgLayer}>
-                        {children}
-                    </div>
+                <div
+                    className="parallax-layer-fg w-screen h-min min-h-screen absolute top-0"
+                    ref={parallaxFgLayer}>
+                    {children}
                 </div>
             </div>
         </>

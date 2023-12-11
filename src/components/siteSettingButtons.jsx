@@ -1,20 +1,19 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { LightThemeContext } from './ThemeProvider';
+import { ParallaxContext } from './ParallaxContextProvider';
 
-export function ThemeButton({
-    className,
-    useLightTheme,
-    setUseLightTheme,
-    setShowMenu,
-    role,
-}) {
+export function ThemeButton({ className, setShowMenu, role }) {
+    const { useLightTheme, toggleLightTheme } = useContext(LightThemeContext);
+
+    const [isPressed, setIsPressed] = useState(useLightTheme);
+    const [btnText, setBtnText] = useState();
+    const [mounted, setMounted] = useState(false);
+
     const text = {
         isLight: 'Toggle dark mode',
         isDark: 'Toggle light mode',
     };
-    const [isPressed, setIsPressed] = useState(useLightTheme);
-    const [btnText, setBtnText] = useState();
-    const [mounted, setMounted] = useState(false);
 
     className = `group ${className !== undefined ? className : ''}`;
 
@@ -29,11 +28,11 @@ export function ThemeButton({
             : (localStorage.theme = 'dark');
     }
 
-    function toggleTheme() {
+    function handleClick() {
         setIsPressed(!isPressed);
         toggleThemeOverride(!isPressed);
-        setUseLightTheme(!isPressed);
-        setShowMenu(false);
+        toggleLightTheme();
+        // setShowMenu(false);
     }
 
     if (!mounted) return null;
@@ -43,7 +42,7 @@ export function ThemeButton({
             id="btn"
             role={role}
             aria-pressed={isPressed}
-            onClick={toggleTheme}
+            onClick={handleClick}
             className={className}
             // aria-label={btnText}
             // aria-labelledby="btnLabel"
@@ -60,20 +59,17 @@ export function ThemeButton({
     );
 }
 
-export function ParallaxButton({
-    className,
-    enableParallax,
-    setEnableParallax,
-    setShowMenu,
-    role,
-}) {
+export function ParallaxButton({ className, setShowMenu, role }) {
+    const { enableParallax, toggleParallax } = useContext(ParallaxContext);
+
+    const [isPressed, setIsPressed] = useState(enableParallax);
+    const [buttonText, setButtonText] = useState();
+    const [mounted, setMounted] = useState(false);
+
     const text = {
         isOn: 'Disable',
         isOff: 'Enable',
     };
-    const [isPressed, setIsPressed] = useState(enableParallax);
-    const [buttonText, setButtonText] = useState();
-    const [mounted, setMounted] = useState(false);
 
     className = `group ${className !== undefined ? className : ''}`;
 
@@ -82,10 +78,10 @@ export function ParallaxButton({
         setMounted(true);
     }, [isPressed]);
 
-    function toggleParallax() {
+    function handleClick() {
         setIsPressed(!isPressed);
-        setEnableParallax(!isPressed);
-        setShowMenu(false);
+        toggleParallax();
+        // setShowMenu(false);
     }
 
     if (!mounted) return null;
@@ -95,7 +91,7 @@ export function ParallaxButton({
             id="btn"
             role={role}
             aria-pressed={isPressed}
-            onClick={toggleParallax}
+            onClick={handleClick}
             className={className}
             aria-label={buttonText + ' parallax scroll effect'}
             aria-labelledby="btnLabel">
