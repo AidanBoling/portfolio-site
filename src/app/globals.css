@@ -74,7 +74,15 @@ h1.cover {
     background-size: 450px !important;
 }
 
-
+.visually-hidden {
+    clip-path: inset(100%);
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
 
 /* @media (max-width: theme('screens.xxs')) {
 
@@ -113,6 +121,10 @@ a,
         @apply focus:rounded-sm focus:outline-none focus:ring focus:ring-blue-400/100
     }
 
+    section {
+        @apply focus:ring-0
+    }
+
     footer {
         color: theme('colors.slate[200]');
         height: var(--footer-height)
@@ -148,11 +160,15 @@ a,
     }
 
     .section-mt {
-        @apply mt-[16vh]
+        @apply mt-[8vh]
     }
 
     .ab-prose {
-        @apply prose prose-slate dark:prose-invert max-w-none
+        @apply prose prose-slate dark:prose-invert max-w-none mt-0
+    }
+
+    .ab-prose p {
+        @apply mt-0
     }
 
     h2.section-header {
@@ -174,16 +190,6 @@ a,
         @apply flex md:inline-block justify-center m-0 lg:mb-8 lg:mt-2
     }
 }
-
-/* .visually-hidden {
-  clip-path: inset(100%);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-} */
 
 @layer components {
 
@@ -230,6 +236,7 @@ a,
     }
 
 
+    /* Borders & dividers */
 
     .border-bottom-gradient {
         --c1: theme('colors.teal[500]');
@@ -249,6 +256,48 @@ a,
         --c3: theme('colors.indigo[700]');
     }
 
+    .border-bottom-gradient-double {
+        --c1: theme('colors.teal[500]');
+        --c2: theme('colors.sky[500]');
+        --c3: theme('colors.indigo[600]');
+
+        border-bottom: 1px solid transparent;
+        -moz-border-image: -moz-linear-gradient(right, transparent, var(--c1) 0%, var(--c2), var(--c3), transparent 100%);
+        -webkit-border-image: -webkit-linear-gradient(right, transparent, var(--c1) 0%, var(--c2), var(--c3), transparent 100%);
+        border-image: linear-gradient(to right, transparent, var(--c3), var(--c2), var(--c1), var(--c1), var(--c2), var(--c3), transparent);
+        border-image-slice: 1;
+    }
+
+    /* Tools list frame */
+
+    .tech-border,
+    .tech-border-dark {
+        --c1: theme('colors.slate[700]');
+        --c2: theme('colors.indigo[500]');
+
+        border-right: 2px solid var(--c1);
+        border-left: 2px solid var(--c1);
+
+        border-top: 2px solid transparent;
+        border-bottom: 2px solid var(--c1);
+
+        -moz-border-image: -moz-linear-gradient(right, var(--c1), var(--c2) 10%, transparent 15%, transparent 85%, var(--c2) 90%, var(--c1));
+        -webkit-border-image: -webkit-linear-gradient(right, var(--c1), var(--c2) 10%, transparent 15%, transparent 85%, var(--c2) 90%, var(--c1));
+        border-image: linear-gradient(to right, var(--c1), var(--c2) 10%, transparent 15%, transparent 85%, var(--c2) 90%, var(--c1));
+        border-image-slice: 1;
+    }
+
+    .tech-border {
+        --c1: theme(colors.slate.800);
+        --c2: theme('colors.indigo[500]');
+
+    }
+
+    .tech-border-dark {
+        --c1: theme(colors.slate.600);
+        --c2: theme(colors.indigo.700 / 70%);
+
+    }
 
     /* Buttons */
 
@@ -437,7 +486,6 @@ a,
             --c2: theme('colors.indigo[300]');
         }
     }
-
 
     /* Slider button */
 
