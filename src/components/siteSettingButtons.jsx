@@ -2,8 +2,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { LightThemeContext } from './ThemeProvider';
 import { ParallaxContext } from './ParallaxContextProvider';
+import { SunIcon, MoonIcon } from './icons';
 
-export function ThemeButton({ className, setShowMenu, role }) {
+export function ThemeButton({ className, role }) {
     const { useLightTheme, toggleLightTheme } = useContext(LightThemeContext);
 
     const [isPressed, setIsPressed] = useState(useLightTheme);
@@ -32,6 +33,7 @@ export function ThemeButton({ className, setShowMenu, role }) {
         setIsPressed(!isPressed);
         toggleThemeOverride(!isPressed);
         toggleLightTheme();
+
         // setShowMenu(false);
     }
 
@@ -44,13 +46,16 @@ export function ThemeButton({ className, setShowMenu, role }) {
             aria-pressed={isPressed}
             onClick={handleClick}
             className={className}
-            // aria-label={btnText}
             // aria-labelledby="btnLabel"
         >
-            <div className="switch mr-2 relative align-middle">
-                <span
-                    aria-hidden="true"
-                    className="slider outline outline-1 outline-indigo-500/50 border-blue-300/60 before:bg-gray-400/80 group-aria-pressed:before:bg-gray-200/80 bg-clip-content backdrop-brightness-125 bg-gradient-to-r from-teal-500/40 to-indigo-800/50 group-aria-pressed:bg-gradient-to-r group-aria-pressed:from-teal-500/70 group-aria-pressed:to-indigo-600/90"></span>
+            <div
+                aria-hidden="true"
+                className="mr-3 w-[45px] align-middle inline-block">
+                {useLightTheme ? (
+                    <MoonIcon className="mx-auto h-6 w-6" strokeWidth="2" />
+                ) : (
+                    <SunIcon className="mx-auto h-7 w-7" />
+                )}
             </div>
             <span id="btnLabel" className="text-sm text-center text-wrap-none">
                 {btnText}
@@ -59,7 +64,7 @@ export function ThemeButton({ className, setShowMenu, role }) {
     );
 }
 
-export function ParallaxButton({ className, setShowMenu, role }) {
+export function ParallaxButton({ className, role }) {
     const { enableParallax, toggleParallax } = useContext(ParallaxContext);
 
     const [isPressed, setIsPressed] = useState(enableParallax);
@@ -94,8 +99,9 @@ export function ParallaxButton({ className, setShowMenu, role }) {
             onClick={handleClick}
             className={className}
             aria-label={buttonText + ' parallax scroll effect'}
-            aria-labelledby="btnLabel">
-            <div className="switch mr-2 relative align-middle">
+            // aria-labelledby="btnLabel"
+        >
+            <div className="switch mr-3 relative align-middle">
                 <span
                     aria-hidden="true"
                     className="slider outline outline-1 outline-indigo-500/50 border-blue-300/60 before:bg-gray-400/80 group-aria-pressed:before:bg-gray-200/80 bg-clip-content backdrop-brightness-125 bg-gradient-to-r from-teal-500/40 to-indigo-800/50 group-aria-pressed:bg-gradient-to-r group-aria-pressed:from-teal-500/70 group-aria-pressed:to-indigo-600/90"></span>

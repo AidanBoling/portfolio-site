@@ -118,11 +118,7 @@ a,
     } */
 
     body * {
-        @apply focus:rounded-sm focus:outline-none focus:ring focus:ring-blue-400/100
-    }
-
-    section {
-        @apply focus:ring-0
+        @apply focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring focus-visible:ring-blue-400/100
     }
 
     footer {
@@ -496,7 +492,6 @@ a,
         --sliderMargin: 3px;
         --sliderMarginDoubled: calc(var(--sliderMargin) * 2);
         --sliderSizeDoubled: calc(var(--sliderSize) * 2);
-
     }
 
     .switch {
