@@ -37,22 +37,24 @@ export default function Contact() {
             <section
                 id="contact"
                 tabIndex="-1"
-                className="section-py section-mt min-h-[75vh]">
-                <OuterContainer prose>
-                    <div className="h-min content-max-size-x content-px pb-6">
-                        <h2 className="section-header">Contact</h2>
-                    </div>
+                className="section-py section-mt">
+                <div className="section-py min-h-[75vh]">
+                    <OuterContainer prose>
+                        <div className="h-min content-max-size-x content-px pb-6">
+                            <h2 className="section-header">Contact</h2>
+                        </div>
 
-                    <div className="content-max-size-x content-px flex flex-col md:flex-row">
-                        <div className="py-4 md:flex-1">
-                            <ContactIntro />
-                            <ContactLinks />
+                        <div className="content-max-size-x content-px flex flex-col md:flex-row">
+                            <div className="py-4 md:flex-1">
+                                <ContactIntro />
+                                <ContactLinks />
+                            </div>
+                            <div className="py-4 md:flex-[2_2_0%]">
+                                <ContactForm />
+                            </div>
                         </div>
-                        <div className="py-4 md:flex-[2_2_0%]">
-                            <ContactForm />
-                        </div>
-                    </div>
-                </OuterContainer>
+                    </OuterContainer>
+                </div>
             </section>
         </>
     );

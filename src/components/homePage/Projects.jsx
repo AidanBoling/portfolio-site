@@ -41,73 +41,81 @@ export default function Projects() {
             <section
                 id="projects"
                 tabIndex="-1"
-                className="content-bg section-mt section-py min-h-[75vh]">
-                <OuterContainer>
-                    <div className="content-max-size-x">
-                        <div className="h-min content-px pb-6">
-                            <h2 className="ab-prose section-header">
-                                Selected Work
-                            </h2>
-                        </div>
-                        {/* <hr className="opacity-20 mt-4 mb-8" /> */}
+                className="section-py section-mt">
+                <div className="content-bg section-py min-h-[75vh]">
+                    <OuterContainer>
+                        <div className="content-max-size-x">
+                            <div className="h-min content-px pb-6">
+                                <h2 className="ab-prose section-header">
+                                    Selected Work
+                                </h2>
+                            </div>
+                            {/* <hr className="opacity-20 mt-4 mb-8" /> */}
 
-                        <div className="py-6 content-px">
-                            {/* <div className="rounded-sm bg-blue-500/[0.05] dark:bg-slate-900/[0.70] backdrop-brightness-125 dark:backdrop-brightness-[1] h-min flex"> */}
-                            <div className="rounded-sm h-min flex max-lg:flex-col gap-12">
-                                <div className="w-full grow min-h-[300px] min-w-[350px] lg:max-w-[50%] overflow-clip relative">
-                                    <Image
-                                        src={
-                                            sectionContent.projects[0].imageURL
-                                        }
-                                        alt="project thumbnail"
-                                        sizes="400px"
-                                        fill
-                                        style={{
-                                            objectFit: 'cover',
-                                            objectPosition: '50% 40%',
-                                        }}
-                                    />
-                                </div>
-
-                                <div className="ab-prose w-full flex flex-col">
-                                    <h3 className="text-3xl font-normal mt-0">
-                                        {sectionContent.projects[0].title}
-                                    </h3>
-                                    <p className="text-xl mb-0 text-gray-700 dark:text-gray-400 font-light">
-                                        {sectionContent.projects[0].subtitle}
-                                    </p>
-                                    <hr className="opacity-90 dark:opacity-30 mt-2 mb-6" />
-
-                                    <ul className="not-prose flex flex-wrap justify-center gap-2 ">
-                                        {sectionContent.projects[0].tools.map(
-                                            (tool, i) => (
-                                                <li
-                                                    key={i}
-                                                    className="px-2 bg-gray-300/50 dark:bg-slate-700 rounded border-[1px] dark:border border-slate-900/20 dark:border-gray-300/60 font-light text-sm">
-                                                    {tool}
-                                                </li>
-                                            )
-                                        )}
-                                    </ul>
-                                    <div
-                                        className="my-6"
-                                        dangerouslySetInnerHTML={{
-                                            __html: sectionContent.projects[0]
-                                                .descriptionShort,
-                                        }}
-                                    />
-                                    <div>
-                                        <Actions
-                                            links={
-                                                sectionContent.projects[0].links
+                            <div className="py-6 content-px">
+                                {/* <div className="rounded-sm bg-blue-500/[0.05] dark:bg-slate-900/[0.70] backdrop-brightness-125 dark:backdrop-brightness-[1] h-min flex"> */}
+                                <div className="rounded-sm h-min flex max-lg:flex-col gap-12">
+                                    <div className="w-full grow min-h-[300px] min-w-[350px] lg:max-w-[50%] overflow-clip relative">
+                                        <Image
+                                            src={
+                                                sectionContent.projects[0]
+                                                    .imageURL
                                             }
+                                            alt="project thumbnail"
+                                            sizes="400px"
+                                            fill
+                                            style={{
+                                                objectFit: 'cover',
+                                                objectPosition: '50% 40%',
+                                            }}
                                         />
+                                    </div>
+
+                                    <div className="ab-prose w-full flex flex-col">
+                                        <h3 className="text-3xl font-normal mt-0">
+                                            {sectionContent.projects[0].title}
+                                        </h3>
+                                        <p className="text-xl mb-0 text-gray-700 dark:text-gray-400 font-light">
+                                            {
+                                                sectionContent.projects[0]
+                                                    .subtitle
+                                            }
+                                        </p>
+                                        <hr className="opacity-90 dark:opacity-30 mt-2 mb-6" />
+
+                                        <ul className="not-prose flex flex-wrap justify-center gap-2 ">
+                                            {sectionContent.projects[0].tools.map(
+                                                (tool, i) => (
+                                                    <li
+                                                        key={i}
+                                                        className="px-2 bg-gray-300/50 dark:bg-slate-700 rounded border-[1px] dark:border border-slate-900/20 dark:border-gray-300/60 font-light text-sm">
+                                                        {tool}
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                        <div
+                                            className="my-6"
+                                            dangerouslySetInnerHTML={{
+                                                __html: sectionContent
+                                                    .projects[0]
+                                                    .descriptionShort,
+                                            }}
+                                        />
+                                        <div>
+                                            <Actions
+                                                links={
+                                                    sectionContent.projects[0]
+                                                        .links
+                                                }
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </OuterContainer>
+                    </OuterContainer>
+                </div>
             </section>
         </>
     );
