@@ -31,24 +31,6 @@ export default function ProjectPage({ project }) {
         },
     };
 
-    // const imgComponent = {
-    //     img({ node, alt, src, ...rest }) {
-    //         return (
-    //             <div className="mdImageContainer outer">
-    //                 <div className="mdImageContainer inner" {...rest}>
-    //                     <Image
-    //                         src={src}
-    //                         alt={alt}
-    //                         fill
-    //                         sizes="950px"
-    //                         style={{ objectFit: 'contain' }}
-    //                     />
-    //                 </div>
-    //             </div>
-    //         );
-    //     },
-    // };
-
     return (
         <div className="pt-[75px] xxs:pt-[100px] xs:pt-[15vh] lg:pt-[18vh] pb-24 page-min-h relative">
             <OuterContainer>

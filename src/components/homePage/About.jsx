@@ -1,17 +1,15 @@
 'use client';
-import sectionContent from '@/data/about.json';
 import Image from 'next/image';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
 import OuterContainer from '../layout/OuterContainer';
+import sectionContent from '@/data/about.json';
 
-export default function About() {
+export default function About({ content }) {
     const AboutMe = () => (
-        <div
-            className="ab-prose w-full md:min-w-[400px]"
-            dangerouslySetInnerHTML={{
-                __html: sectionContent.about,
-            }}
-        />
+        <div className="ab-prose mt-0 w-full md:min-w-[400px]">
+            <ReactMarkdown>{content}</ReactMarkdown>
+        </div>
     );
 
     const Actions = () => (
@@ -75,52 +73,79 @@ export default function About() {
 
     return (
         <>
-            <section
-                id="about"
-                tabIndex="-1"
-                className="section-py min-h-[75vh]">
-                <OuterContainer prose>
-                    <div className="content-max-size-x">
-                        <div className="h-min content-px relative pb-6">
-                            <h2 className="section-header">About</h2>
-                        </div>
-                        {/* <hr className="opacity-20 mt-4 mb-8" /> */}
-
-                        <div className="flex flex-col gap-y-8 gap-x-8 lg:flex-row">
-                            <div className="pt-6 content-px">
-                                <AboutMe />
+            <section id="about" tabIndex="-1" className="section-py">
+                <div className="section-py min-h-[75vh]">
+                    <OuterContainer prose>
+                        <div className="content-max-size-x">
+                            <div className="h-min content-px relative pb-6">
+                                <h2 className="section-header">About</h2>
                             </div>
-                            <div className="content-bg lg:content-py content-px w-full md:min-w-[375px] md:min-w-[40%] lg:max-w-[500px] py-6 lg:p-6">
-                                <p className="mb-2 text-2xl font-light text-blue-300">
-                                    Tools
-                                </p>
-                                <hr className="opacity-20 mt-0 mb-8" />
-                                <ul className="not-prose">
-                                    <li>
-                                        <p className="pb-3 text-blue-100">
-                                            <i>Core:</i>
+                            {/* <hr className="opacity-20 mt-4 mb-8" /> */}
+
+                            <div className="flex flex-col gap-y-8 gap-x-10 lg:flex-row">
+                                <div className="pt-6 content-px">
+                                    <AboutMe />
+                                </div>
+                                <div className="content-bg lg:content-py content-px w-full md:min-w-[40%] lg:min-w-[45%] pb-6 pt-6 lg:pb-8 lg:pt-5 lg:px-8">
+                                    <div>
+                                        <p className="-mb-4 font-light text-lg text-blue-800 dark:text-blue-100 uppercase text-center">
+                                            Core Tools
                                         </p>
-                                        {/* <ul className="flex flex-wrap items-stretch justify-between gap-y-6 gap-x-[4.5%] lg:gap-x-[3vw] xl:max-w-[80%] xl:max-w-full py-4 px-8">
-                                        <CoreTech />
-                                    </ul> */}
-                                        <ul className="gap-y-6 py-4 px-8 list-grid-auto tech">
+                                        <ul className="not-prose gap-y-6 px-4 py-9 list-grid-auto tech rounded tech-border dark:tech-border-dark">
                                             <CoreTech />
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <p className="py-3 pt-6 text-blue-100">
-                                            <i>Additional Tools & Libraries:</i>
+                                    </div>
+                                    <div className="mt-8">
+                                        <p className="-mb-4 font-light text-lg text-blue-800 dark:text-blue-100 uppercase text-center">
+                                            Other Tools & Libraries
                                         </p>
-                                        <ul className="gap-y-6 py-4 px-8 list-grid-auto tech">
+
+                                        <ul className="not-prose gap-y-6 px-4 py-9 list-grid-auto tech border-2 border-slate-700 rounded tech-border dark:tech-border-dark">
                                             <OtherTech />
                                         </ul>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </OuterContainer>
+                    </OuterContainer>
+                </div>
             </section>
         </>
     );
 }
+
+//
+//
+// TEMP Archive ---------
+
+// //
+// <div className="content-bg lg:content-py content-px w-full md:min-w-[40%] lg:min-w-[45%] py-6 lg:p-6">
+//                                 {/* <p className="mb-2 mt-3 text-2xl font-light text-blue-300">
+//                                     Tools
+//                                 </p>
+//                                 <hr className="opacity-20 mt-0 mb-8" /> */}
+//                                 <ul className="not-prose">
+//                                     <li>
+//                                         <p className="-mb-4 font-light text-blue-800 dark:text-blue-100 uppercase text-center">
+//                                             {/* <span className="px-16 pb-1 border-b border-slate-600/25"> */}
+//                                             Core Tools
+//                                             {/* </span> */}
+//                                         </p>
+//                                         {/* <ul className="flex flex-wrap items-stretch justify-between gap-y-6 gap-x-[4.5%] lg:gap-x-[3vw] xl:max-w-[80%] xl:max-w-full py-4 px-8">
+//                                         <CoreTech />
+//                                     </ul> */}
+//                                         <ul className="gap-y-6 px-4 py-9 list-grid-auto tech rounded tech-border dark:tech-border-dark">
+//                                             <CoreTech />
+//                                         </ul>
+//                                     </li>
+//                                     <li className="mt-8">
+//                                         <p className="-mb-4 font-light text-blue-800 dark:text-blue-100 uppercase text-center">
+//                                             Other Tools & Libraries
+//                                         </p>
+
+//                                         <ul className="gap-y-6 px-4 py-9 list-grid-auto tech border-2 border-slate-700 rounded tech-border dark:tech-border-dark">
+//                                             <OtherTech />
+//                                         </ul>
+//                                     </li>
+//                                 </ul>
+//                             </div>
