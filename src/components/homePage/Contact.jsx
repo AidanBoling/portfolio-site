@@ -7,7 +7,9 @@ import ContactForm from '../ContactForm';
 import SocialIconLink from '../SocialIconLink';
 
 export default function Contact() {
-    const ContactIntro = () => <p className="">{sectionContent.introText}</p>;
+    const ContactIntro = () => (
+        <p className="mt-0">{sectionContent.introText}</p>
+    );
 
     const ContactLinks = () => (
         <ul className="not-prose inline-flex gap-8">
@@ -40,11 +42,16 @@ export default function Contact() {
                     <div className="h-min content-max-size-x content-px pb-6">
                         <h2 className="section-header">Contact</h2>
                     </div>
-                    <div className="py-6 content-max-size-x content-px">
-                        <ContactIntro />
-                        <ContactLinks />
+
+                    <div className="content-max-size-x content-px flex flex-col md:flex-row">
+                        <div className="py-4 md:flex-1">
+                            <ContactIntro />
+                            <ContactLinks />
+                        </div>
+                        <div className="py-4 md:flex-[2_2_0%]">
+                            <ContactForm />
+                        </div>
                     </div>
-                    <ContactForm />
                 </OuterContainer>
             </section>
         </>

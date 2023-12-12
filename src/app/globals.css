@@ -109,6 +109,10 @@ a,
         @apply dark:text-indigo-325/[.90] hover:text-indigo-500 dark:hover:text-indigo-325 transition decoration-1 underline-offset-2
     } */
 
+    body * {
+        @apply focus:rounded-sm focus:outline-none focus:ring focus:ring-blue-400/100
+    }
+
     footer {
         color: theme('colors.slate[200]');
         height: var(--footer-height)
@@ -159,7 +163,7 @@ a,
         @apply w-full min-w-max py-2 px-3 lg:py-3 md:px-5 xs:min-w-[140px] sm:min-w-[150px] md:min-w-[160px] border xs:border-2 md:border-[3px] text-center font-normal no-underline link-btn-gradient dark:link-btn-gradient-dark hover:bg-slate-100
     } */
     .link-btn-base {
-        @apply w-full min-w-max py-3 xxs:py-2 px-3 border-2 dark:border xs:border-2 md:border-[3px] text-center font-normal no-underline link-btn-gradient dark:link-btn-gradient-dark
+        @apply w-full min-w-max py-3 xxs:py-2 px-3 border-2 dark:border xs:border-2 xs:dark:border-2 md:border-[3px] text-center font-normal uppercase no-underline link-btn-gradient dark:link-btn-gradient-dark
     }
 
     .link-btn-base-three-color {
@@ -251,8 +255,8 @@ a,
     .link-btn-gradient,
     .link-btn-gradient-dark {
         --gradient-direction: right;
-        --c1: theme('colors.teal[600]');
-        --c2: theme('colors.indigo[700]');
+        --c1: theme('colors.teal[500]');
+        --c2: theme('colors.indigo[500]');
 
         /* border-width: 3px; */
         border-style: solid;
@@ -351,6 +355,15 @@ a,
         background-color: theme('colors.slate[100]');
     } */
 
+    .link-btn-gradient.default {
+        --c1: theme('colors.sky[500]');
+        --c2: theme('colors.indigo[500]');
+
+        &:hover {
+            --c1: theme('colors.sky[600]');
+            --c2: theme('colors.indigo[600]');
+        }
+    }
 
     .link-btn-gradient.teal-ltblue {
         --c1: theme('colors.teal[500]');
@@ -386,12 +399,12 @@ a,
 
 
     .link-btn-gradient-dark.default {
-        --c1: theme('colors.sky[500]');
-        --c2: theme('colors.indigo[400]');
+        --c1: theme('colors.sky[400]');
+        --c2: theme('colors.indigo[500]');
 
         &:hover {
             --c1: theme('colors.sky[400]');
-            --c2: theme('colors.indigo[300]');
+            --c2: theme('colors.indigo[400]');
         }
     }
 
