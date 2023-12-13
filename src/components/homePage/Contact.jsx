@@ -12,24 +12,29 @@ export default function Contact() {
     );
 
     const ContactLinks = () => (
-        <ul className="not-prose inline-flex gap-8">
-            <li className="listImageNone">
-                <SocialIconLink socialData={socialData.social.email} showName />
-            </li>
-            <li className="listImageNone">
-                <SocialIconLink
-                    socialData={socialData.social.linkedin}
-                    showName
-                    offsetH={0.14}
-                />
-            </li>
-            {/* <li className="listImageNone">
+        <address>
+            <ul className="not-prose inline-flex gap-8">
+                <li className="listImageNone">
+                    <SocialIconLink
+                        socialData={socialData.social.email}
+                        showName
+                    />
+                </li>
+                <li className="listImageNone">
+                    <SocialIconLink
+                        socialData={socialData.social.linkedin}
+                        showName
+                        offsetH={0.14}
+                    />
+                </li>
+                {/* <li className="listImageNone">
                 <SocialIconLink
                     socialData={socialData.social.github}
                     adjust
                 />
             </li> */}
-        </ul>
+            </ul>
+        </address>
     );
 
     return (

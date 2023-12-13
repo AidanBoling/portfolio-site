@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { ThemeButton, ParallaxButton } from '@/components/siteSettingButtons';
 import { BarsMenuIcon, GearIcon } from '../icons';
+import content from '@/data/siteContent.json';
 
 function SettingsMenu() {
     const [showMenu, setShowMenu] = useState(false);
@@ -83,7 +84,9 @@ export default function Navbar() {
         <header id="navbar" className="pointer-events-none">
             <div className="fixed top-0 z-40 w-full overflow-visible h-[52px] dark:h-[42px] navbar-gradient shadow-[0px_0px_14px_6px_theme(colors.slate.950_/_15%);] dark:bg-gradient-to-b dark:from-black dark:via-gray-950 dark:to-gray-950/[0.90] dark:shadow-[0px_0px_14px_14px_theme(colors.gray.950_/_90%);]"></div>
             <div className="max-xs:hidden fixed top-0 z-40 w-full flex p-4 px-8 gap-6">
-                <nav className="contents pointer-events-none">
+                <nav
+                    className="contents pointer-events-none"
+                    aria-label={content.navLabel}>
                     <LogoLink />
                     {navlinks.map(link => (
                         <Link
@@ -116,7 +119,9 @@ export default function Navbar() {
                         className="menu absolute right-0 top-0 mt-[42px] pl-8 w-[257px] xxs:w-[312px] h-screen hidden max-xs:peer-aria-expanded:block z-50"
                         onPointerLeave={() => setShowMenu(false)}>
                         <div className="divide-y-[1px] divide-gray-500/70 bg-gray-300/90 dark:bg-gray-950/[0.98] w-[225px] xxs:w-[280px] h-full py-2 rounded-sm z-40">
-                            <nav className="flex flex-col pb-3">
+                            <nav
+                                className="flex flex-col pb-3"
+                                aria-label={content.navLabel}>
                                 <Link
                                     href="/"
                                     className={`visually-hidden ${menuItemStyle}`}>
@@ -137,7 +142,7 @@ export default function Navbar() {
                                     </Link>
                                 ))}
                             </nav>
-                            <div className="pt-3">
+                            <section className="pt-3">
                                 <p className="visually-hidden">Settings</p>
                                 <ul>
                                     <li>
@@ -151,7 +156,7 @@ export default function Navbar() {
                                         />
                                     </li>
                                 </ul>
-                            </div>
+                            </section>
                         </div>
                     </div>
                 </div>

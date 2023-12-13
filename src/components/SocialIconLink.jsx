@@ -10,6 +10,9 @@ export default function SocialIconLink({
     w,
     h,
     color,
+    textRight,
+    textSize,
+    upper,
 }) {
     const { useLightTheme } = useContext(LightThemeContext);
     const darkModeIcon =
@@ -29,15 +32,17 @@ export default function SocialIconLink({
         source = useLightTheme ? socialData.icon : darkModeIcon;
     }
 
+    const flexClass = textRight
+        ? ' flex gap-2 items-center'
+        : ' flex flex-col gap-2 items-center';
+
     //TODO: Check visually hidden label (accessibility)
 
     return (
         <a
             href={socialData.link}
             target="_blank"
-            className={`relative${
-                showName && ' flex flex-col gap-2 items-center'
-            }`}
+            className={`relative${showName && flexClass}`}
             // aria-label={!showName && socialData.name}
         >
             <Image
@@ -54,7 +59,12 @@ export default function SocialIconLink({
                     objectFit: 'contain',
                 }}
             />
-            <span className={!showName ? 'text-sm visually-hidden' : 'text-sm'}>
+            <span
+                className={
+                    !showName
+                        ? 'text-sm visually-hidden'
+                        : textSize || 'text-sm'
+                }>
                 {socialData.name}
             </span>
         </a>
