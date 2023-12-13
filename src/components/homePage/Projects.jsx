@@ -8,7 +8,7 @@ import useMediaQuery from '@/utils/useMediaQuery';
 export default function Projects() {
     const belowXxs = useMediaQuery('(max-width: 385px)');
 
-    const btnBaseOverrides = 'py-1 px-2';
+    const btnBaseOverrides = ' py-2 px-3';
     // const buttonBaseClass = belowXxs ?  : `link-btn-base`
     const button1Class = belowXxs
         ? 'link-btn-base-three-color' + btnBaseOverrides
@@ -54,8 +54,8 @@ export default function Projects() {
 
                             <div className="py-6 content-px">
                                 {/* <div className="rounded-sm bg-blue-500/[0.05] dark:bg-slate-900/[0.70] backdrop-brightness-125 dark:backdrop-brightness-[1] h-min flex"> */}
-                                <div className="rounded-sm h-min flex max-lg:flex-col gap-12">
-                                    <div className="w-full grow min-h-[300px] min-w-[350px] lg:max-w-[50%] overflow-clip relative">
+                                <div className="rounded-sm h-min flex max-xl:flex-col gap-12">
+                                    <div className="w-full grow min-h-[300px] sm:min-h-[400px] min-w-[350px] xl:max-w-[50%] overflow-clip relative">
                                         <Image
                                             src={
                                                 sectionContent.projects[0]
@@ -71,7 +71,7 @@ export default function Projects() {
                                         />
                                     </div>
 
-                                    <div className="ab-prose w-full flex flex-col">
+                                    <div className="ab-prose w-full flex flex-col xl:min-w-[50%]">
                                         <h3 className="text-3xl font-normal mt-0">
                                             {sectionContent.projects[0].title}
                                         </h3>

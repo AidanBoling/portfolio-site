@@ -45,7 +45,7 @@ export default function ContactForm() {
     return (
         <form
             onSubmit={handleSubmit(processForm)}
-            className="flex flex-col gap-4 w-full lg:max-w-[650px]">
+            className="flex flex-col gap-4 w-full">
             <div>
                 <label className={formLabelBaseClass} htmlFor="name">
                     Name
@@ -92,7 +92,7 @@ export default function ContactForm() {
                 </label>
                 <textarea
                     className={formFieldBaseClass}
-                    rows={5}
+                    rows={4}
                     type="text"
                     id="message"
                     name="message"
@@ -108,13 +108,14 @@ export default function ContactForm() {
                     </p>
                 )}
             </div>
-
-            <button
-                className="link-btn-base default w-[175px] font-[400] text-lg disabled:border-gray-500 disabled:text-gray-500"
-                type="submit"
-                disabled={isSubmitting}>
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-            </button>
+            <div className="mt-4 max-h-min xxs:w-[200px] dark:bg-gray-900/90">
+                <button
+                    className="link-btn-base default max-xxs:py-2 font-[400] dark:border-2 text-lg disabled:border-gray-500 disabled:text-gray-500"
+                    type="submit"
+                    disabled={isSubmitting}>
+                    {isSubmitting ? 'Submitting...' : 'Submit'}
+                </button>
+            </div>
 
             {toast && (
                 <div

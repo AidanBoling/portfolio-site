@@ -22,7 +22,7 @@ export default function Cover() {
     const ProfileImage = () => (
         <>
             <div
-                className={`xs:pl-4 xs:pr-0 lg:px-2 min-w-[200px] max-w-[200px] h-full lg:h-min xxs:min-w-[220] xxs:max-w-[240] xs:max-w-[85%] sm:min-w-[240px] sm:max-w-[250px] md:min-w-[240px] lg:min-w-[270px] xl:min-w-[300px] 2xl:min-w-[340px]`}>
+                className={`xs:pl-4 xs:pr-0 xl:px-2 min-w-[200px] max-w-[200px] h-full xl:h-min xxs:min-w-[220] xxs:max-w-[240] xs:max-w-[70%] sm:min-w-[240px] sm:max-w-[250px] md:min-w-[240px] lg:min-w-[270px] xl:min-w-[300px] 2xl:min-w-[340px]`}>
                 <Image
                     src={headshot}
                     alt="Profile picture for Aidan Boling"
@@ -45,7 +45,7 @@ export default function Cover() {
             <p className="text-[24px] xs:text-[26px] md:text-[30px] xl:text-[34px] font-light m-0 text-blue-950/[0.85] dark:font-extralight dark:text-blue-100/[0.85]">
                 Hi, I'm{' '}
             </p>
-            <h1 className="font-h1 text-[50px] xxs:text-6xl xs:text-[56px] sm:text-6xl md:text-[70px] xl:text-[85px] w-full py-3 xs:py-4 m-0 leading-[60px] xs:leading-normal">
+            <h1 className="font-h1 text-[50px] xxs:text-6xl xs:text-[64px] sm:text-6xl md:text-[70px] xl:text-[85px] w-full py-3 xs:py-4 m-0 max-xs:leading-[60px]">
                 <span className="bg-clip-text pr-2 xs:pr-4 text-transparent bg-gradient-to-t from-sky-900 to-indigo-500 dark:from-white/75 dark:from-10% dark:via-blue-300/90 dark:via-70% dark:to-teal-300/80">
                     {sectionContent.fName + ' '}
                 </span>
@@ -71,14 +71,14 @@ export default function Cover() {
     const Actions = () => (
         <>
             <div className="list-grid-one-col xxs:list-grid-auto btn-group gap-4 xxs:gap-2 sm:gap-4">
-                <a href="#projects" className={button1Class}>
-                    MY WORK
+                <a href="#about" className={button1Class}>
+                    About
                 </a>
-                <a href="#about" className={button2Class}>
-                    ABOUT
+                <a href="#projects" className={button2Class}>
+                    My Work
                 </a>
                 <a href="#contact" className={button3Class}>
-                    CONTACT
+                    Contact
                 </a>
             </div>
         </>
@@ -88,7 +88,7 @@ export default function Cover() {
         <div className="pt-[75px] xxs:pt-[100px] xs:pt-[15vh] lg:pt-[18vh] pb-24 min-h-screen relative">
             <OuterContainer>
                 <div
-                    className={`${xxsPaddingX} pb-8 flex xs:hidden justify-center`}>
+                    className={`${xxsPaddingX} pb-8 xxs:pb-10 flex xs:hidden justify-center`}>
                     <ProfileImage />
                 </div>
             </OuterContainer>
@@ -97,15 +97,15 @@ export default function Cover() {
                     <section
                         id="cover"
                         // className={`h-min lg:max-w-[950px] xl:max-w-[1150px] ${xxsPaddingX} xs:p-8 sm:p-12 rounded-sm mx-auto`}>
-                        className={`h-min content-max-size-x content-px pb-8 xs:py-12 sm:py-[10vh]`}>
+                        className={`h-min content-max-size-x content-px pb-12 pt-2 xs:py-12 sm:py-[10vh]`}>
                         <div className="grid grid-cols-3 grid-rows-[min-content_minmax(0,_1fr)] auto-rows-min gap-8">
                             <div className="mb-10 sm:mb-16 col-start-1 col-span-full xs:col-end-3 row-start-2 xs:row-start-1 row-end-2 self-start">
                                 <Title />
                             </div>
-                            <div className="col-start-1 col-span-full lg:col-span-2 row-start-3 xs:row-start-2 row-span-1">
+                            <div className="col-start-1 col-span-full xl:col-span-2 row-start-3 xs:row-start-2 row-span-1">
                                 <Actions />
                             </div>
-                            <div className="hidden xs:flex col-start-2 col-span-full xs:col-end-4 lg:col-start-3 lg:col-span-1 xs:row-start-1 row-span-1 lg:row-span-2 lg:pt-16 xl:pt-0 items-end lg:items-start xl:items-center justify-end lg:justify-center shrink not-prose">
+                            <div className="hidden xs:flex col-start-2 col-span-full xs:col-end-4 xl:col-start-3 xl:col-span-1 xs:row-start-1 row-span-1 xl:row-span-2 xl:pt-16 2xl:pt-0 items-end xl:items-start 2xl:items-center justify-end xl:justify-center shrink not-prose">
                                 <ProfileImage />
                             </div>
                             {/* <div className="col-start-1 col-span-full md:col-span-2 row-start-4 xs:row-start-3">

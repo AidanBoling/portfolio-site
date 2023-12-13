@@ -130,13 +130,16 @@ a,
         min-height: calc(100vh - var(--footer-height));
     }
 
+    .content-bg-alt {
+        @apply bg-blue-400/[0.05] dark:bg-slate-950/30 backdrop-brightness-125 dark:backdrop-brightness-[1]
+    }
 
     .content-bg {
-        @apply bg-blue-400/[0.05] dark:bg-slate-900/[0.70] backdrop-brightness-125 dark:backdrop-brightness-[1]
+        @apply bg-blue-400/[0.05] dark:bg-gray-950/70 backdrop-brightness-125 dark:backdrop-brightness-[1]
     }
 
     .content-max-size-x {
-        @apply mx-auto xs:max-w-[650px] lg:max-w-[950px] xl:max-w-[1150px]
+        @apply mx-auto xs:max-w-[650px] lg:max-w-[750px] xl:max-w-[1150px]
     }
 
     article .content-max-size-x {
@@ -171,15 +174,12 @@ a,
         @apply font-normal text-4xl md:text-4xl text-left text-blue-950/[0.85] dark:font-light dark:text-blue-200/90 m-0 pb-4 border-bottom-gradient
     }
 
-    /* .link-btn-base {
-        @apply w-full min-w-max py-2 px-3 lg:py-3 md:px-5 xs:min-w-[140px] sm:min-w-[150px] md:min-w-[160px] border xs:border-2 md:border-[3px] text-center font-normal no-underline link-btn-gradient dark:link-btn-gradient-dark hover:bg-slate-100
-    } */
     .link-btn-base {
-        @apply w-full min-w-max py-3 xxs:py-2 px-3 border-2 dark:border xs:border-2 xs:dark:border-2 md:border-[3px] text-center font-normal uppercase no-underline link-btn-gradient dark:link-btn-gradient-dark
+        @apply w-full min-w-max py-3 xxs:py-2 px-3 border-2 dark:border xs:border-2 xs:dark:border-[1.5px] xl:border-[3px] xl:dark:border-2 text-center font-normal uppercase no-underline link-btn-gradient dark:link-btn-gradient-dark
     }
 
     .link-btn-base-three-color {
-        @apply w-full min-w-max py-2 px-3 border-2 dark:border xs:border-2 md:border-[3px] text-center font-normal no-underline link-btn-gradient-full dark:link-btn-gradient-full-dark
+        @apply w-full min-w-max py-2 px-3 border-2 dark:border xs:border-2 md:border-[3px] text-center font-normal uppercase no-underline link-btn-gradient-full dark:link-btn-gradient-full-dark
     }
 
     .mdImageContainer {
@@ -188,10 +188,6 @@ a,
 }
 
 @layer components {
-
-    /* .bg-min-width-md {
-        min-width: calc(1024px - 13vw);
-    } */
 
     .navbar-gradient {
         --c1: theme(colors.blue.200);
@@ -222,9 +218,8 @@ a,
     }
 
     .list-grid-auto.tech {
-        --min-col-w: 65px;
+        --min-col-w: 70px;
         --repeat-col: auto-fit;
-
     }
 
     .list-grid-auto.btn-group {
@@ -318,14 +313,6 @@ a,
         color: transparent;
     }
 
-    /* @media (max-width: theme('screens.xxs')) {
-
-        .link-btn-gradient,
-        .link-btn-gradient-dark {
-            --gradient-direction: top;
-        }
-    } */
-
     .link-btn-gradient-full,
     .link-btn-gradient-full-dark {
         --gradient-direction: right;
@@ -333,7 +320,6 @@ a,
         --c2: theme('colors.sky[500]');
         --c3: theme('colors.indigo[600]');
 
-        /* border-width: 3px; */
         border-style: solid;
         border-color: transparent;
         -moz-border-image: -moz-linear-gradient(right, var(--c1) 0%, var(--c2), var(--c3) 100%);
@@ -390,15 +376,6 @@ a,
             --c3: theme('colors.indigo[400]');
         }
     }
-
-    /* .link-btn-gradient-dark:before {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: theme('colors.slate[100]');
-    } */
 
     .link-btn-gradient.default {
         --c1: theme('colors.sky[500]');
@@ -719,3 +696,11 @@ a,
 .parallax-layer-fg {
   transform: translateZ(-2px) scale(2);
 } */
+
+/* .content-bg {
+        @apply bg-blue-400/[0.05] dark:bg-slate-900/70 backdrop-brightness-125 dark:backdrop-brightness-[1]
+    }
+
+    .content-bg-alt {
+        @apply bg-blue-400/[0.05] dark:bg-gray-950/70 backdrop-brightness-125 dark:backdrop-brightness-[1]
+    } */

@@ -18,7 +18,7 @@ export default function About({ content }) {
                 href="/resume"
                 target="_blank"
                 className="link-btn-base default">
-                <span>RESUME</span>
+                <span>Resume</span>
             </Link>
         </div>
     );
@@ -82,25 +82,25 @@ export default function About({ content }) {
                             </div>
                             {/* <hr className="opacity-20 mt-4 mb-8" /> */}
 
-                            <div className="flex flex-col gap-y-8 gap-x-10 lg:flex-row">
+                            <div className="flex flex-col gap-y-8 gap-x-12 xl:flex-row">
                                 <div className="pt-6 content-px">
                                     <AboutMe />
                                 </div>
-                                <div className="content-bg lg:content-py content-px w-full md:min-w-[40%] lg:min-w-[45%] pb-6 pt-6 lg:pb-8 lg:pt-5 lg:px-8">
+                                <div className="content-bg-alt w-full md:min-w-[40%] xl:min-w-[50%] xl:content-py content-px pb-8 pt-6 p-6 xl:p-8 xl:pt-5">
                                     <div>
                                         <p className="-mb-4 font-light text-lg text-blue-800 dark:text-blue-100 uppercase text-center">
                                             Core Tools
                                         </p>
-                                        <ul className="not-prose gap-y-6 px-4 py-9 list-grid-auto tech rounded tech-border dark:tech-border-dark">
+                                        <ul className="not-prose gap-y-6 px-4 py-10 xs:py-9 xl:px-6 list-grid-auto tech rounded tech-border dark:tech-border-dark">
                                             <CoreTech />
                                         </ul>
                                     </div>
-                                    <div className="mt-8">
-                                        <p className="-mb-4 font-light text-lg text-blue-800 dark:text-blue-100 uppercase text-center">
+                                    <div className="mt-12 xs:mt-10 xl:mt-8">
+                                        <p className="-mb-8 xxs:-mb-4 font-light text-lg text-blue-800 dark:text-blue-100 uppercase text-center max-xxs:w-[140px] max-xxs:mx-auto">
                                             Other Tools & Libraries
                                         </p>
 
-                                        <ul className="not-prose gap-y-6 px-4 py-9 list-grid-auto tech border-2 border-slate-700 rounded tech-border dark:tech-border-dark">
+                                        <ul className="not-prose gap-y-6 px-4 py-10 max-xxs:pt-16 xs:py-9 list-grid-auto tech border-2 border-slate-700 rounded tech-border dark:tech-border-dark">
                                             <OtherTech />
                                         </ul>
                                     </div>
