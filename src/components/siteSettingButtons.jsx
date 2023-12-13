@@ -50,14 +50,16 @@ export function ThemeButton({ className, role }) {
         >
             <div
                 aria-hidden="true"
-                className="mr-3 w-[45px] align-middle inline-block">
+                className="mr-2 w-[45px] align-middle inline-block">
                 {useLightTheme ? (
-                    <MoonIcon className="mx-auto h-6 w-6" strokeWidth="2" />
+                    <MoonIcon className="xs:mx-auto h-6 w-6" strokeWidth="2" />
                 ) : (
-                    <SunIcon className="mx-auto h-7 w-7" />
+                    <SunIcon className="xs:mx-auto h-7 w-7" />
                 )}
             </div>
-            <span id="btnLabel" className="text-sm text-center text-wrap-none">
+            <span
+                id="btnLabel"
+                className="max-xxs:text-sm font-light text-center text-wrap-none">
                 {btnText}
             </span>
         </button>
@@ -101,12 +103,14 @@ export function ParallaxButton({ className, role }) {
             aria-label={buttonText + ' parallax scroll effect'}
             // aria-labelledby="btnLabel"
         >
-            <div className="switch mr-3 relative align-middle">
+            <div className="switch max-xs:switch-small mr-4 relative align-middle">
                 <span
                     aria-hidden="true"
-                    className="slider outline outline-1 outline-indigo-500/50 border-blue-300/60 before:bg-gray-400/80 group-aria-pressed:before:bg-gray-200/80 bg-clip-content backdrop-brightness-125 bg-gradient-to-r from-teal-500/40 to-indigo-800/50 group-aria-pressed:bg-gradient-to-r group-aria-pressed:from-teal-500/70 group-aria-pressed:to-indigo-600/90"></span>
+                    className="slider max-xs:switch-small outline outline-1 outline-indigo-500/50 border-blue-300/60 before:bg-gray-400/80 group-aria-pressed:before:bg-gray-200/80 bg-clip-content backdrop-brightness-125 bg-gradient-to-r from-teal-500/40 to-indigo-800/50 group-aria-pressed:bg-gradient-to-r group-aria-pressed:from-teal-500/70 group-aria-pressed:to-indigo-600/90"></span>
             </div>
-            <span id="btnLabel" className="text-sm text-center text-wrap-none">
+            <span
+                id="btnLabel"
+                className="max-xxs:text-sm font-light text-center text-wrap-none">
                 {buttonText + ' parallax'}
             </span>
         </button>

@@ -43,7 +43,9 @@ html {
 }
 
 header>div>*,
-nav a {
+header button,
+header a,
+header .menu {
     pointer-events: auto;
 }
 
@@ -51,6 +53,11 @@ nav a {
     line-height: normal;
     height: min-content;
 }
+
+#mobile-nav-menu a {
+    line-height: unset;
+}
+
 
 body {
     color: var(--foreground-text-default);
@@ -469,6 +476,12 @@ a,
         --sliderMargin: 3px;
         --sliderMarginDoubled: calc(var(--sliderMargin) * 2);
         --sliderSizeDoubled: calc(var(--sliderSize) * 2);
+    }
+
+    .switch.switch-small,
+    .slider.switch-small {
+        --sliderSize: 18px;
+        --sliderMargin: 2px;
     }
 
     .switch {
