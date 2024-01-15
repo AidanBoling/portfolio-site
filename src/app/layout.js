@@ -1,4 +1,13 @@
-import { Inter, My_Soul, Whisper, Cherish, WindSong } from 'next/font/google';
+import {
+    Inter,
+    My_Soul,
+    Whisper,
+    Cherish,
+    WindSong,
+    Red_Hat_Text,
+    // Mulish,
+    Gothic_A1,
+} from 'next/font/google';
 import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
 import ParallaxContextProvider from '@/components/ParallaxContextProvider';
@@ -8,7 +17,30 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import pageContent from '@/data/siteContent.json';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-main' });
+const main = Red_Hat_Text({
+    subsets: ['latin'],
+    display: 'swap',
+    style: ['normal', 'italic'],
+    variable: '--font-main',
+});
+
+// const main = Gothic_A1({
+//     subsets: ['latin'],
+//     display: 'swap',
+//     style: ['normal'],
+//     weight: ['200', '300', '400', '500'],
+//     variable: '--font-main',
+// });
+
+// const main = Inter({ subsets: ['latin'], variable: '--font-main' });
+
+// const main = Mulish({
+//     subsets: ['latin'],
+//     display: 'swap',
+//     style: ['normal', 'italic'],
+//     variable: '--font-main',
+// });
+
 // const h1font = My_Soul({
 //     subsets: ['latin'],
 //     weight: ['400'],
@@ -45,7 +77,7 @@ export default function RootLayout({ children }) {
     const footerHeight = '140px';
 
     return (
-        <html lang="en" className={`${inter.variable} ${h1font.variable}`}>
+        <html lang="en" className={`${main.variable} ${h1font.variable}`}>
             <body className="font-main">
                 <ThemeProvider>
                     <ParallaxContextProvider>

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import OuterContainer from '@/components/layout/OuterContainer';
 import useMediaQuery from '@/utils/useMediaQuery';
-import { BoxArrowOutIcon } from '../icons';
+import { BoxArrowOutIcon, GithubIcon } from '../icons';
 import sectionContent from '@/data/projectContent.json';
 import data from '@/data/about.json';
 import SocialIconLink from '../SocialIconLink';
@@ -27,13 +27,13 @@ export default function Projects() {
         <>
             <div className="list-grid-one-col xxs:list-grid-auto btn-group gap-3 xxs:gap-2 sm:gap-4 lg:gap-6">
                 <Link href={links.details} className={button1Class}>
-                    Details
+                    See Details
                 </Link>
                 <a
                     href={links.app}
                     target="_blank"
                     className={`${button2Class} inline-flex items-center justify-center`}>
-                    Go to Site
+                    Live Site
                     <span aria-hidden="true" className="pl-2 pb-[.1rem]">
                         <BoxArrowOutIcon
                             className={'w-4 h-4 stroke-blue-400/90'}
@@ -44,10 +44,12 @@ export default function Projects() {
                     href={links.github}
                     target="_blank"
                     className={`${button3Class} inline-flex items-center justify-center`}>
-                    See Code{' '}
+                    Source Code
                     <span aria-hidden="true" className="pl-2 pb-[.1rem]">
-                        <BoxArrowOutIcon
-                            className={'w-4 h-4 stroke-indigo-400/80'}
+                        <GithubIcon
+                            className={
+                                'w-4 h-4 stroke-indigo-400/80 fill-indigo-400/80'
+                            }
                         />
                     </span>
                 </a>
@@ -60,23 +62,22 @@ export default function Projects() {
             <div className="content-bg section-py min-h-[75vh]">
                 <OuterContainer>
                     <div className="content-max-size-x">
-                        <div className="h-min content-px pb-6">
-                            <h2 className="ab-prose section-header">
-                                Selected Work
-                            </h2>
+                        <div className="ab-prose h-min content-px pb-6">
+                            <h2 className="section-header">Featured Work</h2>
                         </div>
 
                         <div className="pt-6 content-px">
                             {/* <div className="rounded-sm bg-blue-500/[0.05] dark:bg-slate-900/[0.70] backdrop-brightness-125 dark:backdrop-brightness-[1] h-min flex"> */}
                             <article className="py-6 rounded-sm h-min flex max-xl:flex-col gap-12">
-                                <div className="w-full grow min-h-[300px] sm:min-h-[400px] min-w-[350px] xl:max-w-[50%] overflow-clip relative">
+                                <div className="w-full grow min-h-[370px] sm:min-h-[500px] min-w-[250px] xl:max-w-[50%] overflow-clip relative">
                                     <Image
                                         src={
                                             sectionContent.projects[0].imageURL
                                         }
                                         alt="project thumbnail"
-                                        sizes="400px"
+                                        sizes="650px"
                                         fill
+                                        quality="100"
                                         style={{
                                             objectFit: 'cover',
                                             objectPosition: '50% 40%',
@@ -85,12 +86,12 @@ export default function Projects() {
                                 </div>
 
                                 <div className="ab-prose w-full flex flex-col xl:min-w-[50%]">
-                                    <h3 className="text-3xl font-normal mt-0">
+                                    <h3 className="mt-0 text-center">
                                         {sectionContent.projects[0].title}
                                     </h3>
-                                    <p className="text-xl mb-0 text-gray-700 dark:text-gray-400 font-light">
+                                    {/* <p className="text-xl mb-0 text-gray-700 dark:text-gray-400 font-light">
                                         {sectionContent.projects[0].subtitle}
-                                    </p>
+                                    </p> */}
                                     <hr className="opacity-90 dark:opacity-30 mt-2 mb-6" />
 
                                     <ul className="not-prose flex flex-wrap justify-center gap-2 ">
@@ -126,15 +127,20 @@ export default function Projects() {
                             </div>
                             <div className="flex max-xxs:flex-col gap-6 no-wrap items-center px-6 py-8 rounded-sm border border-gray-700/80 bg-gray-800/70">
                                 <p className="text-lg font-light dark:text-blue-200">
-                                    See other projects I've worked on:
+                                    <a
+                                        href={data.social.github.link}
+                                        class="link">
+                                        Check out my Github profile
+                                    </a>{' '}
+                                    to see other projects I've worked on.
                                 </p>
-                                <SocialIconLink
+                                {/* <SocialIconLink
                                     socialData={data.social.github}
                                     w={36}
                                     showName
                                     textRight
                                     textSize="text-lg"
-                                />
+                                /> */}
                             </div>
                         </div>
                     </div>

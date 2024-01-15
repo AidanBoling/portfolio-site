@@ -11,6 +11,7 @@ export default function SocialIconLink({
     h,
     color,
     textRight,
+    textLeft,
     textSize,
     upper,
 }) {
@@ -32,11 +33,11 @@ export default function SocialIconLink({
         source = useLightTheme ? socialData.icon : darkModeIcon;
     }
 
-    const flexClass = textRight
-        ? ' flex gap-2 items-center'
-        : ' flex flex-col gap-2 items-center';
+    const flexClass = ` flex items-center gap-2 ${
+        textRight ? 'flex-row' : textLeft ? 'flex-row-reversed' : 'flex-col'
+    }`;
 
-    //TODO: Check visually hidden label (accessibility)
+    //TODO: Double-check visually hidden label (accessibility)
 
     return (
         <a
