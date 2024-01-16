@@ -6,9 +6,6 @@ import { SunIcon, MoonIcon } from './icons';
 
 export function ThemeButton({ className, role }) {
     const { useLightTheme, toggleLightTheme } = useContext(LightThemeContext);
-
-    const [isPressed, setIsPressed] = useState(useLightTheme);
-    const [btnText, setBtnText] = useState();
     const [mounted, setMounted] = useState(false);
 
     const text = {
@@ -19,9 +16,8 @@ export function ThemeButton({ className, role }) {
     className = `group ${className !== undefined ? className : ''}`;
 
     useEffect(() => {
-        isPressed ? setBtnText(text.isLight) : setBtnText(text.isDark);
         setMounted(true);
-    }, [isPressed]);
+    }, []);
 
     function toggleThemeOverride(bool) {
         bool === true
@@ -30,11 +26,8 @@ export function ThemeButton({ className, role }) {
     }
 
     function handleClick() {
-        setIsPressed(!isPressed);
-        toggleThemeOverride(!isPressed);
+        toggleThemeOverride(!useLightTheme);
         toggleLightTheme();
-
-        // setShowMenu(false);
     }
 
     if (!mounted) return null;
@@ -43,7 +36,7 @@ export function ThemeButton({ className, role }) {
         <button
             id="btn"
             role={role}
-            aria-pressed={isPressed}
+            aria-pressed={useLightTheme}
             onClick={handleClick}
             className={className}
             // aria-labelledby="btnLabel"
@@ -60,7 +53,7 @@ export function ThemeButton({ className, role }) {
             <span
                 id="btnLabel"
                 className="max-xxs:text-sm font-light text-center text-wrap-none">
-                {btnText}
+                {useLightTheme ? text.isLight : text.isDark}
             </span>
         </button>
     );
@@ -68,27 +61,21 @@ export function ThemeButton({ className, role }) {
 
 export function ParallaxButton({ className, role }) {
     const { enableParallax, toggleParallax } = useContext(ParallaxContext);
-
-    const [isPressed, setIsPressed] = useState(enableParallax);
-    const [buttonText, setButtonText] = useState();
     const [mounted, setMounted] = useState(false);
 
     const text = {
-        isOn: 'Disable',
-        isOff: 'Enable',
+        isOn: 'Disable parallax',
+        isOff: 'Enable parallax',
     };
 
     className = `group ${className !== undefined ? className : ''}`;
 
     useEffect(() => {
-        isPressed ? setButtonText(text.isOn) : setButtonText(text.isOff);
         setMounted(true);
-    }, [isPressed]);
+    }, []);
 
     function handleClick() {
-        setIsPressed(!isPressed);
         toggleParallax();
-        // setShowMenu(false);
     }
 
     if (!mounted) return null;
@@ -97,10 +84,12 @@ export function ParallaxButton({ className, role }) {
         <button
             id="btn"
             role={role}
-            aria-pressed={isPressed}
+            aria-pressed={enableParallax}
             onClick={handleClick}
             className={className}
-            aria-label={buttonText + ' parallax scroll effect'}
+            aria-label={
+                (enableParallax ? text.isOn : text.isOff) + ' scroll effect'
+            }
             // aria-labelledby="btnLabel"
         >
             <div className="switch max-xs:switch-small mr-4 relative align-middle">
@@ -111,7 +100,7 @@ export function ParallaxButton({ className, role }) {
             <span
                 id="btnLabel"
                 className="max-xxs:text-sm font-light text-center text-wrap-none">
-                {buttonText + ' parallax'}
+                {enableParallax ? text.isOn : text.isOff}
             </span>
         </button>
     );
