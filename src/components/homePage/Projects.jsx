@@ -9,23 +9,22 @@ import data from '@/data/about.json';
 import SocialIconLink from '../SocialIconLink';
 
 export default function Projects() {
-    const belowXxs = useMediaQuery('(max-width: 385px)');
+    const belowXs = useMediaQuery('(max-width: 560px)');
 
-    const btnBaseOverrides = ' py-2 px-3';
-    // const buttonBaseClass = belowXxs ?  : `link-btn-base`
-    const button1Class = belowXxs
+    const btnBaseOverrides = 'py-2 px-3';
+    const button1Class = belowXs
         ? 'link-btn-base-three-color' + btnBaseOverrides
         : 'link-btn-base teal-ltblue';
-    const button2Class = belowXxs
+    const button2Class = belowXs
         ? 'link-btn-base-three-color'
         : 'link-btn-base ltblue-blue';
-    const button3Class = belowXxs
+    const button3Class = belowXs
         ? 'link-btn-base-three-color'
         : 'link-btn-base blue-purple';
 
     const Actions = ({ links }) => (
         <>
-            <div className="list-grid-one-col xxs:list-grid-auto btn-group gap-3 xxs:gap-2 sm:gap-4 lg:gap-6">
+            <div className="list-grid-one-col xs:list-grid-auto btn-group gap-4 xs:gap-4 lg:gap-6">
                 <Link href={links.details} className={button1Class}>
                     See Details
                 </Link>
@@ -48,7 +47,7 @@ export default function Projects() {
                     <span aria-hidden="true" className="pl-2 pb-[.1rem]">
                         <GithubIcon
                             className={
-                                'w-4 h-4 stroke-indigo-400/80 fill-indigo-400/80'
+                                'w-4 h-4 max-xs:stroke-blue-400/90 max-xs:fill-blue-400/90 stroke-indigo-400/80 fill-indigo-400/80'
                             }
                         />
                     </span>
@@ -68,7 +67,7 @@ export default function Projects() {
 
                         <div className="pt-6 content-px">
                             {/* <div className="rounded-sm bg-blue-500/[0.05] dark:bg-slate-900/[0.70] backdrop-brightness-125 dark:backdrop-brightness-[1] h-min flex"> */}
-                            <article className="py-6 rounded-sm h-min flex max-xl:flex-col gap-12">
+                            <article className="py-6 rounded-sm h-min flex max-xl:flex-col gap-8">
                                 <div className="w-full grow min-h-[370px] sm:min-h-[500px] min-w-[250px] xl:max-w-[50%] overflow-clip relative">
                                     <Image
                                         src={
@@ -85,16 +84,16 @@ export default function Projects() {
                                     />
                                 </div>
 
-                                <div className="ab-prose w-full flex flex-col xl:min-w-[50%]">
-                                    <h3 className="mt-0 text-center">
+                                <div className="ab-prose w-full flex flex-col xl:min-w-[50%] gap-6">
+                                    <h3 className="my-0 text-center">
                                         {sectionContent.projects[0].title}
                                     </h3>
                                     {/* <p className="text-xl mb-0 text-gray-700 dark:text-gray-400 font-light">
                                         {sectionContent.projects[0].subtitle}
                                     </p> */}
-                                    <hr className="opacity-90 dark:opacity-30 mt-2 mb-6" />
+                                    <hr className="opacity-90 dark:opacity-30 mt-2 mb-0" />
 
-                                    <ul className="not-prose flex flex-wrap justify-center gap-2 ">
+                                    <ul className="not-prose flex flex-wrap justify-center gap-2">
                                         {sectionContent.projects[0].tools.map(
                                             (tool, i) => (
                                                 <li
@@ -106,7 +105,7 @@ export default function Projects() {
                                         )}
                                     </ul>
                                     <div
-                                        className="my-6"
+                                        className="mt-5"
                                         dangerouslySetInnerHTML={{
                                             __html: sectionContent.projects[0]
                                                 .descriptionShort,
@@ -121,11 +120,11 @@ export default function Projects() {
                                     </div>
                                 </div>
                             </article>
-                            <div className="opacity-20 my-10 mt-10 ">
+                            <div className="opacity-20 my-10 mt-14">
                                 <hr className="mb-[1.5px]" />
                                 <hr />
                             </div>
-                            <div className="flex max-xxs:flex-col gap-6 no-wrap items-center px-6 py-8 rounded-sm border border-gray-700/80 bg-gray-800/70">
+                            <div className="flex max-xs:flex-col gap-6 no-wrap items-center px-6 py-8 rounded-sm border border-gray-700/80 bg-gray-800/70">
                                 <p className="text-lg font-light dark:text-blue-200">
                                     <a
                                         href={data.social.github.link}

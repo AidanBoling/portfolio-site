@@ -82,7 +82,7 @@ export default function About({ content }) {
                             </div>
                             {/* <hr className="opacity-20 mt-4 mb-8" /> */}
 
-                            <div className="flex flex-col gap-y-8 gap-x-12 xl:flex-row">
+                            <div className="flex flex-col gap-y-8 gap-x-12 xl:flex-row xl:pt-6">
                                 <div className="pt-6 content-px">
                                     <AboutMe />
                                 </div>

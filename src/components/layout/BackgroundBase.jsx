@@ -20,7 +20,7 @@ export default function BackgroundBase({ children }) {
 
     return (
         <div className="bg-slate-100 dark:bg-gradient-to-t dark:from-slate-800 dark:to-slate-925 bg-fixed relative overflow-hidden">
-            <div className="w-screen h-full absolute bg-geometric-pattern bg-fixed-size bg-fixed opacity-[.04] dark:opacity-[.08]"></div>
+            {/* <div className="w-screen h-full absolute bg-geometric-pattern bg-fixed-size bg-fixed opacity-[.04] dark:opacity-[.08]"></div> */}
             {children}
         </div>
     );
