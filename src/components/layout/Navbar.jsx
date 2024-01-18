@@ -1,9 +1,15 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ThemeButton, ParallaxButton } from '@/components/siteSettingButtons';
-import { BarsMenuIcon, GearIcon } from '../icons';
+import { BarsMenuIcon, GearIcon, CloseIcon } from '../icons';
 import content from '@/data/siteContent.json';
+
+// const navlinks = [
+//     { name: 'About', href: '#about', class: '' },
+//     { name: 'Work', href: '#projects', class: '' },
+//     { name: 'Contact', href: '#contact', class: '' },
+// ];
 
 function SettingsMenu() {
     const [showMenu, setShowMenu] = useState(false);
@@ -54,20 +60,174 @@ function SettingsMenu() {
     );
 }
 
-export default function Navbar() {
+function MobileMenu({ links }) {
     const [showMenu, setShowMenu] = useState(false);
+    const menuRef = useRef(null);
 
+    const menuItemStyle =
+        'block px-5 xxs:px-7 py-4 align-text-middle align-middle text-middle hover:bg-gray-200 hover:dark:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
+
+    function openMenu() {
+        setShowMenu(true);
+    }
+
+    function closeMenu() {
+        setShowMenu(false);
+        document.getElementById('open-main-menu').focus();
+    }
+
+    function handleKeyPress(event) {
+        const navKeys = [
+            'Tab',
+            'ArrowRight',
+            'ArrowDown',
+            'ArrowLeft',
+            'ArrowUp',
+        ];
+
+        if (event.key === 'Escape') {
+            closeMenu();
+            return;
+        } else if (navKeys.includes(event.key)) {
+            const mobileMenu = menuRef.current;
+            const allFocusableItems = mobileMenu.querySelectorAll(
+                'button, a, [tabindex]:not([tabindex="-1"])'
+            );
+
+            const firstItem = allFocusableItems[0];
+            const lastItem = allFocusableItems[allFocusableItems.length - 1];
+
+            const currentItem = document.activeElement;
+            const currentItemIndex =
+                Array.from(allFocusableItems).indexOf(currentItem);
+
+            // Trap focus
+            const nextItem =
+                currentItem === lastItem
+                    ? firstItem
+                    : allFocusableItems[currentItemIndex + 1];
+            const previousItem =
+                currentItem === firstItem
+                    ? lastItem
+                    : allFocusableItems[currentItemIndex - 1];
+
+            // Cycle through next/previous menu items
+
+            event.preventDefault();
+
+            if (
+                (event.key === 'Tab' && event.shiftKey) ||
+                event.key === 'ArrowLeft' ||
+                event.key === 'ArrowUp'
+            ) {
+                previousItem.focus();
+            } else {
+                nextItem.focus();
+            }
+        }
+    }
+
+    useEffect(() => {
+        if (showMenu) {
+            const mobileMenu = menuRef.current;
+            document.getElementById('close-main-menu').focus();
+
+            mobileMenu.addEventListener('keydown', handleKeyPress);
+
+            return () => {
+                mobileMenu.removeEventListener('keydown', handleKeyPress);
+            };
+        }
+    }, [showMenu]);
+
+    return (
+        <nav className="contents" aria-labelledby="main-menu-button">
+            <button
+                id="open-main-menu"
+                className="peer self-end opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
+                onClick={openMenu}
+                aria-haspopup="true"
+                aria-expanded={showMenu}
+                aria-controls="mobile-nav-menu">
+                <span aria-hidden="true">
+                    <BarsMenuIcon />
+                </span>
+                <span className="visually-hidden">Menu</span>
+            </button>
+            <div
+                id="mobile-nav-menu"
+                className="menu absolute right-0 top-0 pl-8 w-[257px] xxs:w-[312px] h-screen hidden max-xs:peer-aria-expanded:block z-50"
+                ref={menuRef}
+                onPointerLeave={() => setShowMenu(false)}>
+                <div className="bg-gray-300/90 dark:bg-gray-950/[0.98] w-[225px] xxs:w-[280px] h-full rounded-sm z-40">
+                    <div className="flex justify-end w-full">
+                        <button
+                            id="close-main-menu"
+                            className="peer ml-auto p-4 opacity-80 dark:opacity-70 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
+                            onClick={closeMenu}
+                            aria-haspopup="true"
+                            aria-expanded={showMenu}
+                            aria-controls="mobile-nav-menu">
+                            <span aria-hidden="true">
+                                <CloseIcon className="w-6 h-6" />
+                            </span>
+                            <span className="visually-hidden">Close Menu</span>
+                        </button>
+                    </div>
+
+                    <ul className="divide-y-[1px] divide-gray-500/70">
+                        <div>
+                            {links.map(link => (
+                                <li key={link.name}>
+                                    <Link
+                                        href={link.href}
+                                        className={
+                                            menuItemStyle + ' ' + link.class
+                                        }
+                                        onClick={closeMenu}>
+                                        <span className="uppercase dark:text-sky-200">
+                                            {link.name}
+                                        </span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </div>
+                        <li>
+                            <span className="visually-hidden">Settings</span>
+                            <ul>
+                                <li>
+                                    <ThemeButton
+                                        className={`${menuItemStyle} dark:text-gray-300/90`}
+                                    />
+                                </li>
+                                <li>
+                                    <ParallaxButton
+                                        className={`${menuItemStyle} dark:text-gray-300/90`}
+                                    />
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    );
+}
+
+export default function Navbar() {
     const navlinks = [
         { name: 'About', href: '#about', class: '' },
         { name: 'Work', href: '#projects', class: '' },
         { name: 'Contact', href: '#contact', class: '' },
     ];
 
+    const mobileNavlinks = [
+        { name: 'Home', href: '/', class: '' },
+        ...navlinks,
+    ];
+
     const topLinksStyle =
         'font-normal dark:font-light opacity-80 hover:opacity-100 dark:opacity-70 hover:dark:opacity-90 transition';
-
-    const menuItemStyle =
-        'px-5 xxs:px-7 py-4 align-text-middle align-middle text-middle hover:bg-gray-200 hover:dark:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
 
     const LogoLink = () => (
         <Link href="/" className={`mr-auto ${topLinksStyle}`}>
@@ -76,17 +236,17 @@ export default function Navbar() {
         </Link>
     );
 
-    function toggleShow() {
-        setShowMenu(!showMenu);
-    }
-
     return (
         <header id="navbar" className="pointer-events-none">
             <div className="fixed top-0 z-40 w-full overflow-visible h-[52px] dark:h-[42px] navbar-gradient shadow-[0px_0px_14px_6px_theme(colors.slate.950_/_15%);] dark:bg-gradient-to-b dark:from-black dark:via-gray-950 dark:to-gray-950/[0.90] dark:shadow-[0px_0px_14px_14px_theme(colors.gray.950_/_90%);]"></div>
             <div className="max-xs:hidden fixed top-0 z-40 w-full flex p-4 px-8 gap-6">
                 <nav
                     className="contents pointer-events-none"
-                    aria-label={content.navLabel}>
+                    // aria-label={content.navLabel}
+                    aria-labelledby="main-menu-label">
+                    <h2 id="main-menu-label" className="visually-hidden">
+                        Main Menu
+                    </h2>
                     <LogoLink />
                     {navlinks.map(link => (
                         <Link
@@ -101,64 +261,12 @@ export default function Navbar() {
             </div>
 
             <div className="xs:hidden fixed top-0 z-40 w-full flex p-4 gap-6">
-                <div className="contents pointer-events-none relative">
+                <div
+                    className="contents pointer-events-none relative"
+                    // aria-label={content.navLabel}
+                >
                     <LogoLink />
-                    <button
-                        className="peer self-end opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
-                        // onBlur={() => setShowMenu(false)}
-                        onClick={toggleShow}
-                        aria-haspopup="true"
-                        aria-expanded={showMenu}
-                        aria-controls="mobile-nav-menu">
-                        <span aria-hidden="true">
-                            <BarsMenuIcon />
-                        </span>
-                    </button>
-                    <div
-                        id="mobile-nav-menu"
-                        className="menu absolute right-0 top-0 mt-[42px] pl-8 w-[257px] xxs:w-[312px] h-screen hidden max-xs:peer-aria-expanded:block z-50"
-                        onPointerLeave={() => setShowMenu(false)}>
-                        <div className="divide-y-[1px] divide-gray-500/70 bg-gray-300/90 dark:bg-gray-950/[0.98] w-[225px] xxs:w-[280px] h-full py-2 rounded-sm z-40">
-                            <nav
-                                className="flex flex-col pb-3"
-                                aria-label={content.navLabel}>
-                                <Link
-                                    href="/"
-                                    className={`visually-hidden ${menuItemStyle}`}>
-                                    Home
-                                </Link>
-
-                                {navlinks.map(link => (
-                                    <Link
-                                        key={link.name}
-                                        href={link.href}
-                                        className={
-                                            menuItemStyle + ' ' + link.class
-                                        }
-                                        onClick={() => setShowMenu(false)}>
-                                        <span className="uppercase dark:text-sky-200">
-                                            {link.name}
-                                        </span>
-                                    </Link>
-                                ))}
-                            </nav>
-                            <section className="pt-3">
-                                <p className="visually-hidden">Settings</p>
-                                <ul>
-                                    <li>
-                                        <ThemeButton
-                                            className={`${menuItemStyle} dark:text-gray-300/90`}
-                                        />
-                                    </li>
-                                    <li>
-                                        <ParallaxButton
-                                            className={`${menuItemStyle} dark:text-gray-300/90`}
-                                        />
-                                    </li>
-                                </ul>
-                            </section>
-                        </div>
-                    </div>
+                    <MobileMenu links={mobileNavlinks} />
                 </div>
             </div>
         </header>

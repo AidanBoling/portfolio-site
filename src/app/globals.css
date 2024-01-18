@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* [hidden] {
+[hidden] {
     display: none;
-} */
+}
 
 :root {
     --foreground-text-default: theme('colors.slate[800]');
