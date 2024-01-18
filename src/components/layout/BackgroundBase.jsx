@@ -9,10 +9,10 @@ export default function BackgroundBase({ children }) {
     useEffect(() => {
         if (useLightTheme !== undefined) {
             if (useLightTheme === true) {
-                console.log('Prefers theme: light');
+                // console.log('Prefers theme: light');
                 document.documentElement.classList.remove('dark');
             } else {
-                console.log('Prefers theme: dark');
+                // console.log('Prefers theme: dark');
                 document.documentElement.classList.add('dark');
             }
         }

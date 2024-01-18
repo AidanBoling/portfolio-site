@@ -55,7 +55,7 @@ export default function ContactForm() {
                     type="text"
                     id="name"
                     name="name"
-                    autocomplete="name"
+                    autoComplete="name"
                     aria-invalid={errors.name?.message ? true : false}
                     aria-describedby="error-name"
                     {...register('name')}
@@ -75,7 +75,7 @@ export default function ContactForm() {
                     type="email"
                     id="email"
                     name="email"
-                    autocomplete="email"
+                    autoComplete="email"
                     aria-invalid={errors.email?.message ? true : false}
                     aria-describedby="error-email"
                     {...register('email')}

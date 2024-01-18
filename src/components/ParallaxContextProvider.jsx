@@ -11,7 +11,7 @@ export default function ParallaxContextProvider({ children }) {
             window.matchMedia(`(prefers-reduced-motion: reduce)`).matches ===
             true;
         const userOverride = localStorage.getItem('parallax');
-        console.log('User local storage parallax: ', userOverride);
+        // console.log('User local storage parallax: ', userOverride);
 
         if (userOverride) {
             userOverride === 'true'

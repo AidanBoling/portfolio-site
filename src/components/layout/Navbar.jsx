@@ -5,12 +5,6 @@ import { ThemeButton, ParallaxButton } from '@/components/siteSettingButtons';
 import { BarsMenuIcon, GearIcon, CloseIcon } from '../icons';
 import content from '@/data/siteContent.json';
 
-// const navlinks = [
-//     { name: 'About', href: '#about', class: '' },
-//     { name: 'Work', href: '#projects', class: '' },
-//     { name: 'Contact', href: '#contact', class: '' },
-// ];
-
 function SettingsMenu() {
     const [showMenu, setShowMenu] = useState(false);
 
@@ -216,9 +210,9 @@ function MobileMenu({ links }) {
 
 export default function Navbar() {
     const navlinks = [
-        { name: 'About', href: '#about', class: '' },
-        { name: 'Work', href: '#projects', class: '' },
-        { name: 'Contact', href: '#contact', class: '' },
+        { name: 'About', href: '/#about', class: '' },
+        { name: 'Work', href: '/#projects', class: '' },
+        { name: 'Contact', href: '/#contact', class: '' },
     ];
 
     const mobileNavlinks = [
@@ -261,10 +255,7 @@ export default function Navbar() {
             </div>
 
             <div className="xs:hidden fixed top-0 z-40 w-full flex p-4 gap-6">
-                <div
-                    className="contents pointer-events-none relative"
-                    // aria-label={content.navLabel}
-                >
+                <div className="contents pointer-events-none relative">
                     <LogoLink />
                     <MobileMenu links={mobileNavlinks} />
                 </div>

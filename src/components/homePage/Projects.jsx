@@ -11,7 +11,7 @@ import SocialIconLink from '../SocialIconLink';
 export default function Projects() {
     const belowXs = useMediaQuery('(max-width: 560px)');
 
-    const btnBaseOverrides = 'py-2 px-3';
+    const btnBaseOverrides = ' py-2 px-3';
     const button1Class = belowXs
         ? 'link-btn-base-three-color' + btnBaseOverrides
         : 'link-btn-base teal-ltblue';
@@ -128,7 +128,7 @@ export default function Projects() {
                                 <p className="text-lg font-light dark:text-blue-200">
                                     <a
                                         href={data.social.github.link}
-                                        class="link">
+                                        className="link">
                                         Check out my Github profile
                                     </a>{' '}
                                     to see other projects I've worked on.
