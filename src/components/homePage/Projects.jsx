@@ -57,7 +57,7 @@ export default function Projects() {
     );
 
     return (
-        <section id="projects" tabIndex="-1" className="section-py section-mt">
+        <section id="work" tabIndex="-1" className="section-py section-mt">
             <div className="content-bg section-py min-h-[75vh]">
                 <OuterContainer>
                     <div className="content-max-size-x">

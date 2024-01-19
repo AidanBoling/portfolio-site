@@ -16,9 +16,9 @@ function SettingsMenu() {
         'py-3 px-4 hover:bg-gray-200 hover:dark:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
 
     return (
-        <div className="z-30 relative min-w-[30px]">
+        <div className="z-30 relative min-w-[30px] self-start">
             <button
-                className="peer absolute right-0 -top-[4px] opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
+                className="peer absolute right-0 top-[2px] opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
                 // onBlur={() => setShowMenu(false)}
                 onClick={toggleShow}
                 aria-haspopup="true"
@@ -209,9 +209,15 @@ function MobileMenu({ links }) {
 }
 
 export default function Navbar() {
+    const [activeId, setActiveId] = useState(null);
+    // const [prevRatio, setPrevRatio] = useState({});
+
+    let prevRatio = {};
+    // let intersectRect = {};
+
     const navlinks = [
         { name: 'About', href: '/#about', class: '' },
-        { name: 'Work', href: '/#projects', class: '' },
+        { name: 'Work', href: '/#work', class: '' },
         { name: 'Contact', href: '/#contact', class: '' },
     ];
 
@@ -220,8 +226,10 @@ export default function Navbar() {
         ...navlinks,
     ];
 
+    const sectionIds = ['cover', 'about', 'work', 'contact'];
+
     const topLinksStyle =
-        'font-normal dark:font-light opacity-80 hover:opacity-100 dark:opacity-70 hover:dark:opacity-90 transition';
+        'font-normal dark:font-light opacity-80 hover:opacity-100 dark:opacity-70 hover:dark:opacity-90 transition aria-[current=page]:link-bd-bottom-gradient-double';
 
     const LogoLink = () => (
         <Link href="/" className={`mr-auto ${topLinksStyle}`}>
@@ -230,10 +238,74 @@ export default function Navbar() {
         </Link>
     );
 
+    function TopNavLink({ link, activeId }) {
+        const isCurrent = activeId && link.href === '/#' + activeId;
+
+        return (
+            <Link
+                href={link.href}
+                className={
+                    topLinksStyle + ' p-[.2rem] px-[.4rem] ' + link.class
+                }
+                aria-current={isCurrent ? 'page' : 'false'}>
+                {link.name}
+            </Link>
+        );
+    }
+
+    useEffect(() => {
+        const options = {
+            root: null,
+            rootMargin: '0% 0px 0% 0px',
+            threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+        };
+
+        const observer = new IntersectionObserver(entries => {
+            // console.log('Observer entries:', entries);
+
+            entries.forEach(entry => {
+                const id = entry.target.getAttribute('id');
+                // console.log('id:', id);
+
+                const ratio =
+                    entry.intersectionRect.height / entry.rootBounds.height;
+
+                if (ratio > prevRatio[id]) {
+                    // console.log('Ratio increasing. Ratio: ', ratio);
+                    if (ratio > 0.5) {
+                        setActiveId(id);
+                    }
+                    // } else {
+                    //     console.log('Ratio decreasing. Ratio: ', ratio);
+                }
+
+                prevRatio[id] = ratio;
+            });
+        }, options);
+
+        sectionIds.forEach(id => {
+            const currentSection = document.getElementById(id);
+
+            if (currentSection) {
+                observer.observe(currentSection);
+            }
+        });
+
+        return () => {
+            sectionIds.forEach(id => {
+                const currentSection = document.getElementById(id);
+
+                if (currentSection) {
+                    observer.unobserve(currentSection);
+                }
+            });
+        };
+    }, []);
+
     return (
         <header id="navbar" className="pointer-events-none">
             <div className="fixed top-0 z-40 w-full overflow-visible h-[52px] dark:h-[42px] navbar-gradient shadow-[0px_0px_14px_6px_theme(colors.slate.950_/_15%);] dark:bg-gradient-to-b dark:from-black dark:via-gray-950 dark:to-gray-950/[0.90] dark:shadow-[0px_0px_14px_14px_theme(colors.gray.950_/_90%);]"></div>
-            <div className="max-xs:hidden fixed top-0 z-40 w-full flex p-4 px-8 gap-6">
+            <div className="max-xs:hidden fixed top-0 z-40 w-full flex p-2 px-8 gap-5 items-center">
                 <nav
                     className="contents pointer-events-none"
                     // aria-label={content.navLabel}
@@ -243,12 +315,28 @@ export default function Navbar() {
                     </h2>
                     <LogoLink />
                     {navlinks.map(link => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className={topLinksStyle + ' ' + link.class}>
-                            {link.name}
-                        </Link>
+                        <>
+                            <TopNavLink
+                                key={link.name}
+                                link={link}
+                                activeId={activeId}
+                            />
+                            {/* <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={
+                                        topLinksStyle +
+                                        ' p-[.2rem] px-[.4rem] ' +
+                                        link.class
+                                    }
+                                    aria-current={
+                                        link.href === '/#' + activeId
+                                            ? 'page'
+                                            : 'false'
+                                    }>
+                                    {link.name}
+                                </Link> */}
+                        </>
                     ))}
                 </nav>
                 <SettingsMenu />

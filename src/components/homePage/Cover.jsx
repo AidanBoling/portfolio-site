@@ -85,7 +85,9 @@ export default function Cover() {
     );
 
     return (
-        <div className="pt-[75px] xxs:pt-[100px] xs:pt-[15vh] lg:pt-[18vh] pb-24 min-h-screen relative">
+        <div
+            id="cover"
+            className="pt-[75px] xxs:pt-[100px] xs:pt-[15vh] lg:pt-[18vh] pb-24 min-h-screen relative">
             <OuterContainer>
                 <div
                     className={`${xxsPaddingX} pb-8 xxs:pb-10 flex xs:hidden justify-center`}>
@@ -95,7 +97,6 @@ export default function Cover() {
             <div className="w-full min-h-min content-bg">
                 <OuterContainer>
                     <section
-                        id="cover"
                         // className={`h-min lg:max-w-[950px] xl:max-w-[1150px] ${xxsPaddingX} xs:p-8 sm:p-12 rounded-sm mx-auto`}>
                         className={`h-min content-max-size-x content-px pb-12 pt-2 xs:py-12 sm:py-[10vh]`}>
                         <div className="grid grid-cols-3 grid-rows-[min-content_minmax(0,_1fr)] auto-rows-min gap-8">
