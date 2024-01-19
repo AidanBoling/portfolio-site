@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { ThemeButton, ParallaxButton } from '@/components/siteSettingButtons';
 import { BarsMenuIcon, GearIcon, CloseIcon } from '../icons';
-import content from '@/data/siteContent.json';
+// import content from '@/data/siteContent.json';
 
 function SettingsMenu() {
     const [showMenu, setShowMenu] = useState(false);
@@ -18,7 +18,7 @@ function SettingsMenu() {
     return (
         <div className="z-30 relative min-w-[30px] self-start">
             <button
-                className="peer absolute right-0 top-[2px] opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
+                className="peer absolute right-0 top-[0px] opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
                 // onBlur={() => setShowMenu(false)}
                 onClick={toggleShow}
                 aria-haspopup="true"
@@ -29,7 +29,6 @@ function SettingsMenu() {
                 </span>
                 <span className="visually-hidden">Site Settings</span>
             </button>
-            {/* {showMenu && ( */}
             <div
                 id="site-settings-menu"
                 className="p-10 pt-3 absolute -right-10 top-[26px] hidden peer-aria-expanded:block min-w-fit"
@@ -49,12 +48,11 @@ function SettingsMenu() {
                     />
                 </div>
             </div>
-            {/* )} */}
         </div>
     );
 }
 
-function MobileMenu({ links }) {
+function MobileMenu({ links, activeId }) {
     const [showMenu, setShowMenu] = useState(false);
     const menuRef = useRef(null);
 
@@ -134,6 +132,28 @@ function MobileMenu({ links }) {
         }
     }, [showMenu]);
 
+    const MobileNavLink = ({ link, activeId }) => {
+        const isCurrent =
+            activeId &&
+            (activeId === 'cover'
+                ? link.href === '/'
+                : link.href === '/#' + activeId);
+
+        return (
+            <li>
+                <Link
+                    href={link.href}
+                    className={menuItemStyle + ' ' + link.class}
+                    onClick={closeMenu}
+                    aria-current={isCurrent ? 'page' : 'false'}>
+                    <span className="uppercase dark:text-sky-200">
+                        {link.name}
+                    </span>
+                </Link>
+            </li>
+        );
+    };
+
     return (
         <nav className="contents" aria-labelledby="main-menu-button">
             <button
@@ -172,18 +192,11 @@ function MobileMenu({ links }) {
                     <ul className="divide-y-[1px] divide-gray-500/70">
                         <div>
                             {links.map(link => (
-                                <li key={link.name}>
-                                    <Link
-                                        href={link.href}
-                                        className={
-                                            menuItemStyle + ' ' + link.class
-                                        }
-                                        onClick={closeMenu}>
-                                        <span className="uppercase dark:text-sky-200">
-                                            {link.name}
-                                        </span>
-                                    </Link>
-                                </li>
+                                <MobileNavLink
+                                    key={link.name}
+                                    link={link}
+                                    activeId={activeId}
+                                />
                             ))}
                         </div>
                         <li>
@@ -209,49 +222,55 @@ function MobileMenu({ links }) {
 }
 
 export default function Navbar() {
-    const [activeId, setActiveId] = useState(null);
-    // const [prevRatio, setPrevRatio] = useState({});
-
+    const [activeId, setActiveId] = useState('cover');
+    const sectionIds = ['cover', 'about', 'work', 'contact'];
     let prevRatio = {};
-    // let intersectRect = {};
 
     const navlinks = [
         { name: 'About', href: '/#about', class: '' },
         { name: 'Work', href: '/#work', class: '' },
         { name: 'Contact', href: '/#contact', class: '' },
     ];
-
     const mobileNavlinks = [
         { name: 'Home', href: '/', class: '' },
         ...navlinks,
     ];
 
-    const sectionIds = ['cover', 'about', 'work', 'contact'];
-
     const topLinksStyle =
-        'font-normal dark:font-light opacity-80 hover:opacity-100 dark:opacity-70 hover:dark:opacity-90 transition aria-[current=page]:link-bd-bottom-gradient-double';
+        'font-normal dark:font-light opacity-80 hover:opacity-100 dark:opacity-70 hover:dark:opacity-90 transition';
 
-    const LogoLink = () => (
-        <Link href="/" className={`mr-auto ${topLinksStyle}`}>
-            <span aria-hidden="true">AB</span>
-            <span className="visually-hidden">Home</span>
-        </Link>
-    );
-
-    function TopNavLink({ link, activeId }) {
-        const isCurrent = activeId && link.href === '/#' + activeId;
+    const LogoLink = ({ activeId, inNav }) => {
+        const isCurrent = inNav && activeId && activeId === 'cover';
 
         return (
             <Link
-                href={link.href}
-                className={
-                    topLinksStyle + ' p-[.2rem] px-[.4rem] ' + link.class
-                }
+                href="/"
+                className={`mr-auto ${topLinksStyle}`}
                 aria-current={isCurrent ? 'page' : 'false'}>
-                {link.name}
+                <span aria-hidden="true">AB</span>
+                <span className="visually-hidden">Home</span>
             </Link>
         );
-    }
+    };
+
+    const TopNavLink = ({ link, activeId }) => {
+        const isCurrent = activeId && link.href === '/#' + activeId;
+
+        return (
+            <li className="contents">
+                <Link
+                    href={link.href}
+                    className={
+                        topLinksStyle +
+                        ' p-[.2rem] px-[.4rem] aria-[current=page]:link-bd-bottom-gradient-double ' +
+                        link.class
+                    }
+                    aria-current={isCurrent ? 'page' : 'false'}>
+                    {link.name}
+                </Link>
+            </li>
+        );
+    };
 
     useEffect(() => {
         const options = {
@@ -265,8 +284,6 @@ export default function Navbar() {
 
             entries.forEach(entry => {
                 const id = entry.target.getAttribute('id');
-                // console.log('id:', id);
-
                 const ratio =
                     entry.intersectionRect.height / entry.rootBounds.height;
 
@@ -306,38 +323,24 @@ export default function Navbar() {
         <header id="navbar" className="pointer-events-none">
             <div className="fixed top-0 z-40 w-full overflow-visible h-[52px] dark:h-[42px] navbar-gradient shadow-[0px_0px_14px_6px_theme(colors.slate.950_/_15%);] dark:bg-gradient-to-b dark:from-black dark:via-gray-950 dark:to-gray-950/[0.90] dark:shadow-[0px_0px_14px_14px_theme(colors.gray.950_/_90%);]"></div>
             <div className="max-xs:hidden fixed top-0 z-40 w-full flex p-2 px-8 gap-5 items-center">
-                <nav
-                    className="contents pointer-events-none"
-                    // aria-label={content.navLabel}
+                <nav className="contents pointer-events-none">
+                    {/* // aria-label={content.navLabel}
                     aria-labelledby="main-menu-label">
                     <h2 id="main-menu-label" className="visually-hidden">
                         Main Menu
-                    </h2>
-                    <LogoLink />
-                    {navlinks.map(link => (
-                        <>
+                    </h2> */}
+                    <ul className="contents">
+                        <li className="contents">
+                            <LogoLink inNav />
+                        </li>
+                        {navlinks.map(link => (
                             <TopNavLink
                                 key={link.name}
                                 link={link}
                                 activeId={activeId}
                             />
-                            {/* <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className={
-                                        topLinksStyle +
-                                        ' p-[.2rem] px-[.4rem] ' +
-                                        link.class
-                                    }
-                                    aria-current={
-                                        link.href === '/#' + activeId
-                                            ? 'page'
-                                            : 'false'
-                                    }>
-                                    {link.name}
-                                </Link> */}
-                        </>
-                    ))}
+                        ))}
+                    </ul>
                 </nav>
                 <SettingsMenu />
             </div>
@@ -345,7 +348,7 @@ export default function Navbar() {
             <div className="xs:hidden fixed top-0 z-40 w-full flex p-4 gap-6">
                 <div className="contents pointer-events-none relative">
                     <LogoLink />
-                    <MobileMenu links={mobileNavlinks} />
+                    <MobileMenu links={mobileNavlinks} activeId={activeId} />
                 </div>
             </div>
         </header>
