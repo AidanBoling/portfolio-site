@@ -91,8 +91,11 @@ export default function Projects() {
                                     {/* <p className="text-xl mb-0 text-gray-700 dark:text-gray-400 font-light">
                                         {sectionContent.projects[0].subtitle}
                                     </p> */}
-                                    <hr className="opacity-90 dark:opacity-30 mt-2 mb-0" />
-
+                                    <hr
+                                        className="opacity-90 dark:opacity-30 mt-2 mb-0"
+                                        aria-hidden
+                                    />
+                                    <h4 className="visually-hidden">Tech</h4>
                                     <ul className="not-prose flex flex-wrap justify-center gap-2">
                                         {sectionContent.projects[0].tools.map(
                                             (tool, i) => (
@@ -104,6 +107,9 @@ export default function Projects() {
                                             )
                                         )}
                                     </ul>
+                                    <h4 className="visually-hidden">
+                                        Description
+                                    </h4>
                                     <div
                                         className="mt-5"
                                         dangerouslySetInnerHTML={{
