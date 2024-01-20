@@ -13,12 +13,12 @@ function SettingsMenu() {
     }
 
     const menuItemStyle =
-        'py-3 px-4 hover:bg-gray-200 hover:dark:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
+        'py-3 px-4 hover:bg-blue-50 hover:dark:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
 
     return (
         <div className="z-30 relative min-w-[30px] self-start">
             <button
-                className="peer absolute right-0 top-[0px] opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
+                className="peer absolute right-0 top-[1px] opacity-80 dark:opacity-70 aria-expanded:opacity-100 hover:opacity-100 hover:dark:opacity-90 transition-opacity"
                 // onBlur={() => setShowMenu(false)}
                 onClick={toggleShow}
                 aria-haspopup="true"
@@ -31,20 +31,20 @@ function SettingsMenu() {
             </button>
             <div
                 id="site-settings-menu"
-                className="p-10 pt-3 absolute -right-10 top-[26px] hidden peer-aria-expanded:block min-w-fit"
+                className="p-10 pt-3 absolute -right-10 top-[29px] hidden peer-aria-expanded:block min-w-fit"
                 onPointerLeave={() => setShowMenu(false)}>
                 <div
                     role="menu"
-                    className="bg-gray-300/90 dark:bg-gray-950/90 right-0 top-[30px] w-[240px] py-2 rounded">
+                    className="bg-gradient-to-b from-blue-50/[.98] to-blue-100/[.98] dark:bg-gradient-to-b dark:from-transparent dark:bg-gray-950/[0.95] shadow-[0px_0px_10px_3px_theme(colors.slate.950_/_10%);] right-0 top-[30px] w-[240px] py-2 rounded-sm">
                     <ThemeButton
                         className={menuItemStyle}
                         setShowMenu={setShowMenu}
-                        role={'menuitem'}
+                        // role={'menuitem'}
                     />
                     <ParallaxButton
                         className={menuItemStyle}
                         setShowMenu={setShowMenu}
-                        role={'menuitem'}
+                        // role={'menuitem'}
                     />
                 </div>
             </div>
@@ -57,7 +57,7 @@ function MobileMenu({ links, activeId }) {
     const menuRef = useRef(null);
 
     const menuItemStyle =
-        'block px-5 xxs:px-7 py-4 align-text-middle align-middle text-middle hover:bg-gray-200 hover:dark:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
+        'block px-5 xxs:px-7 py-4 align-text-middle align-middle text-middle hover:bg-slate-50 hover:dark:bg-gray-900/100 hover:cursor-pointer transition w-full text-start';
 
     function openMenu() {
         setShowMenu(true);
@@ -173,7 +173,7 @@ function MobileMenu({ links, activeId }) {
                 className="menu absolute right-0 top-0 pl-8 w-[257px] xxs:w-[312px] h-screen hidden max-xs:peer-aria-expanded:block z-50"
                 ref={menuRef}
                 onPointerLeave={() => setShowMenu(false)}>
-                <div className="bg-gray-300/90 dark:bg-gray-950/[0.98] w-[225px] xxs:w-[280px] h-full rounded-sm z-40">
+                <div className="bg-gradient-to-b from-blue-50/[.90] to-blue-100/[.80] dark:bg-gradient-to-b dark:from-transparent bg-gray-300/90 dark:bg-gray-950/[0.98] shadow-[0px_0px_18px_6px_theme(colors.slate.950_/_10%);] w-[225px] xxs:w-[280px] h-full rounded-sm z-40">
                     <div className="flex justify-end w-full">
                         <button
                             id="close-main-menu"
@@ -262,7 +262,7 @@ export default function Navbar() {
                     href={link.href}
                     className={
                         topLinksStyle +
-                        ' p-[.2rem] px-[.4rem] aria-[current=page]:link-bd-bottom-gradient-double ' +
+                        ' p-[.2rem] pb-[.15rem] px-[.4rem] aria-[current=page]:link-bd-bottom-gradient-double ' +
                         link.class
                     }
                     aria-current={isCurrent ? 'page' : 'false'}>
@@ -322,7 +322,7 @@ export default function Navbar() {
     return (
         <header id="navbar" className="pointer-events-none">
             <div className="fixed top-0 z-40 w-full overflow-visible h-[52px] dark:h-[42px] navbar-gradient shadow-[0px_0px_14px_6px_theme(colors.slate.950_/_15%);] dark:bg-gradient-to-b dark:from-black dark:via-gray-950 dark:to-gray-950/[0.90] dark:shadow-[0px_0px_14px_14px_theme(colors.gray.950_/_90%);]"></div>
-            <div className="max-xs:hidden fixed top-0 z-40 w-full flex p-2 px-8 gap-5 items-center">
+            <div className="max-xs:hidden fixed top-0 z-40 w-full flex pt-[.7rem] pb-2 px-8 gap-5 items-center">
                 <nav className="contents pointer-events-none">
                     {/* // aria-label={content.navLabel}
                     aria-labelledby="main-menu-label">

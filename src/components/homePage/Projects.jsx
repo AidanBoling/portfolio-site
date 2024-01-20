@@ -23,11 +23,15 @@ export default function Projects() {
         : 'link-btn-base blue-purple';
 
     const Actions = ({ links }) => (
-        <>
-            <div className="list-grid-one-col xs:list-grid-auto btn-group gap-4 xs:gap-4 lg:gap-6">
-                <Link href={links.details} className={button1Class}>
+        <div className="list-grid-one-col xs:list-grid-auto btn-group gap-4 xs:gap-4 lg:gap-5">
+            <div className="link-btn-wrapper">
+                <Link
+                    href={links.details}
+                    className={`${button1Class} inline-flex items-center justify-center`}>
                     See Details
                 </Link>
+            </div>
+            <div className="link-btn-wrapper">
                 <a
                     href={links.app}
                     target="_blank"
@@ -35,25 +39,31 @@ export default function Projects() {
                     Live Site
                     <span aria-hidden="true" className="pl-2 pb-[.1rem]">
                         <BoxArrowOutIcon
-                            className={'w-4 h-4 stroke-blue-400/90'}
-                        />
-                    </span>
-                </a>
-                <a
-                    href={links.github}
-                    target="_blank"
-                    className={`${button3Class} inline-flex items-center justify-center`}>
-                    Source Code
-                    <span aria-hidden="true" className="pl-2 pb-[.1rem]">
-                        <GithubIcon
                             className={
-                                'w-4 h-4 max-xs:stroke-blue-400/90 max-xs:fill-blue-400/90 stroke-indigo-400/80 fill-indigo-400/80'
+                                'w-4 h-4 stroke-blue-500/90 dark:stroke-blue-400/90'
                             }
                         />
                     </span>
                 </a>
             </div>
-        </>
+            <div className="link-btn-wrapper">
+                <a
+                    href={links.github}
+                    target="_blank"
+                    className={`${button3Class} inline-flex items-center justify-center group`}>
+                    Source Code
+                    <span
+                        aria-hidden="true"
+                        className="pl-2  max-xs:group-hover:pl-[0.48rem] pb-[.1rem]">
+                        <GithubIcon
+                            className={
+                                'w-4 h-4 max-xs:stroke-blue-600/80 max-xs:fill-blue-600/80 max-xs:dark:stroke-blue-400/90 max-xs:dark:fill-blue-400/90 stroke-indigo-600/80 dark:stroke-indigo-400/80 fill-indigo-600/80 dark:fill-indigo-400/80'
+                            }
+                        />
+                    </span>
+                </a>
+            </div>
+        </div>
     );
 
     return (
@@ -73,7 +83,9 @@ export default function Projects() {
                                         src={
                                             sectionContent.projects[0].imageURL
                                         }
-                                        alt="project thumbnail"
+                                        alt={
+                                            sectionContent.projects[0].imageAlt
+                                        }
                                         sizes="650px"
                                         fill
                                         quality="100"
@@ -130,7 +142,7 @@ export default function Projects() {
                                 <hr className="mb-[1.5px]" />
                                 <hr />
                             </div>
-                            <div className="flex max-xs:flex-col gap-6 no-wrap items-center px-6 py-8 rounded-sm border border-gray-700/80 bg-gray-800/70">
+                            <div className="flex max-xs:flex-col gap-6 no-wrap items-center px-6 py-8 rounded-sm border border-slate-300 dark:border-gray-700/80 bg-slate-200/80 dark:bg-gray-800/70">
                                 <p className="text-lg font-light dark:text-blue-200">
                                     <a
                                         href={data.social.github.link}

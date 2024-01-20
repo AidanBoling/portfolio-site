@@ -8,7 +8,8 @@ import headshot from '@/public/ABheadshot.png';
 export default function Cover() {
     const xxsPaddingX = 'px-[5vw]';
     const belowXxs = useMediaQuery('(max-width: 385px)');
-
+    const buttonBaseClass =
+        ' inline-flex items-center justify-center xl:text-xl';
     const button1Class = belowXxs
         ? 'link-btn-base-three-color'
         : 'link-btn-base teal-ltblue';
@@ -71,15 +72,25 @@ export default function Cover() {
     const Actions = () => (
         <>
             <div className="list-grid-one-col xxs:list-grid-auto btn-group gap-4 xxs:gap-2 sm:gap-4">
-                <a href="#about" className={button1Class}>
-                    About
-                </a>
-                <a href="#projects" className={button2Class}>
-                    My Work
-                </a>
-                <a href="#contact" className={button3Class}>
-                    Contact
-                </a>
+                <div className="link-btn-wrapper">
+                    <a href="#about" className={button1Class + buttonBaseClass}>
+                        About
+                    </a>
+                </div>
+                <div className="link-btn-wrapper">
+                    <a
+                        href="#projects"
+                        className={button2Class + buttonBaseClass}>
+                        My Work
+                    </a>
+                </div>
+                <div className="link-btn-wrapper">
+                    <a
+                        href="#contact"
+                        className={button3Class + buttonBaseClass}>
+                        Contact
+                    </a>
+                </div>
             </div>
         </>
     );
@@ -106,7 +117,7 @@ export default function Cover() {
                             <div className="col-start-1 col-span-full xl:col-span-2 row-start-3 xs:row-start-2 row-span-1">
                                 <Actions />
                             </div>
-                            <div className="hidden xs:flex col-start-2 col-span-full xs:col-end-4 xl:col-start-3 xl:col-span-1 xs:row-start-1 row-span-1 xl:row-span-2 xl:pt-16 2xl:pt-0 items-end xl:items-start 2xl:items-center justify-end xl:justify-center shrink not-prose">
+                            <div className="hidden xs:flex col-start-2 col-span-full xs:col-end-4 xl:col-start-3 xl:col-span-1 xs:row-start-1 row-span-1 xl:row-span-2 xl:pt-10 2xl:pt-0 items-end xl:items-start 2xl:items-center justify-end xl:justify-center shrink not-prose">
                                 <ProfileImage />
                             </div>
                             {/* <div className="col-start-1 col-span-full md:col-span-2 row-start-4 xs:row-start-3">

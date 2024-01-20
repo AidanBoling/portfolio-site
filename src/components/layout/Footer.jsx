@@ -31,8 +31,8 @@ export default function Footer() {
                     </li>
                 </ul>
                 <div className="border-bottom-gradient-double h-[2px] w-full"></div>
-                <small className="text-slate-300/80">
-                    Designed and built by {content.name}{' '}
+                <small className="text-slate-200/90 dark:text-slate-300/80">
+                    Designed and built by {content.name}
                 </small>
                 {/* <small>
                     &copy; {content.name} {new Date().getFullYear()}

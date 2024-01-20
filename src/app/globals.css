@@ -83,27 +83,6 @@ h1.cover {
     width: 1px;
 }
 
-/* @media (max-width: theme('screens.xxs')) {
-
-        .link-btn-gradient,
-        .link-btn-gradient-dark {
-            --gradient-direction: top;
-        }
-    } */
-
-
-/* .link-btn-gradient {
-    /* width: 250px;
-    height: 100px; */
-/*  background: transparent;
-    border: 2px solid transparent;
-    -moz-border-image: -moz-linear-gradient(right, #3acfd5 0%, #3a4ed5 100%);
-    -webkit-border-image: -webkit-linear-gradient(right, #3acfd5 0%, #3a4ed5 100%);
-    border-image: linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%);
-    border-image-slice: 1;
-    color: white;
-} */
-
 a,
 .dark a {
     text-underline-offset: 2px;
@@ -167,7 +146,7 @@ address {
     /* Text Styles */
 
     a.link {
-        @apply dark:text-indigo-325/[.95] hover:text-indigo-500 dark:hover:text-indigo-325 transition hover:decoration-1 hover:underline hover:underline-offset-2
+        @apply text-indigo-700/[.95] dark:text-indigo-325/[.95] hover:text-indigo-500 dark:hover:text-indigo-325 transition hover:decoration-1 hover:underline hover:underline-offset-2
     }
 
     .ab-prose {
@@ -180,11 +159,11 @@ address {
         }
 
         & h2 {
-            @apply font-normal text-4xl md:text-5xl text-left text-blue-950/[0.85] dark:font-light dark:text-blue-200/90
+            @apply font-[430] dark:font-normal text-4xl md:text-5xl text-left text-blue-950/[0.85] dark:font-light dark:text-blue-200/90
         }
 
         & h3 {
-            @apply font-light md:font-normal text-3xl md:text-4xl
+            @apply font-normal dark:font-light md:dark:font-normal text-3xl md:text-4xl
         }
 
         & h4 {
@@ -225,12 +204,16 @@ address {
         @apply m-0 pb-4 border-bottom-gradient
     }
 
+    .link-btn-wrapper {
+        @apply bg-slate-50/50 xs:bg-slate-50/70 dark:bg-transparent
+    }
+
     .link-btn-base {
-        @apply w-full min-w-max py-3 xxs:py-2 px-3 border-2 dark:border xs:border-2 xs:dark:border-[1.5px] xl:border-[3px] xl:dark:border-2 text-center font-normal uppercase no-underline link-btn-gradient dark:link-btn-gradient-dark
+        @apply w-full min-w-max py-3 xxs:py-2 px-3 border-2 dark:border xs:border-[2px] xs:dark:border-[1.5px] xl:border-[2.25px] xl:dark:border-2 text-center xs:font-[420] xs:hover:font-[450] dark:font-normal sm:text-lg uppercase no-underline link-btn-gradient dark:link-btn-gradient-dark
     }
 
     .link-btn-base-three-color {
-        @apply w-full min-w-max py-2 px-3 border-2 dark:border xs:border-2 md:border-[3px] text-center font-normal uppercase no-underline link-btn-gradient-full dark:link-btn-gradient-full-dark
+        @apply w-full min-w-max py-2 px-3 border-2 dark:border xs:border-2 md:border-[3px] text-center font-normal hover:font-[410] text-[1.1rem] uppercase no-underline link-btn-gradient-full dark:link-btn-gradient-full-dark
     }
 
     .mdImageContainer {
@@ -312,17 +295,17 @@ address {
     }
 
     .link-bd-bottom-gradient-double {
-        --c1: theme('colors.sky[600]');
+        --c1: theme('colors.sky[700]');
         --c2: theme('colors.indigo[600]');
 
-        border-bottom: 1px solid transparent;
+        border-bottom: 1.5px solid transparent;
         -moz-border-image: -moz-linear-gradient(right, transparent, var(--c2), var(--c1), var(--c2), transparent 100%);
         -webkit-border-image: -webkit-linear-gradient(right, transparent, var(--c2), var(--c1), var(--c2), transparent 100%);
         border-image: linear-gradient(to right, transparent, var(--c2), var(--c1), var(--c2), transparent);
         border-image-slice: 1;
     }
 
-    /* Tools list frame */
+    /* -- Tools list frame */
 
     .tech-border,
     .tech-border-dark {
@@ -342,7 +325,7 @@ address {
     }
 
     .tech-border {
-        --c1: theme(colors.slate.800);
+        --c1: theme(colors.slate.600);
         --c2: theme('colors.indigo[500]');
 
     }
@@ -402,8 +385,8 @@ address {
     .link-btn-gradient-full,
     .link-btn-gradient-full-dark {
         &:hover {
-            --shadow-color: theme('colors.slate[200]');
-            opacity: 90%;
+            --shadow-color: theme('colors.blue[200]');
+            opacity: 75%;
             box-shadow: inset 0px 0px 15px 0px var(--shadow-color);
         }
     }
@@ -426,9 +409,9 @@ address {
 
     .link-btn-gradient-full {
         &:hover {
-            --c1: theme('colors.teal[400]');
-            --c2: theme('colors.sky[400]');
-            --c3: theme('colors.indigo[500]');
+            --c1: theme('colors.teal[600]');
+            --c2: theme('colors.sky[600]');
+            --c3: theme('colors.indigo[600]');
         }
     }
 
@@ -475,7 +458,7 @@ address {
         --c2: theme('colors.indigo[500]');
 
         &:hover {
-            --c1: theme('colors.blue[600]');
+            --c1: theme('colors.blue[700]');
             --c2: theme('colors.indigo[600]');
         }
     }

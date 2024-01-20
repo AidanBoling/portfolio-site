@@ -84,7 +84,7 @@ export default function About({ content }) {
                                 <div className="pt-6 content-px">
                                     <AboutMe />
                                 </div>
-                                <div className="not-prose content-bg-alt w-full md:min-w-[40%] xl:min-w-[50%] xl:content-py content-px pb-8 pt-6 p-6 xl:p-8 xl:pt-5">
+                                <div className="not-prose content-bg-alt w-full md:min-w-[40%] xl:min-w-[50%] xl:content-py content-px pb-8 pt-6 xs:p-6 xl:p-8 xl:pt-5">
                                     <h3 className="visually-hidden">
                                         Skills and Tech
                                     </h3>
