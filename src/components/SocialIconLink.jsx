@@ -14,10 +14,14 @@ export default function SocialIconLink({
     textLeft,
     textSize,
     upper,
+    footerAlt,
 }) {
     const { useLightTheme } = useContext(LightThemeContext);
+    const lightModeIcon =
+        (footerAlt && socialData.iconFooter) || socialData.icon;
     const darkModeIcon =
-        (socialData.iconDark && socialData.iconDark) || socialData.icon;
+        (footerAlt ? socialData.iconDarkFooter : socialData.iconDark) ||
+        socialData.icon;
 
     const width = (w && w) || 48;
     const height = (h && h) || width;
@@ -28,9 +32,9 @@ export default function SocialIconLink({
     if (color && color === 'light') {
         source = darkModeIcon;
     } else if (color && color === 'dark') {
-        source = socialData.icon;
+        source = lightModeIcon;
     } else {
-        source = useLightTheme ? socialData.icon : darkModeIcon;
+        source = useLightTheme ? lightModeIcon : darkModeIcon;
     }
 
     const flexClass = ` flex items-center gap-2 ${

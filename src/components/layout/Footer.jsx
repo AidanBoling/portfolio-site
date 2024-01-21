@@ -18,7 +18,7 @@ export default function Footer() {
                             socialData={content.social.linkedin}
                             w={32}
                             offsetH={0.14}
-                            color="light"
+                            footerAlt
                         />
                     </li>
                     <li className="listImageNone">
