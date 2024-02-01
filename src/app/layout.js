@@ -1,13 +1,4 @@
-import {
-    Inter,
-    My_Soul,
-    Whisper,
-    Cherish,
-    WindSong,
-    Red_Hat_Text,
-    // Mulish,
-    Gothic_A1,
-} from 'next/font/google';
+import { WindSong, Red_Hat_Text } from 'next/font/google';
 import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
 import ParallaxContextProvider from '@/components/ParallaxContextProvider';
@@ -23,44 +14,6 @@ const main = Red_Hat_Text({
     style: ['normal', 'italic'],
     variable: '--font-main',
 });
-
-// const main = Gothic_A1({
-//     subsets: ['latin'],
-//     display: 'swap',
-//     style: ['normal'],
-//     weight: ['200', '300', '400', '500'],
-//     variable: '--font-main',
-// });
-
-// const main = Inter({ subsets: ['latin'], variable: '--font-main' });
-
-// const main = Mulish({
-//     subsets: ['latin'],
-//     display: 'swap',
-//     style: ['normal', 'italic'],
-//     variable: '--font-main',
-// });
-
-// const h1font = My_Soul({
-//     subsets: ['latin'],
-//     weight: ['400'],
-//     display: 'swap',
-//     variable: '--font-h1-custom',
-// });
-
-// const h1font = Cherish({
-//     subsets: ['latin'],
-//     weight: ['400'],
-//     display: 'swap',
-//     variable: '--font-h1-custom',
-// });
-
-// const h1font = Whisper({
-//     subsets: ['latin'],
-//     weight: ['400'],
-//     display: 'swap',
-//     variable: '--font-h1-custom',
-// });
 
 const h1font = WindSong({
     subsets: ['latin'],

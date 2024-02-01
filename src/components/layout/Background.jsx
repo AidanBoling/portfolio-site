@@ -130,7 +130,6 @@ export default function Background({ children }) {
                                 sizes="(max-width: 640px) 500px, (max-width: 1536px) 600px, 820px"
                                 priority
                                 style={{
-                                    // minWidth: '900px',
                                     width: '100%',
                                     height: 'auto',
                                     objectFit: 'contain',
@@ -149,8 +148,6 @@ export default function Background({ children }) {
                                 sizes="(max-width: 768px) 200px, (max-width: 1024px) 225px, (max-width: 1280px) 250px, 300px"
                                 priority
                                 style={{
-                                    // minWidth: '900px',
-                                    // maxWidth: '350px',
                                     height: 'auto',
                                     objectFit: 'contain',
                                 }}

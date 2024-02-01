@@ -1,15 +1,14 @@
 'use client';
-// import Image from 'next/image';
 import socialData from '@/data/about.json';
-import sectionContent from '@/data/contactContent.json';
+// import sectionContent from '@/data/contactContent.json';
 import OuterContainer from '../layout/OuterContainer';
 import ContactForm from '../ContactForm';
 import SocialIconLink from '../SocialIconLink';
 
 export default function Contact() {
-    const ContactIntro = () => (
-        <p className="mt-0">{sectionContent.introText}</p>
-    );
+    // const ContactIntro = () => (
+    //     <p className="mt-0">{sectionContent.introText}</p>
+    // );
 
     const liClass = 'listImageNone flex flex-col items-center gap-2';
     const aClass = 'link text-[0.8rem]';

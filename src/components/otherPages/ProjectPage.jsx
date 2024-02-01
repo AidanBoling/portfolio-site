@@ -20,9 +20,7 @@ export default function ProjectPage({ project }) {
                             sizes="(max-width: 600px) 95vw, (max-width: 1024px) 560px, 950px"
                             style={{
                                 maxWidth: '950px',
-                                // maxHeight: '520px',
                                 objectFit: 'contain',
-                                // position: 'relative !important',
                             }}
                         />
                     </div>

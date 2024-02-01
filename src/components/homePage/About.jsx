@@ -115,39 +115,3 @@ export default function About({ content }) {
         </>
     );
 }
-
-//
-//
-// TEMP Archive ---------
-
-// //
-// <div className="content-bg lg:content-py content-px w-full md:min-w-[40%] lg:min-w-[45%] py-6 lg:p-6">
-//                                 {/* <p className="mb-2 mt-3 text-2xl font-light text-blue-300">
-//                                     Tools
-//                                 </p>
-//                                 <hr className="opacity-20 mt-0 mb-8" /> */}
-//                                 <ul className="not-prose">
-//                                     <li>
-//                                         <p className="-mb-4 font-light text-blue-800 dark:text-blue-100 uppercase text-center">
-//                                             {/* <span className="px-16 pb-1 border-b border-slate-600/25"> */}
-//                                             Core Tools
-//                                             {/* </span> */}
-//                                         </p>
-//                                         {/* <ul className="flex flex-wrap items-stretch justify-between gap-y-6 gap-x-[4.5%] lg:gap-x-[3vw] xl:max-w-[80%] xl:max-w-full py-4 px-8">
-//                                         <CoreTech />
-//                                     </ul> */}
-//                                         <ul className="gap-y-6 px-4 py-9 list-grid-auto tech rounded tech-border dark:tech-border-dark">
-//                                             <CoreTech />
-//                                         </ul>
-//                                     </li>
-//                                     <li className="mt-8">
-//                                         <p className="-mb-4 font-light text-blue-800 dark:text-blue-100 uppercase text-center">
-//                                             Other Tools & Libraries
-//                                         </p>
-
-//                                         <ul className="gap-y-6 px-4 py-9 list-grid-auto tech border-2 border-slate-700 rounded tech-border dark:tech-border-dark">
-//                                             <OtherTech />
-//                                         </ul>
-//                                     </li>
-//                                 </ul>
-//                             </div>

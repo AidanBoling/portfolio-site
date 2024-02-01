@@ -7,7 +7,6 @@ import { getFileData } from '@/utils/mdUtils';
 export default function Page() {
     const dirPath = 'src/data/homePage';
     const about = getFileData('about', dirPath);
-    // const project = getFileData(filename, dirPath);
 
     return (
         <main>

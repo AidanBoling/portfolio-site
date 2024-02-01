@@ -10,8 +10,6 @@ export default function Icon({ iconSrc, iconSrcDark, w, h, color }) {
     const width = (w && w) || 48;
     const height = (h && h) || width;
 
-    // const paddingY = offsetH ? offsetH * height : 0;
-
     let source;
     if (color && color === 'light') {
         source = darkModeIcon;

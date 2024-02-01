@@ -13,7 +13,6 @@ export default function SocialIconLink({
     textRight,
     textLeft,
     textSize,
-    upper,
     footerAlt,
 }) {
     const { useLightTheme } = useContext(LightThemeContext);

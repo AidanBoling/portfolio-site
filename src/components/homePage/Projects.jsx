@@ -6,7 +6,7 @@ import useMediaQuery from '@/utils/useMediaQuery';
 import { BoxArrowOutIcon, GithubIcon } from '../icons';
 import sectionContent from '@/data/projectContent.json';
 import data from '@/data/about.json';
-import SocialIconLink from '../SocialIconLink';
+// import SocialIconLink from '../SocialIconLink';
 
 export default function Projects() {
     const belowXs = useMediaQuery('(max-width: 560px)');
@@ -76,7 +76,6 @@ export default function Projects() {
                         </div>
 
                         <div className="pt-6 content-px">
-                            {/* <div className="rounded-sm bg-blue-500/[0.05] dark:bg-slate-900/[0.70] backdrop-brightness-125 dark:backdrop-brightness-[1] h-min flex"> */}
                             <article className="py-6 rounded-sm h-min flex max-xl:flex-col gap-8">
                                 <div className="w-full grow min-h-[370px] sm:min-h-[500px] min-w-[250px] xl:max-w-[50%] overflow-clip relative">
                                     <Image
