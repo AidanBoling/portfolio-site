@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import {
     useState,
     useLayoutEffect,
@@ -9,6 +10,7 @@ import {
 } from 'react';
 import useResizeObserver from '@react-hook/resize-observer';
 import { ParallaxContext } from '../ParallaxContextProvider';
+import useMediaQuery from '@/utils/useMediaQuery';
 import blueTealSmokeLeft from '@/public/blue-teal-gradient-smoke_border-left-top.png';
 import blueTealSmokeRight from '@/public/blue-teal-gradient-smoke_border-right.png';
 
@@ -38,6 +40,14 @@ function useHeight() {
 export default function Background({ children }) {
     const { enableParallax } = useContext(ParallaxContext);
     const [parallaxFgLayer, bgHeight] = useHeight();
+    const [hInitial, setHInitial] = useState(0);
+    const [currentPath, setCurrentPath] = useState('');
+    const [screenW, setScreenW] = useState();
+    const [widthChanged, setWidthChanged] = useState(false);
+
+    const pathname = usePathname();
+    const isLgScreen = useMediaQuery('(min-width: 1290px)');
+    const isSmScreen = useMediaQuery('(max-width: 650px)');
 
     const plxPerspective = 9;
     const plxZ = -3;
@@ -66,6 +76,41 @@ export default function Background({ children }) {
         };
     }
 
+    // Right-side image position adjustment
+
+    useEffect(() => {
+        const updateHInitial =
+            widthChanged && Math.abs(bgHeight - hInitial) >= 300;
+
+        if ((pathname !== currentPath || updateHInitial) && bgHeight > 0) {
+            setHInitial(bgHeight);
+            if (pathname !== currentPath) {
+                setCurrentPath(pathname);
+            }
+            if (updateHInitial) {
+                setWidthChanged(false);
+            }
+        }
+    }, [bgHeight]);
+
+    useEffect(() => {
+        let newScreen;
+        if (isSmScreen) {
+            newScreen = 'small';
+        } else if (isLgScreen) {
+            newScreen = 'large';
+        } else {
+            newScreen = 'medium';
+        }
+
+        if (screenW === undefined) {
+            setScreenW(newScreen);
+        } else if (newScreen !== screenW) {
+            setScreenW(newScreen);
+            setWidthChanged(true);
+        }
+    }, [isSmScreen, isLgScreen]);
+
     return (
         <>
             <div
@@ -82,7 +127,7 @@ export default function Background({ children }) {
                                 alt=""
                                 src={blueTealSmokeLeft}
                                 quality={100}
-                                sizes="(max-width: 768px) 100vw, 840px"
+                                sizes="(max-width: 640px) 500px, (max-width: 1536px) 600px, 820px"
                                 priority
                                 style={{
                                     // minWidth: '900px',
@@ -92,12 +137,16 @@ export default function Background({ children }) {
                                 }}
                             />
                         </div>
-                        <div className="w-min absolute -right-16 xs:-right-8 top-[45%] sm:-right-5 xl:top-[45vh] min-w-[200px] lg:min-w-[250px] 2xl:min-w-[350px]">
+                        <div
+                            className={`w-min absolute -right-12 xs:-right-8 sm:-right-5 xl:top-[45vh] min-w-[200px] md:min-w-[225px] lg:min-w-[250px] xl:min-w-[300px]`}
+                            style={{
+                                top: !isLgScreen && hInitial * 0.52,
+                            }}>
                             <Image
                                 alt=""
                                 src={blueTealSmokeRight}
                                 quality={100}
-                                sizes="300px"
+                                sizes="(max-width: 768px) 200px, (max-width: 1024px) 225px, (max-width: 1280px) 250px, 300px"
                                 priority
                                 style={{
                                     // minWidth: '900px',
