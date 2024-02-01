@@ -8,6 +8,7 @@ import headshot from '@/public/ABheadshot.png';
 export default function Cover() {
     const xxsPaddingX = 'px-[5vw]';
     const belowXxs = useMediaQuery('(max-width: 385px)');
+
     const buttonBaseClass =
         ' inline-flex items-center justify-center xl:text-xl';
     const button1Class = belowXxs
@@ -60,14 +61,14 @@ export default function Cover() {
         </div>
     );
 
-    const AboutMe = () => (
-        <div
-            className="prose prose-slate dark:prose-invert"
-            dangerouslySetInnerHTML={{
-                __html: sectionContent.introShort,
-            }}
-        />
-    );
+    // const AboutMe = () => (
+    //     <div
+    //         className="prose prose-slate dark:prose-invert"
+    //         dangerouslySetInnerHTML={{
+    //             __html: sectionContent.introShort,
+    //         }}
+    //     />
+    // );
 
     const Actions = () => (
         <>
@@ -78,9 +79,7 @@ export default function Cover() {
                     </a>
                 </div>
                 <div className="link-btn-wrapper">
-                    <a
-                        href="#projects"
-                        className={button2Class + buttonBaseClass}>
+                    <a href="#work" className={button2Class + buttonBaseClass}>
                         My Work
                     </a>
                 </div>
@@ -134,13 +133,6 @@ export default function Cover() {
 //
 //
 // TEMP Archive ----------------------
-
-// const button1Class = belowXxs
-//     ? 'link-btn-base blue-purple'
-//     : 'link-btn-base teal-ltblue';
-// const button3Class = belowXxs
-//     ? 'link-btn-base teal-ltblue'
-//     : 'link-btn-base blue-purple';
 
 // {/* <p>{sectionContent.introShort}</p> */}
 //                     {/* <details className="mt-4">

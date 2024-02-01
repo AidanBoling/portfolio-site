@@ -84,7 +84,7 @@ export default function About({ content }) {
                                 <div className="pt-6 content-px">
                                     <AboutMe />
                                 </div>
-                                <div className="not-prose content-bg-alt w-full md:min-w-[40%] xl:min-w-[50%] xl:content-py content-px pb-8 pt-6 xs:p-6 xl:p-8 xl:pt-5">
+                                <div className="not-prose content-bg-alt w-full md:min-w-[40%] xl:min-w-[40%] xl:content-py content-px pb-8 pt-6 xs:p-6 xl:p-8 xl:pt-5">
                                     <h3 className="visually-hidden">
                                         Skills and Tech
                                     </h3>
@@ -101,7 +101,7 @@ export default function About({ content }) {
                                             <span className="-mb-8 xxs:-mb-4 block font-light text-lg text-blue-800 dark:text-blue-100 uppercase text-center max-xxs:w-[140px] max-xxs:mx-auto">
                                                 Other Tools & Libraries
                                             </span>
-                                            <ul className="not-prose gap-y-6 px-4 py-10 max-xxs:pt-16 xs:py-9 list-grid-auto tech border-2 border-slate-700 rounded tech-border dark:tech-border-dark">
+                                            <ul className="not-prose gap-y-6 px-4 py-10 max-xxs:pt-16 xs:py-9 xl:px-6 list-grid-auto tech rounded tech-border dark:tech-border-dark">
                                                 <OtherTech />
                                             </ul>
                                         </li>
