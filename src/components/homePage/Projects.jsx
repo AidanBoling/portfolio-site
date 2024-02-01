@@ -51,7 +51,7 @@ export default function Projects() {
                     href={links.github}
                     target="_blank"
                     className={`${button3Class} inline-flex items-center justify-center group`}>
-                    Source Code
+                    View Code
                     <span
                         aria-hidden="true"
                         className="pl-2  max-xs:group-hover:pl-[0.48rem] pb-[.1rem]">
@@ -91,12 +91,12 @@ export default function Projects() {
                                         quality="100"
                                         style={{
                                             objectFit: 'cover',
-                                            objectPosition: '50% 40%',
+                                            objectPosition: '44% 40%',
                                         }}
                                     />
                                 </div>
 
-                                <div className="ab-prose w-full flex flex-col xl:min-w-[50%] gap-6">
+                                <div className="ab-prose w-full flex flex-col xl:max-w-[50%] gap-6">
                                     <h3 className="my-0 text-center">
                                         {sectionContent.projects[0].title}
                                     </h3>

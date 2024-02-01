@@ -4,7 +4,7 @@ import content from '@/data/about.json';
 export default function Footer() {
     return (
         <footer className="w-screen bg-slate-900/75 dark:bg-gray-950/90">
-            <div className="mx-auto max-w-xs h-full py-7 flex flex-col items-center justify-between">
+            <div className="mx-auto max-w-xs h-full py-8 flex flex-col items-center justify-between">
                 <ul className="flex gap-10">
                     <li className="listImageNone">
                         <SocialIconLink

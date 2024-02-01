@@ -34,9 +34,9 @@ export default function ProjectPage({ project }) {
         h6: ({ children }) => {
             return <p className="paragraph-header">{children}</p>;
         },
-        // h4: ({ children }) => {
-        //     return <h4 className="mt-8 mb-4 text-lg">{children}</h4>;
-        // },
+        h2: ({ children }) => {
+            return <h2 className="section-header">{children}</h2>;
+        },
         a: ({ node, children }) => {
             const { href, ...rest } = node.properties;
 
@@ -50,8 +50,8 @@ export default function ProjectPage({ project }) {
 
     return (
         <div className="project-page pt-[75px] xxs:pt-[100px] xs:pt-[15vh] lg:pt-[18vh] pb-24 page-min-h relative">
-            <OuterContainer>
-                <div className="w-full min-h-min content-bg content-max-size-x p-[5vw] xs:p-8 sm:p-12 rounded-sm ab-prose">
+            <OuterContainer noPxBelowLg>
+                <div className="w-full min-h-min content-bg content-max-size-x p-[5vw] xs:p-8 sm:p-12 md:p-16 lg:px-24 rounded-sm ab-prose">
                     <ReactMarkdown
                         components={components}
                         rehypePlugins={[rehypeRaw]}>

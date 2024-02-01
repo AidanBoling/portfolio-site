@@ -13,7 +13,7 @@
     --background-start-rgb: 214, 219, 220;
     --background-end-rgb: 255, 255, 255;
 
-    --footer-height: 140px;
+    --footer-height: 156px;
 
     &.dark {
         --foreground-text-default: theme('colors.slate[200]');
@@ -120,11 +120,11 @@ address {
     }
 
     .content-max-size-x {
-        @apply mx-auto xs:max-w-[650px] lg:max-w-[750px] xl:max-w-[1150px]
+        @apply mx-auto xs:max-w-[650px] lg:max-w-[700px] xl:max-w-[1150px]
     }
 
     article .content-max-size-x {
-        @apply mx-auto xs:max-w-[650px] lg:max-w-[950px]
+        @apply mx-auto md:max-w-[750px] lg:max-w-[900px]
     }
 
     .content-px {
@@ -155,7 +155,7 @@ address {
 
     .ab-prose {
         & h1 {
-            @apply font-normal text-5xl md:text-6xl text-left
+            @apply font-normal text-5xl md:text-6xl text-center
         }
 
         & h2 {
@@ -177,23 +177,29 @@ address {
         & p {
             @apply mt-0
         }
+
+
     }
 
     .project-page .ab-prose {
         & h2 {
-            @apply mt-28
+            @apply mt-32 mb-16 md:text-[42px]
         }
 
         & h3 {
-            @apply mb-6 mt-12 md:mt-16 italic
+            @apply mb-6 mt-12 md:mt-20 md:text-[32px]
         }
 
         & h4 {
-            @apply mt-12
+            @apply mt-12 mb-6
         }
 
         & h4>a {
             @apply text-inherit transition hover:text-indigo-500 dark:hover:text-indigo-50
+        }
+
+        & p.paragraph-header {
+            @apply italic
         }
     }
 
@@ -205,7 +211,7 @@ address {
     }
 
     .link-btn-wrapper {
-        @apply bg-slate-50/50 xs:bg-slate-50/70 dark:bg-transparent
+        @apply bg-slate-50/50 xs:bg-slate-50/70 dark:bg-slate-950/40
     }
 
     .link-btn-base {
@@ -580,9 +586,11 @@ address {
 .project-page-details-summary {
     list-style-position: outside;
     margin-left: 1rem;
-    margin-top: .8rem;
-    margin-bottom: .8rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
     padding-left: 8px;
+    font-size: 20px;
+    font-weight: 300;
 }
 
 .project-page-details>p:first-of-type {

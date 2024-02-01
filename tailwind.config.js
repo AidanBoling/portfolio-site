@@ -67,7 +67,7 @@ module.exports = {
                         '--tw-prose-body': theme('colors.slate[800]'),
                         '--tw-prose-headings': theme('colors.slate[800]'),
                         '--tw-prose-links': theme('colors.indigo[700]'),
-                        '--tw-prose-invert-body': theme('colors.slate[200]'),
+                        '--tw-prose-invert-body': theme('colors.slate[100]'),
                         '--tw-prose-invert-headings': theme('colors.white'),
                     },
                 },
