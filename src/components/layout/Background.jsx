@@ -11,8 +11,7 @@ import {
 import useResizeObserver from '@react-hook/resize-observer';
 import { ParallaxContext } from '../ParallaxContextProvider';
 import useMediaQuery from '@/utils/useMediaQuery';
-import blueTealSmokeLeft from '@/public/blue-teal-gradient-smoke_border-left-top.png';
-import blueTealSmokeRight from '@/public/blue-teal-gradient-smoke_border-right.png';
+import data from '@/data/siteContent.json';
 
 function useHeight() {
     const targetRef = useRef(null);
@@ -125,7 +124,9 @@ export default function Background({ children }) {
                         <div className="w-min absolute left-0 -top-10 min-w-[500px] sm:w-[100vw] sm:min-w-[600px] sm:max-w-[600px] 2xl:min-w-[820px] 2xl:max-w-[820px]">
                             <Image
                                 alt=""
-                                src={blueTealSmokeLeft}
+                                src={data.bg.left}
+                                width={1130}
+                                height={1650}
                                 quality={100}
                                 sizes="(max-width: 640px) 500px, (max-width: 1536px) 600px, 820px"
                                 priority
@@ -143,7 +144,9 @@ export default function Background({ children }) {
                             }}>
                             <Image
                                 alt=""
-                                src={blueTealSmokeRight}
+                                src={data.bg.right}
+                                width={470}
+                                height={1950}
                                 quality={100}
                                 sizes="(max-width: 768px) 200px, (max-width: 1024px) 225px, (max-width: 1280px) 250px, 300px"
                                 priority

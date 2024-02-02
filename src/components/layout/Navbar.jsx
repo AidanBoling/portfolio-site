@@ -2,8 +2,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect, useRef, useContext } from 'react';
-import { LightThemeContext } from '../ThemeProvider';
+import {
+    useState,
+    useEffect,
+    useRef,
+    // useContext
+} from 'react';
+// import { LightThemeContext } from '../ThemeProvider';
 import { ThemeButton, ParallaxButton } from '@/components/siteSettingButtons';
 import { BarsMenuIcon, GearIcon, CloseIcon } from '../icons';
 import content from '@/data/siteContent.json';
@@ -245,10 +250,11 @@ export default function Navbar() {
         'font-normal dark:font-light opacity-80 hover:opacity-100 dark:opacity-70 hover:dark:opacity-90 transition';
 
     const LogoLink = ({ activeId, inNav }) => {
-        const { useLightTheme } = useContext(LightThemeContext);
+        // const { useLightTheme } = useContext(LightThemeContext);
 
         const isCurrent = inNav && activeId && activeId === 'cover';
-        const logo = useLightTheme ? content.logo.light : content.logo.dark;
+        // const logo = useLightTheme ? content.logo.light : content.logo.dark;
+        const logo = content.logo;
 
         return (
             <Link

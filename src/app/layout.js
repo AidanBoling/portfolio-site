@@ -27,8 +27,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-    const footerHeight = '140px';
-
     return (
         <html lang="en" className={`${main.variable} ${h1font.variable}`}>
             <body className="font-main">

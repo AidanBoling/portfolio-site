@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import OuterContainer from '../layout/OuterContainer';
 import sectionContent from '@/data/about.json';
@@ -12,16 +12,16 @@ export default function About({ content }) {
         </div>
     );
 
-    const Actions = () => (
-        <div className="flex items-start justify-stretch flex-wrap xxs:justify-between lg:justify-start gap-2 sm:gap-4 md:max-w-[570px]">
-            <Link
-                href="/resume"
-                target="_blank"
-                className="link-btn-base default">
-                <span>Resume</span>
-            </Link>
-        </div>
-    );
+    // const Actions = () => (
+    //     <div className="flex items-start justify-stretch flex-wrap xxs:justify-between lg:justify-start gap-2 sm:gap-4 md:max-w-[570px]">
+    //         <Link
+    //             href="/resume"
+    //             target="_blank"
+    //             className="link-btn-base default">
+    //             <span>Resume</span>
+    //         </Link>
+    //     </div>
+    // );
 
     const CoreTech = () => (
         <>

@@ -4,8 +4,6 @@ import { ContactFormSchema } from '@/lib/contactSchema';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const testData = { name: '', email: 'a@b', message: 'Hello, there!' };
-
 export default async function parseForm(data) {
     return await ContactFormSchema.validate(data)
         .then(parsedData => {

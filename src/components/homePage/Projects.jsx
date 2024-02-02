@@ -148,7 +148,7 @@ export default function Projects() {
                                         className="link">
                                         Check out my Github profile
                                     </a>{' '}
-                                    to see other projects I've worked on.
+                                    to see other projects I&apos;ve worked on.
                                 </p>
                                 {/* <SocialIconLink
                                     socialData={data.social.github}

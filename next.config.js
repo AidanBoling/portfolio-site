@@ -7,6 +7,11 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
+                hostname: 'dg8lucrkskkqo.cloudfront.net',
+                port: '',
+            },
+            {
+                protocol: 'https',
                 hostname: 'picsum.photos',
                 port: '',
             },
@@ -18,6 +23,10 @@ const nextConfig = {
         ],
         // minimumCacheTTL: 3600,
     },
+
+    // experimental: {
+    //     scrollRestoration: true,
+    // },
 
     // compiler: {
     //     removeConsole: {

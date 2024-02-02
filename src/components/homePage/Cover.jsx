@@ -3,7 +3,7 @@ import Image from 'next/image';
 import OuterContainer from '../layout/OuterContainer';
 import useMediaQuery from '@/utils/useMediaQuery';
 import sectionContent from '@/data/about.json';
-import headshot from '@/public/ABheadshot.png';
+// import headshot from '@/public/ABheadshot.png';
 
 export default function Cover() {
     const xxsPaddingX = 'px-[5vw]';
@@ -26,9 +26,11 @@ export default function Cover() {
             <div
                 className={`xs:pl-4 xs:pr-0 xl:px-2 min-w-[200px] max-w-[200px] h-full xl:h-min xxs:min-w-[220] xxs:max-w-[240] xs:max-w-[70%] sm:min-w-[240px] sm:max-w-[250px] md:min-w-[240px] lg:min-w-[270px] xl:min-w-[300px] 2xl:min-w-[340px]`}>
                 <Image
-                    src={headshot}
+                    src={sectionContent.pic}
                     alt="Profile picture for Aidan Boling"
                     priority
+                    width={443}
+                    height={443}
                     sizes="360px"
                     style={{
                         maxWidth: '100%',
@@ -45,7 +47,7 @@ export default function Cover() {
     const Title = () => (
         <div>
             <p className="text-[24px] xs:text-[26px] md:text-[30px] xl:text-[34px] font-light m-0 text-blue-950/[0.85] dark:font-extralight dark:text-blue-100/[0.85]">
-                Hi, I'm{' '}
+                Hi, I&apos;m{' '}
             </p>
             <h1 className="font-h1 text-[50px] xxs:text-6xl xs:text-[64px] sm:text-6xl md:text-[70px] xl:text-[85px] w-full py-3 xs:py-4 m-0 max-xs:leading-[60px]">
                 <span className="bg-clip-text pr-2 xs:pr-4 text-transparent bg-gradient-to-t from-sky-900 to-indigo-500 dark:from-white/75 dark:from-10% dark:via-blue-300/90 dark:via-70% dark:to-teal-300/80">

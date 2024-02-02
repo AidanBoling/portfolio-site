@@ -36,7 +36,7 @@ export default function ProjectPage({ project }) {
             return <h2 className="section-header">{children}</h2>;
         },
         a: ({ node, children }) => {
-            const { href, ...rest } = node.properties;
+            const { href } = node.properties;
 
             return (
                 <a href={href} target="_blank">
