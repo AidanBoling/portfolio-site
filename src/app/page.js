@@ -4,8 +4,10 @@ import Cover from '@/components/homePage/Cover';
 import Projects from '@/components/homePage/Projects';
 import { getFileData } from '@/utils/mdUtils';
 
+export const revalidate = 1800;
+
 export default function Page() {
-    const dirPath = 'src/data/homePage';
+    const dirPath = 'data/homePage';
     const about = getFileData('about', dirPath);
 
     return (

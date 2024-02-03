@@ -1,9 +1,10 @@
 import ProjectPage from '@/components/otherPages/ProjectPage';
 import { getFileData, getFileList } from '@/utils/mdUtils';
 
+export const revalidate = 1800;
 export const dynamicParams = false;
 
-const projectsDirPath = 'src/data/projects';
+const projectsDirPath = 'data/projects';
 
 export async function generateStaticParams() {
     const mdFileNames = getFileList(projectsDirPath);
