@@ -14,7 +14,7 @@ export default function About({ content }) {
 
     const Actions = () => (
         <div className="flex justify-stretch xxs:justify-center md:justify-start">
-            <div className="my-6 mb-10 max-h-min w-full xxs:w-[220px]">
+            <div className="mt-8 xl:mt-10 mb-10 max-h-min w-full xxs:w-[220px]">
                 <a
                     href={sectionContent.resumeLink}
                     target="_blank"
