@@ -1,8 +1,8 @@
 'use client';
 import Image from 'next/image';
-// import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import OuterContainer from '../layout/OuterContainer';
+import { BoxArrowOutIcon } from '../icons';
 import sectionContent from '@/data/about.json';
 
 export default function About({ content }) {
@@ -12,16 +12,25 @@ export default function About({ content }) {
         </div>
     );
 
-    // const Actions = () => (
-    //     <div className="flex items-start justify-stretch flex-wrap xxs:justify-between lg:justify-start gap-2 sm:gap-4 md:max-w-[570px]">
-    //         <Link
-    //             href="/resume"
-    //             target="_blank"
-    //             className="link-btn-base default">
-    //             <span>Resume</span>
-    //         </Link>
-    //     </div>
-    // );
+    const Actions = () => (
+        <div className="flex justify-stretch xxs:justify-center md:justify-start">
+            <div className="my-6 mb-10 max-h-min w-full xxs:w-[220px]">
+                <a
+                    href={sectionContent.resumeLink}
+                    target="_blank"
+                    className="link-btn-base teal-ltblue max-xxs:py-2 inline-flex items-center justify-center xl:text-xl">
+                    View Resume
+                    <span aria-hidden="true" className="pl-2 pb-[.1rem]">
+                        <BoxArrowOutIcon
+                            className={
+                                'w-4 h-4 stroke-sky-500/90 dark:stroke-sky-400/90'
+                            }
+                        />
+                    </span>
+                </a>
+            </div>
+        </div>
+    );
 
     const CoreTech = () => (
         <>
@@ -80,11 +89,14 @@ export default function About({ content }) {
                             <div className="h-min content-px relative pb-6">
                                 <h2 className="section-header">About</h2>
                             </div>
-                            <div className="flex flex-col gap-y-8 gap-x-12 xl:flex-row xl:pt-6">
-                                <div className="pt-6 content-px">
+                            <div className="flex flex-col gap-y-8 gap-x-12 pt-6 xl:flex-row xl:pt-12">
+                                <div className="content-px">
                                     <AboutMe />
+                                    <div className="contents xl:hidden">
+                                        <Actions />
+                                    </div>
                                 </div>
-                                <div className="not-prose content-bg-alt w-full md:min-w-[40%] xl:min-w-[40%] xl:content-py content-px pb-8 pt-6 xs:p-6 xl:p-8 xl:pt-5">
+                                <div className="not-prose content-bg-alt w-full md:min-w-[40%] xl:min-w-[40%] xl:content-py content-px pb-8 pt-6 xs:p-6 xl:p-8 xl:px-12 xl:pt-5 xl:flex xl:flex-col xl:justify-evenly">
                                     <h3 className="visually-hidden">
                                         Skills and Tech
                                     </h3>
@@ -107,6 +119,9 @@ export default function About({ content }) {
                                         </li>
                                     </ul>
                                 </div>
+                            </div>
+                            <div className="contents max-xl:hidden">
+                                <Actions />
                             </div>
                         </div>
                     </OuterContainer>
