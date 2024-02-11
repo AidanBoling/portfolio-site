@@ -21,7 +21,9 @@ const h1font = WindSong({
     display: 'swap',
     variable: '--font-h1-custom',
 });
+
 export const metadata = {
+    metadataBase: new URL(pageContent.metadata.baseurl),
     title: pageContent.metadata.title,
     description: pageContent.metadata.description,
 };
